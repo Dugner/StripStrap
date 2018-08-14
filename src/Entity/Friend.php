@@ -8,9 +8,9 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\PostRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\FriendRepository")
  */
-class Post
+class Friend
 {
     /**
      * @ORM\Id()
@@ -20,26 +20,14 @@ class Post
     private $id;
 
     /**
-     * @ORM\Column(type="datetime")
-     * @Assert\NotBlank()
+     * @ORM\Column(type="boolean")
      */
-    private $datetime;
+    private $report;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Comment")
-     */
-    private $comments;
-
-    /**
-     * @ORM\OneToMany(targetEntity="App\Entity\User", mappedBy="posts")
+     * @ORM\OneToMany(targetEntity="App\Entity\User", mappedBy="friend")
      */
     private $user;
-
-    /**
-     * @ORM\Column(type="text")
-     * @Assert\NotBlank()
-     */
-    private $content;
 
     public function __construct()
     {
@@ -51,26 +39,14 @@ class Post
         return $this->id;
     }
 
-    public function getDatetime(): ?string
+    public function getReport(): ?bool
     {
-        return $this->datetime;
+        return $this->report;
     }
 
-    public function setDatetime(string $datetime): self
+    public function setReport(bool $report): self
     {
-        $this->datetime = $datetime;
-
-        return $this;
-    }
-
-    public function getComments(): ?Comment
-    {
-        return $this->comments;
-    }
-
-    public function setComments(?Comment $comments): self
-    {
-        $this->comments = $comments;
+        $this->report = $report;
 
         return $this;
     }
@@ -87,7 +63,7 @@ class Post
     {
         if (!$this->user->contains($user)) {
             $this->user[] = $user;
-            $user->setPosts($this);
+            $user->setFriend($this);
         }
 
         return $this;
@@ -98,22 +74,10 @@ class Post
         if ($this->user->contains($user)) {
             $this->user->removeElement($user);
             // set the owning side to null (unless already changed)
-            if ($user->getPosts() === $this) {
-                $user->setPosts(null);
+            if ($user->getFriend() === $this) {
+                $user->setFriend(null);
             }
         }
-
-        return $this;
-    }
-
-    public function getContent(): ?string
-    {
-        return $this->content;
-    }
-
-    public function setContent(string $content): self
-    {
-        $this->content = $content;
 
         return $this;
     }

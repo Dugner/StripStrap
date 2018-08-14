@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\DocumentRepository")
@@ -11,8 +12,8 @@ class Document
 {
     /**
      * @ORM\Id()
-     * @ORM\GeneratedValue()
-     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="UUID")      
+     * @ORM\Column(type="string", length=36) 
      */
     private $id;
 
@@ -30,6 +31,7 @@ class Document
      * @ORM\Column(type="string", length=255)
      */
     private $mimeType;
+
 
     public function getId(): ?int
     {
@@ -71,4 +73,5 @@ class Document
 
         return $this;
     }
+
 }
