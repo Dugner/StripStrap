@@ -14,7 +14,7 @@ security:
                 login_path: login
                 default_target_path: /
             logout: 
-                path: /
+                path: logout
                 target: /
 
     encoders: 
