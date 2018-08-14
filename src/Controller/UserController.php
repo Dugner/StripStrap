@@ -43,7 +43,9 @@ class UserController extends Controller{
             $user->setPassword($encodedPassword);
 
 
-            $file=$user->getPicture();
+            $manager= $this->getDoctrine()->getManager();
+            $file= $user->getPicture();
+            $filename= uniqid().'.'.$file->guessExtension();
             if($file){
 
                 $document = new Document();
@@ -55,7 +57,7 @@ class UserController extends Controller{
                 $user->setPicture($document);
                 $manager->persist($document);
             }
-            $manager= $this->getDoctrine()->getManager();
+
             $manager->persist($user);
             $manager->flush();
             

@@ -44,7 +44,8 @@ class UserFormType extends AbstractType{
 
             ->add('picture', FileType::class, array('label' => 'Choose a profile picture'), ['required'=>false]);
         if($options['standalone']){
-            $builder->add('submit', SubmitType::class);
+            $builder->add('submit', SubmitType::class,
+            ['attr'=>['class'=>'btn btn-info btn-block']]);
         }
     }
 
