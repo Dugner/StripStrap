@@ -1,0 +1,281 @@
+/* ADMINPANEL STYLESHEET */
+@import url('https://fonts.googleapis.com/css?family=Montserrat'); 
+/* variable */
+
+// color (background)
+$header_bg: #535353
+$mainNav_linkBg: #8d8d8d
+$mainNav_linkHoverBg: #ff8c8c
+
+$navLeft_bg: #6c6c6c
+$navLeft_dropdownBg: #d1d1d1
+$navLeft_dropdownHoverBg: #9f9f9f
+
+$navLeftDropdown_bg: #9f9f9f
+
+$mainContainer_bg: #c0c0c0
+
+$footer_bg: #535353
+$footer_color: white
+
+// color (font)
+$mainNav_linkColor: black
+$mainNav_linkHoverColor: white
+
+$navLeft_toggleColor: #c4c4c4
+$navLeft_toggleHoverColor: #9a9a9a
+$navLeft_dropdownColor: black
+$navLeft_dropdownHoverColor: #ddd
+
+$navLeftDropdown_color: black
+$navLeftDropdown_hoverColor: #ddd
+
+/* variable end */
+/* settings */
+
+*
+    box-sizing: border-box
+    font-family: 'Montserrat'
+
+.row 
+    display: flex
+    flex-direction: row
+.column
+    display: flex
+    flex-direction: column
+
+.hidden
+    display: none
+
+i
+    margin-left: 7px
+#nav-left
+    i
+        margin-right: 7px
+        margin-left: 0
+#m-nav-left
+    i
+        margin-right: 0
+        margin-left: 0
+    #m-toggle-nav-left
+        i
+            margin-right: 7px
+/* settings end */
+/* header */
+
+header
+    height: 50px
+    width: 100%
+    background: $header_bg
+
+    #main-nav
+        width: 100%
+        justify-content: space-between
+        align-items: center
+
+        // logo
+        .logo-container
+            margin: 0
+            padding: 0
+            width: 150px
+
+            .logo
+                display: block
+                margin: 0 auto
+                height: 51px
+
+        .nav-container
+            width: 100px
+            text-align: center
+            display: flex
+            justify-content: center
+            align-items: center
+            padding: 0
+            margin: 0
+
+            .nav-item
+                display: block
+                list-style: none
+                flex: 1
+
+                .nav-link
+                    display: block
+                    text-decoration: none
+                    padding: 16px 0
+                    background: $mainNav_linkBg
+                    color: $mainNav_linkColor
+                    &:hover
+                        background: $mainNav_linkHoverBg
+                        color: $mainNav_linkHoverColor
+
+/* header end */
+/* main */
+
+body
+    margin: 0
+
+#wrapper
+    min-height: 100vh
+    position: relative
+
+main
+    flex: 1
+
+    // nav left
+    #nav-left
+        background: $navLeft_bg
+        width: 350px
+        display: block
+
+        #toggle-nav-left
+            font-size: 1.3rem
+            color: $navLeft_toggleColor
+            width: 100%
+            display: block
+            text-align: right
+            padding: 3px 0
+            i:hover
+                color: $navLeft_toggleHoverColor
+
+        .nav-container
+            justify-content: center
+            align-items: center
+            padding: 0
+            margin: 0
+
+            .nav-item
+                list-style: none
+                flex: 1
+                width: 100%
+                text-align: center
+
+                .nav-link
+                    text-decoration: none
+                    display: block
+                    padding: 16px 0
+
+            .dropdown
+                background: $navLeft_dropdownBg
+                text-align: left
+                cursor: pointer
+                &:hover
+                    background: $navLeft_dropdownHoverBg
+                    box-shadow: inset 0px 3px 7px 0px rgba(0,0,0,0.5)
+
+                .dd-active
+                    font-weight: bold
+                    background: $navLeft_dropdownHoverBg
+
+                >.nav-link
+                    padding-left: 15px
+                    color: $navLeft_dropdownColor
+                    &:hover
+                        color: $navLeft_dropdownHoverColor
+                
+                .nav-container
+                    box-shadow: inset 0px 3px 7px 0px rgba(0,0,0,0.5)
+                    background: $navLeftDropdown_bg
+
+                    .nav-item
+
+                        .nav-link
+                            color: $navLeftDropdown_color
+                            &:hover
+                                color: #navLeftDropdown_hoverColor
+                                font-weight: bold
+
+    // main container
+    #main-container
+        width: 100%
+        background: $mainContainer_bg
+
+/* main end */
+/* footer */
+
+footer
+    position: absolute
+    bottom: 0
+    background: $footer_bg
+    height: 50px
+    width: 100%
+    color: $footer_color
+    text-align: center
+
+/* footer end */
+//
+// MOBILE VERSION BELOW
+//
+/* main */
+main
+
+    // mobile nav left
+    #m-nav-left
+        background: $navLeft_bg
+        width: 50px    
+        display: none        
+
+        #m-toggle-nav-left
+            font-size: 1.3rem
+            color: $navLeft_toggleColor
+            width: 100%
+            display: block
+            text-align: right
+            padding: 3px 0
+            i:hover
+                color: $navLeft_toggleHoverColor
+
+        .m-nav-container
+            justify-content: center
+            align-items: center
+            padding: 0
+            margin: 0
+
+            .m-nav-item
+                list-style: none
+                flex: 1
+                width: 100%
+                text-align: center
+
+                .m-nav-link
+                    text-decoration: none
+                    display: block
+                    padding: 16px 0
+
+            .dropdown
+                background: $navLeft_dropdownBg
+                text-align: center
+                cursor: pointer
+                &:hover
+                    background: $navLeft_dropdownHoverBg
+                    box-shadow: inset 0px 3px 7px 0px rgba(0,0,0,0.5)
+
+                .m-dd-active
+                    background: $navLeft_dropdownHoverBg
+                    box-shadow: inset 0px 3px 7px 0px rgba(0,0,0,0.5)
+                    i
+                        color: $navLeft_dropdownHoverColor
+
+                >.m-nav-link
+                    color: $navLeft_dropdownColor
+                    &:hover
+                        color: $navLeft_dropdownHoverColor
+                
+                .m-nav-container
+                    box-shadow: inset 0px 3px 7px 0px rgba(0,0,0,0.5)
+                    background: $navLeftDropdown_bg
+
+                    .m-nav-item
+
+                        .m-nav-link
+                            color: $navLeftDropdown_color
+                            &:hover
+                                color: $navLeftDropdown_hoverColor
+
+@media only screen and (max-width: 600px)
+
+    main
+        #nav-left
+            display: none
+
+        #m-nav-left
+            display: block
