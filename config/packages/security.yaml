@@ -7,7 +7,21 @@ security:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
         main:
+            pattern: .*
             anonymous: true
+            form_login:
+                check_path: login
+                login_path: login
+                default_target_path: /
+            logout: 
+                path: /
+                target: /
+
+    encoders: 
+        App\Entity\User:
+            algorithm:      bcrypt
+            cost: 15
+
 
             # activate different ways to authenticate
 
