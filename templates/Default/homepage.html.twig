@@ -1,1 +1,38 @@
-<h1>StripStrap</h1>
+{% extends 'base.html.twig' %}
+
+{% block title %} {{parent()}} Homepage {% endblock %}
+
+{% block body %}
+
+<main role="main">
+    <div class="jumbotron" id="banner">
+        <h1>StripStrap | By gamers for gamers</h1>
+        <div class="container">
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-3" id="leftbar">
+                {% block leftside %}
+                    {% include 'leftsidebar.html.twig' %}
+                {% endblock %}
+            </div>
+
+            <div class="col-md-6">
+                {% block mainsection %}
+                    {% include 'mainsection.html.twig' %}
+                {% endblock %}
+            </div>
+
+            <div class="col-md-3" id="rightbar">
+                {% block rightside %}
+                    {% include 'rightsidebar.html.twig' %}
+                {% endblock %}
+            </div>
+        </div>
+        <hr>
+    </div>
+</main>
+
+{% endblock %}
+
