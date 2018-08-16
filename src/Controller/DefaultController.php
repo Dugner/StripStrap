@@ -10,4 +10,9 @@ class DefaultController extends Controller
     {
         return $this->render('default/homepage.html.twig');
     }
+
+    public function profileCard()
+    {
+        return $this->render('profileCard.html.twig');
+    }
 }

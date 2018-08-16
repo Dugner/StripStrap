@@ -5,3 +5,7 @@
 homepage:
     path: /
     controller: App\Controller\DefaultController::homepage
+
+profileCard:
+    path: /profileCard
+    controller: App\Controller\DefaultController::profileCard
