@@ -264,12 +264,12 @@ class User
         return $this;
     }
 
-    public function getPicture(): ?Document
+    public function getPicture()
     {
         return $this->picture;
     }
 
-    public function setPicture(?Document $picture): self
+    public function setPicture($picture): self
     {
         $this->picture = $picture;
 

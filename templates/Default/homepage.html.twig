@@ -1,1 +1,40 @@
-<h1>THAT'S THE HOMEPAGE !!!</h1>
+{% extends 'base.html.twig' %}
+
+{% block title %} {{parent()}} Homepage {% endblock %}
+
+{% block body %}
+
+        <div class="row">
+            <div class="col-md-3" id="leftbar">
+                    <div class="container-fluid">
+                        <div class="card" style="width: 18rem;">
+                        <img class="card-img-top" src="" alt="picture">
+
+                        <div class="card-body">
+                            <h5 class="card-title">Name - Level</h5>
+                            <p class="card-text">Detail</p>
+                            <a href="#" class="btn btn-success">Discover me</a>
+                        </div>
+                    </div>
+                </div>
+
+                {% block leftside %}
+                    {% include 'leftsidebar.html.twig' %}
+                {% endblock %}
+            </div>
+
+            <div class="col-md-6">
+                {% block mainsection %}
+                    {% include 'mainsection.html.twig' %}
+                {% endblock %}
+            </div>
+
+            <div class="col-md-3" id="rightbar">
+                {% block rightside %}
+                    {% include 'rightsidebar.html.twig' %}
+                {% endblock %}
+            </div>
+        </div>
+
+{% endblock %}
+

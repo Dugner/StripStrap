@@ -6,6 +6,13 @@ homepage:
     path: /
     controller: App\Controller\DefaultController::homepage
 
-profileCard:
-    path: /profileCard
-    controller: App\Controller\DefaultController::profileCard
+sign_in:
+    path: /signin
+    controller: App\Controller\UserController::userForm
+logout:
+    path: /logout
+
+# ADMIN PANEL BELOW
+admin_home:
+    path: /admin
+    controller: App\Controller\AdminController::home
