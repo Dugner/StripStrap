@@ -5,8 +5,12 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 
+
+
 class DefaultController extends Controller
 {
+
+
     public function homepage()
     {
         return $this->render('default/homepage.html.twig');
@@ -19,9 +23,9 @@ class DefaultController extends Controller
         $error = $authUtils->getLastAuthenticationError();
 
             // last username entered by the user
-    $lastUsername = $authenticationUtils->getLastUsername();
+        $lastUsername = $authUtils->getLastUsername();
 
-        return $this->render('security/login.html.twig', array(
+        return $this->render('Default/login.html.twig', array(
             'last_username' => $lastUsername,
             'error'         => $error,
         ));

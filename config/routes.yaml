@@ -9,8 +9,13 @@ homepage:
 sign_in:
     path: /signin
     controller: App\Controller\UserController::userForm
+    
 logout:
     path: /logout
+
+login:
+    path:   /login
+    controller: App\Controller\DefaultController::login
 
 # ADMIN PANEL BELOW
 admin_home:

@@ -6,11 +6,12 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
+ * @ORM\Entity()
  */
-class User
+class User implements UserInterface
 {
     /**
      * @ORM\Id()
@@ -21,8 +22,6 @@ class User
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\NotBlank()
-     * Assert\Length(min=3, max=255)
      */
     private $username;
 
@@ -106,7 +105,7 @@ class User
         return $this->id;
     }
 
-    public function getUsername(): ?string
+    public function getUsername()
     {
         return $this->username;
     }
@@ -142,7 +141,7 @@ class User
         return $this;
     }
 
-    public function getPassword(): ?string
+    public function getPassword()
     {
         return $this->password;
     }
@@ -205,9 +204,10 @@ class User
     /**
      * @return Collection|Role[]
      */
-    public function getRoles(): Collection
+    public function getRoles(): array
     {
-        return $this->roles;
+        return array_map('strval',
+        $this->roles->toArray());
     }
 
     public function addRole(Role $role): self
@@ -277,5 +277,13 @@ class User
     }
     
 
-    
+    public function eraseCredentials()
+    {
+      return null;
+    }
+  
+    public function getSalt()
+    {
+      return null;
+    }
 }
