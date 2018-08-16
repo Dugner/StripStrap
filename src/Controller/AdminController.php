@@ -7,7 +7,6 @@
     use App\Form\GameFormType;
     use App\Entity\Game;
     use App\Entity\Document;
-    use App\Entity\Category;
 
 
     class AdminController extends Controller
@@ -31,11 +30,10 @@
             $form->handleRequest($request);
 
             
-            
             if($form->isSubmitted() && $form->isValid()){
-
+                
                 $manager = $this->getDoctrine()->getManager();
-                $file = $game->getPicure();
+                $file = $game->getPicture();
                 $filename = uniqid().'.'.$file->guessExtension();
                 
                 if($file){
@@ -47,7 +45,7 @@
 
                     $file->move($this->getParameter('upload_dir'));
 
-                    $user->setPicure($document);
+                    $game->setPicture($document);
 
                     $manager->persist($document);
                 }
