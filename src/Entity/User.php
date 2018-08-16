@@ -101,7 +101,7 @@ class User
     }
 
 
-    public function getId(): ?int
+    public function getId()
     {
         return $this->id;
     }
@@ -203,11 +203,11 @@ class User
     }
 
     /**
-     * @return Collection|Role[]
+     * @return Role[]
      */
-    public function getRoles(): Collection
+    public function getRoles(): array
     {
-        return $this->roles;
+        return array_map('strval', $this->roles->toArray());
     }
 
     public function addRole(Role $role): self
@@ -264,18 +264,15 @@ class User
         return $this;
     }
 
-    public function getPicture(): ?Document
+    public function getPicture()
     {
         return $this->picture;
     }
 
-    public function setPicture(?Document $picture): self
+    public function setPicture($picture): self
     {
         $this->picture = $picture;
 
         return $this;
     }
-    
-
-    
 }

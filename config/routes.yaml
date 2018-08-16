@@ -9,4 +9,8 @@ homepage:
 # ADMIN PANEL BELOW
 admin_home:
     path: /admin
-    controller: App\Controller\AdminController::home
+    controller: App\Controller\AdminController::userList
+
+admin_user_detail:
+    path: /admin/user/details/{user}
+    controller: App\Controller\AdminController::userDetails
