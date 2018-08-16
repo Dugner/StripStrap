@@ -1,0 +1,40 @@
+<header>
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">
+            <img src="{{ asset('img/LogoStripstrapTest.png') }}" width="150" height="70" alt="Logo of StripStrap">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+            <form class="form-inline mr-auto" id="searchbar">
+                <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+            <ul class="navbar-nav my-2 my-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Wall</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Admin</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">LogIn</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('sign_in')  }}">SignIn</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>
+
+<main role="main">
+    <div class="jumbotron" id="banner">
+        <h1>StripStrap | By gamers for gamers</h1>
+    </div>
+    <div class="container-fluid">

@@ -1,1 +1,28 @@
-<h1>StripStrap</h1>
+{% extends 'base.html.twig' %}
+
+{% block title %} {{parent()}} Homepage {% endblock %}
+
+{% block body %}
+
+        <div class="row">
+            <div class="col-md-3" id="leftbar">
+                {% block leftside %}
+                    {% include 'leftsidebar.html.twig' %}
+                {% endblock %}
+            </div>
+
+            <div class="col-md-6">
+                {% block mainsection %}
+                    {% include 'mainsection.html.twig' %}
+                {% endblock %}
+            </div>
+
+            <div class="col-md-3" id="rightbar">
+                {% block rightside %}
+                    {% include 'rightsidebar.html.twig' %}
+                {% endblock %}
+            </div>
+        </div>
+
+{% endblock %}
+
