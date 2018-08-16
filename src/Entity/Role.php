@@ -23,7 +23,7 @@ class Role
      */
     private $label;
 
-    public function getId(): ?int
+    public function getId()
     {
         return $this->id;
     }
@@ -38,5 +38,10 @@ class Role
         $this->label = $label;
 
         return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->label;
     }
 }

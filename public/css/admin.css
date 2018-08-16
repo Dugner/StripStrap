@@ -91,6 +91,7 @@ header #main-nav .nav-container .nav-item .nav-link {
 }
 
 header #main-nav .nav-container .nav-item .nav-link:hover {
+  transition-duration: 0.5s;
   background: #ff8c8c;
   color: white;
 }
@@ -156,6 +157,7 @@ main #nav-left .nav-container .dropdown {
 }
 
 main #nav-left .nav-container .dropdown:hover {
+  transition-duration: 0.5s;
   background: #9f9f9f;
   box-shadow: inset 0px 3px 7px 0px rgba(0, 0, 0, 0.5);
 }
@@ -171,6 +173,7 @@ main #nav-left .nav-container .dropdown > .nav-link {
 }
 
 main #nav-left .nav-container .dropdown > .nav-link:hover {
+  transition-duration: 0.5s;
   color: #ddd;
 }
 
@@ -184,13 +187,174 @@ main #nav-left .nav-container .dropdown .nav-container .nav-item .nav-link {
 }
 
 main #nav-left .nav-container .dropdown .nav-container .nav-item .nav-link:hover {
+  transition-duration: 0.5s;
   color: #navLeftDropdown_hoverColor;
   font-weight: bold;
 }
 
 main #main-container {
   width: 100%;
+  min-width: 300px;
   background: #c0c0c0;
+  padding: 15px;
+}
+
+main #main-container .table-container {
+  overflow-x: auto;
+}
+
+main #main-container .table-container .table {
+  width: 100%;
+  min-width: 900px;
+  border-collapse: collapse;
+  border: 2px solid black;
+}
+
+main #main-container .table-container .table td, main #main-container .table-container .table th {
+  padding: 7px 5px;
+  text-align: center;
+}
+
+main #main-container .table-container .table td {
+  border-bottom: 1px solid black;
+  border-left: 1px solid black;
+}
+
+main #main-container .table-container .table td:first-child {
+  border-left: none;
+}
+
+main #main-container .table-container .table td i {
+  font-size: 1.3rem;
+}
+
+main #main-container .table-container .table td a:first-child:hover i {
+  transition-duration: 0.5s;
+  color: #4ea6e7;
+}
+
+main #main-container .table-container .table td a:first-child i {
+  color: #1d88d8;
+}
+
+main #main-container .table-container .table td a:last-child:hover i {
+  transition-duration: 0.5s;
+  color: #e7474b;
+}
+
+main #main-container .table-container .table td a:last-child i {
+  color: #e22529;
+}
+
+main #main-container .table-container .table th {
+  border-bottom: 2px solid black;
+  border-left: 2px solid black;
+  background: #535353;
+  color: white;
+}
+
+main #main-container .table-container .table th:first-child {
+  border-left: none;
+}
+
+main #main-container .table-container .table tbody tr:nth-child(even) {
+  backgorund: #6c6c6c;
+}
+
+main #main-container .table-container .table tbody tr:nth-child(odd) {
+  background: #d1d1d1;
+}
+
+main #main-container .table-container .table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+main #main-container form {
+  max-width: 750px;
+  min-width: 350px;
+  margin: 0 auto 50px auto;
+  border: 2px solid #535353;
+  border-radius: 5px;
+  padding: 7px;
+  background: #d1d1d1;
+  box-shadow: 0px 4px 5px 1px rgba(0, 0, 0, 0.5);
+}
+
+main #main-container form > div {
+  padding: 5px;
+}
+
+main #main-container form > div .form-group {
+  display: flex;
+  width: 100%;
+}
+
+main #main-container form > div .form-group label {
+  flex: 1;
+  padding: 7px 0;
+  text-align: right;
+  margin: 0 10px 0 0;
+}
+
+main #main-container form > div .form-group input, main #main-container form > div .form-group select {
+  flex: 2;
+  padding: 7px 10px;
+  border-radius: 5px;
+  outline: none;
+  background: #ddd;
+  border: 2px solid #535353;
+  margin: 0 0 7px 0;
+}
+
+main #main-container form > div .form-group input:focus, main #main-container form > div .form-group select:focus {
+  border: 2px solid #535353;
+  background: #9f9f9f;
+  color: #fff;
+  box-shadow: inset 0px 3px 7px 0px rgba(0, 0, 0, 0.5);
+}
+
+main #main-container form > div .form-group input:hover, main #main-container form > div .form-group select:hover {
+  transition-duration: 0.5s;
+  border-color: #535353;
+  background: #9f9f9f;
+  box-shadow: inset 0px 3px 7px 0px rgba(0, 0, 0, 0.5);
+}
+
+main #main-container form > div .form-group button {
+  padding: 10px 15px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  background: #8d8d8d;
+}
+
+main #main-container form > div .form-group button:hover {
+  transition-duration: 0.5s;
+  background: #9bf09f;
+  box-shadow: inset 0px 3px 7px 0px rgba(0, 0, 0, 0.5);
+}
+
+main #main-container form > div .form-group select {
+  margin: 0 7px 7px 0;
+}
+
+main #main-container form > div fieldset {
+  padding: 15px;
+  margin: 15px 10px 25px 0;
+  display: flex-block;
+}
+
+main #main-container form > div fieldset > div {
+  display: flex;
+  justify-content: center;
+}
+
+main #main-container form > div .custom-file {
+  width: 100%;
+}
+
+main #main-container form > div .form-group > .form-group {
+  flex: 2;
 }
 
 /* main end */
@@ -207,6 +371,11 @@ footer {
 
 /* footer end */
 /* main */
+main {
+  display: flex;
+  flex-direction: row;
+}
+
 main #m-nav-left {
   background: #6c6c6c;
   width: 50px;
@@ -223,6 +392,7 @@ main #m-nav-left #m-toggle-nav-left {
 }
 
 main #m-nav-left #m-toggle-nav-left i:hover {
+  transition-duration: 0.5s;
   color: #9a9a9a;
 }
 
@@ -253,6 +423,7 @@ main #m-nav-left .m-nav-container .dropdown {
 }
 
 main #m-nav-left .m-nav-container .dropdown:hover {
+  transition-duration: 0.5s;
   background: #9f9f9f;
   box-shadow: inset 0px 3px 7px 0px rgba(0, 0, 0, 0.5);
 }
@@ -284,10 +455,11 @@ main #m-nav-left .m-nav-container .dropdown .m-nav-container .m-nav-item .m-nav-
 }
 
 main #m-nav-left .m-nav-container .dropdown .m-nav-container .m-nav-item .m-nav-link:hover {
+  transition-duration: 0.5s;
   color: #ddd;
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 1200px) {
   main #nav-left {
     display: none;
   }
