@@ -7,22 +7,21 @@ use App\Entity\Character;
 use App\Entity\User;
 use Symfony\Component\HttpFoundation\Request;
 
-
 class DefaultController extends Controller
 {
-    public function homepage() {
+    public function homepage()
+    {
         return $this->render('default/homepage.html.twig');
     }
     
     //Login function
-
     public function login(AuthenticationUtils $authUtils) {
         $error = $authUtils->getLastAuthenticationError();
 
         // last username entered by the user
-        $lastUsername = $authenticationUtils->getLastUsername();
+        $lastUsername = $authUtils->getLastUsername();
 
-        return $this->render('security/login.html.twig', array(
+        return $this->render('Default/login.html.twig', array(
             'last_username' => $lastUsername,
             'error'         => $error,
         ));
