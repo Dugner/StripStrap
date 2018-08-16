@@ -18,5 +18,21 @@ admin_home:
     controller: App\Controller\AdminController::home
 
 admin_game:
-    path: /admin/game
+    path: /admin/game/{edit}
     controller: App\Controller\AdminController::gameForm
+
+admin_game_list:
+    path: /admin/game/list
+    controller: App\Controller\AdminController::gameList
+
+admin_picture:
+    path: /admin/game/list/{document}
+    controller: App\Controller\DefaultController::downloadDocument
+
+#admin_gamelist_edit:
+#    path:     /admin/game/list
+#    controller: App\Controller\AdminController::editGame
+
+#admin_gamelist_delete:
+ #   path:     /admin/game/list/{delete} 
+ #   controller: App\Controller\AdminController::deleteGame

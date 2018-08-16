@@ -52,15 +52,55 @@
                 $manager->persist($game);
                 $manager->flush();
 
-                return $this->redirectToRoute('Admin/game.html.twig');
+                return $this->redirectToRoute('admin_game');
 
             }
             return $this->render(
-                'Admin/game.html.twig',
-                ['game_add'=>$form->createView()]
+                'Admin/Game/game.html.twig',
+                [
+                    'game_add'=>$form->createView()]
                 );
         }
 
+        public function gameList()
+        {
+            $manager = $this->getDoctrine()->getManager();
+
+            $gamelist = new Game();
+            
+            return $this->render(
+                'Admin/Game/gamelist.html.twig',
+                ['gamelist' => $manager->getRepository(Game::class)->findAll()]
+            );
+        }
+        
+        public function editGame(Game $game, Request $request)
+        {
+            $form = $this->createForm(
+                GameFormType::class, 
+                $game,
+                ['standalone' => true]
+                );
+            
+            $form->handleRequest($request);
+
+            if($form->isSubmitted() && $form->isValid())
+            {
+                $this->getDoctrine()->getManager()->flush();
+
+                return $this->redirectToRoute(
+                    'admin_game', 
+                    ['edit' => $game->getId()]);
+            }
+
+            return $this->render(
+                'Admin/Game/game.html.twig',
+                ['edit' => $game,
+                'game_add'=>$form->createView()]
+            );
+        }
+
+        
     }
 
 ?>

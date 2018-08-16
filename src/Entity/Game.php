@@ -50,7 +50,7 @@ class Game
         $this->categories = new ArrayCollection();
     }
 
-    public function getId(): ?int
+    public function getId()
     {
         return $this->id;
     }
