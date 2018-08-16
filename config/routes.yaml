@@ -10,3 +10,7 @@ homepage:
 admin_home:
     path: /admin
     controller: App\Controller\AdminController::home
+
+admin_game:
+    path: /admin/game
+    controller: App\Controller\AdminController::gameForm
