@@ -6,13 +6,23 @@ homepage:
     path: /
     controller: App\Controller\DefaultController::homepage
 
+index_list:
+    path: /
+    controller: App\Controller\PostController::homePosts
+
 sign_in:
     path: /signin
     controller: App\Controller\UserController::userForm
 logout:
     path: /logout
 
+wall_list:
+    path: /wall
+    controller: App\Controller\PostController::wallPosts
+    
 # ADMIN PANEL BELOW
 admin_home:
     path: /admin
     controller: App\Controller\AdminController::home
+
+
