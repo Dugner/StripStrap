@@ -13,7 +13,35 @@
 
             <div class="col-md-6">
                 {% block mainsection %}
-                    {% include 'mainsection.html.twig' %}
+                    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                        <div class="container">
+                            {{ form(homePostForm) }}
+                        </div>
+                        <hr>
+                    {% endif %}
+
+                    <h1 id="posts">Posts: </h1>
+
+                    {% if posts is empty %}
+                        <p>No post found in the website</p>
+                    {% else %}
+                        {% for post in posts %}   
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title"> Vedro(test) </h5>
+                                    {# <h5 class="card-title"> {{post.getUser().getUsername()}}</h5> #}
+                                    <hr>
+                                    <p class="card-text">{{ post.getContent() }}</p>
+                                    <p class="blockquote-footer">{{ post.getDatetime()|date('Y-m-d H:i:s') }}</p>
+                                </div>
+                                <div class="card-footer">
+                                    <p>{{ post.getComments() }}</p>
+                                </div>
+                            </div>    
+                            <br>  
+                        {% endfor %}
+                    {% endif %}
+                    {# {% include 'mainsection.html.twig' %} #}
                 {% endblock %}
             </div>
 
