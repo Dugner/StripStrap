@@ -2,15 +2,16 @@
 namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use App\Entity\Post;
 use App\Form\PostFormType;
-use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Validator\Constraints\DateTime;
 
-
-class DefaultController extends Controller
+class PostController extends Controller
 {
-    public function homepage(Request $request)
+    public function wallPosts(Request $request)
     {
         $manager = $this->getDoctrine()->getManager();
         $post = new Post();
@@ -25,7 +26,7 @@ class DefaultController extends Controller
             $manager->persist($post);
             $manager->flush();
 
-            return $this->redirectToRoute('index_list');
+            return $this->redirectToRoute('wall_list');
         }
 
         // $posts = $manager->getRepository(Post::class)
@@ -36,27 +37,11 @@ class DefaultController extends Controller
         $posts = $manager->getRepository(Post::class)->findAll();
 
         return $this->render(
-            'default/homepage.html.twig',
+            'wall/wall.html.twig',
             [
                 'posts' => $posts,
-                'homePostForm' => $form->createView(),
+                'postForm' => $form->createView(),
             ]
         );
-    }
-    
-    //Login function
-
-    public function login(AuthenticationUtils $authUtils){
-
-        $error = $authUtils->getLastAuthenticationError();
-
-            // last username entered by the user
-    $lastUsername = $authenticationUtils->getLastUsername();
-
-        return $this->render('security/login.html.twig', array(
-            'last_username' => $lastUsername,
-            'error'         => $error,
-        ));
-
     }
 }

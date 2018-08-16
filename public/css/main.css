@@ -1,0 +1,33 @@
+body {
+    width: 1200px;
+    margin: auto;
+}
+h1#posts{
+    text-align: center;
+}
+h1#wallposts{
+    text-align: center;
+}
+.navbar.navbar-expand-md.navbar-dark.fixed-top.bg-dark{
+    max-width: 1200px;
+    margin: auto;
+}
+#banner h1{
+    text-align: center;
+}
+#navbarsExampleDefault{
+    margin-left: 10px;
+    margin-right: 10px;
+}
+footer p{
+    text-align: right;
+}
+#searchbar{
+    margin: auto;
+}
+
+@media (max-width: 768px){
+    #leftbar, #rightbar{
+        display: none;
+    }
+}
