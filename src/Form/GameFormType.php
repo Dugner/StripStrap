@@ -22,8 +22,7 @@ class GameFormType extends AbstractType
             ->add('description', TextareaType::class, ['label'=>'Enter your game Description'])
             ->add('picture',
                 FileType::class,
-                array('label'=> 'Choose a game Picture'),
-                ['required' => false]
+                array('label'=> 'Choose a game Picture', 'required' => false)
                 )
         ;
 

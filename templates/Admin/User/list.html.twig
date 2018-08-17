@@ -33,10 +33,14 @@
                                     <td>{{ user.getEmail() }}</td>
                                     <td>{{ user.getDateOfBirth()|date('d/m/Y') }}</td>
                                     <td>{{ user.getCountry() }}</td>
-                                    <td>{{ user.getCharacter()[0].name() }}</td>
+                                    {% if user.getCharacter() is empty %}
+                                        <td>No Character</td>
+                                    {% else %}
+                                        <td>{{ user.getCharacter()[0].name() }}</td>
+                                    {% endif %}
                                     <td>
-                                        <a href="{{ path('admin_user_detail', { user: user.getId() }) }}"><i class="fas fa-pen-square"></i></a>
-                                        <a href="{{ path('admin_user_delete', { deleteUser: user.getId() })}}"><i class="fas fa-minus-square"></i></a>
+                                    <a href="{{ path('admin_user_detail', { user: user.getId() }) }}"><i class="fas fa-pen-square"></i></a>
+                                    <a href="{{ path('admin_user_delete', { deleteUser: user.getId() })}}"><i class="fas fa-minus-square"></i></a>
                                     </td>
                                 </tr>
                             {% endfor %}
