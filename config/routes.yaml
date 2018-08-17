@@ -6,6 +6,10 @@ homepage:
     path: /
     controller: App\Controller\DefaultController::homepage
 
+index_list:
+    path: /
+    controller: App\Controller\PostController::homePosts
+
 sign_in:
     path: /signin
     controller: App\Controller\UserController::userForm
@@ -13,11 +17,22 @@ sign_in:
 logout:
     path: /logout
 
+<<<<<<< HEAD
 login:
     path:   /login
     controller: App\Controller\DefaultController::login
 
+=======
+wall_list:
+    path: /wall
+    controller: App\Controller\PostController::wallPosts
+    
+>>>>>>> de1a7052a6fbecbf88e54d980372b678273542e9
 # ADMIN PANEL BELOW
 admin_home:
     path: /admin
-    controller: App\Controller\AdminController::home
+    controller: App\Controller\AdminController::userList
+
+admin_user_detail:
+    path: /admin/user/details/{user}
+    controller: App\Controller\AdminController::userDetails

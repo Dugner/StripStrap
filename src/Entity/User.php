@@ -206,12 +206,11 @@ class User implements UserInterface
     }
 
     /**
-     * @return Collection|Role[]
+     * @return Role[]
      */
     public function getRoles(): array
     {
-        return array_map('strval',
-        $this->roles->toArray());
+        return array_map('strval', $this->roles->toArray());
     }
 
     public function addRole(Role $role): self
@@ -279,6 +278,7 @@ class User implements UserInterface
 
         return $this;
     }
+<<<<<<< HEAD
     
 
     public function eraseCredentials()
@@ -290,4 +290,6 @@ class User implements UserInterface
     {
       return null;
     }
+=======
+>>>>>>> de1a7052a6fbecbf88e54d980372b678273542e9
 }
