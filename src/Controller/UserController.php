@@ -8,6 +8,7 @@ use Symfony\Component\Security\Core\Encoder\EncoderFactoryInterface;
 use App\Form\UserFormType;
 use App\Entity\User;
 use App\Entity\Document;
+use App\Entity\Role;
 
 
 
@@ -20,10 +21,7 @@ class UserController extends Controller{
 
 
     public function userForm( Request $request, EncoderFactoryInterface $factory){
-
-    //Create form with encoded password
-
-        $user = new User;
+        $user = new User();
         $form = $this->createForm(
             UserFormType::class,
             $user,
@@ -33,7 +31,7 @@ class UserController extends Controller{
         $form->handleRequest($request);
         
         if($form->isSubmitted() && $form->isValid()){
-
+            //Create form with encoded password
             $encoder= $factory->getEncoder(User::class);
             $encodedPassword = $encoder->encodePassword(
                 $user->getPassword(),
@@ -42,11 +40,12 @@ class UserController extends Controller{
 
             $user->setPassword($encodedPassword);
 
-
             $manager= $this->getDoctrine()->getManager();
+
             $file= $user->getPicture();
-            $filename= uniqid().'.'.$file->guessExtension();
-            if($file){
+
+            if($file) {        
+                $filename= uniqid().'.'.$file->guessExtension();
 
                 $document = new Document();
                 $document->setPath($this->getParameter('upload_dir'))
@@ -58,20 +57,14 @@ class UserController extends Controller{
                 $manager->persist($document);
             }
 
+            $user->addRole($manager->getRepository(Role::class)->findOneBy(['label' => 'ROLE_USER']));
+
             $manager->persist($user);
             $manager->flush();
-            
+
             return $this->redirectToRoute('homepage');
         }
 
-        return $this->render('signin.html.twig', 
-        ['user_form'=>$form->createView()]);
-
-
-
-
-
+        return $this->render('signin.html.twig', ['user_form'=>$form->createView()]);
     }
-
-
-}//class
+}//class test

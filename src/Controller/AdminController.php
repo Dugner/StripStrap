@@ -46,7 +46,8 @@
             'updateForm' => $updateForm->createView()
         ]);
     }
-##########ADD GAMES IN THE ADMIN ########################
+
+    
     public function gameForm(Request $request)
     {
         $game = new Game();
@@ -91,7 +92,8 @@
                 'game_add'=>$form->createView()]
             );
     }
-##########DISPLAY THE LIST OF GAMES IN THE ADMIN ########################
+
+    
     public function gameList()
     {
         $manager = $this->getDoctrine()->getManager();
@@ -103,7 +105,7 @@
             ['gamelist' => $manager->getRepository(Game::class)->findAll()]
         );
     }
-##########EDIT GAMES IN THE ADMIN ########################
+
     public function editGame(Game $edit, Request $request)
     {
         $document = $this->getDoctrine()->getRepository(Document::class);
@@ -128,7 +130,7 @@
         );
         
     }
-##########DELETE GAMES IN THE ADMIN ########################
+
     public function deliteGame($delete)
     {
         $game = $this->getDoctrine()->getManager();
