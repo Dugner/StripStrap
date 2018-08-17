@@ -14,6 +14,7 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\ButtonType;
 use App\Entity\Role;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use App\Entity\Character;
 
 class UpdateUserFormType extends AbstractType
 {
@@ -31,7 +32,13 @@ class UpdateUserFormType extends AbstractType
                 'multiple' => true,
                 'label' => 'The list of roles a user can get:'
             ])
-            ->add('characters', TextType::class, ['label' => 'Character:', 'required' => false])
+            ->add('characters', EntityType::class, [
+                'class' => Character::class,
+                'expanded' => false,
+                'multiple' => true,
+                'label' => 'Character:', 
+                'required' => false
+            ])
             ->add('Cancel', ButtonType::class, ['attr' => ['class' => 'btn-primary btn-cancel']]);
 
         if ($options['standalone'])
