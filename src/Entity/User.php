@@ -6,11 +6,16 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use App\Entity\Role;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
+ * @ORM\Entity()
+ * @UniqueEntity("username")
+ * @UniqueEntity("email")
  */
-class User
+class User implements UserInterface
 {
     /**
      * @ORM\Id()
@@ -21,8 +26,6 @@ class User
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\NotBlank()
-     * Assert\Length(min=3, max=255)
      */
     private $username;
 
@@ -81,7 +84,7 @@ class User
     private $characters;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Post", inversedBy="user")
+     * @ORM\OneToMany(targetEntity="App\Entity\Post", mappedBy="user")
      */
     private $posts;
 
@@ -106,7 +109,7 @@ class User
         return $this->id;
     }
 
-    public function getUsername(): ?string
+    public function getUsername()
     {
         return $this->username;
     }
@@ -142,7 +145,7 @@ class User
         return $this;
     }
 
-    public function getPassword(): ?string
+    public function getPassword()
     {
         return $this->password;
     }
@@ -275,4 +278,18 @@ class User
 
         return $this;
     }
+<<<<<<< HEAD
+    
+
+    public function eraseCredentials()
+    {
+      return null;
+    }
+  
+    public function getSalt()
+    {
+      return null;
+    }
+=======
+>>>>>>> de1a7052a6fbecbf88e54d980372b678273542e9
 }

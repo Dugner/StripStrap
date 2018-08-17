@@ -31,7 +31,7 @@ class Post
     private $comments;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\User", mappedBy="posts")
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="posts")
      */
     private $user;
 
