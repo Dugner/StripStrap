@@ -25,7 +25,7 @@ class Friend
     private $report;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\User", mappedBy="friend")
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="friend")
      */
     private $user;
 

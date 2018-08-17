@@ -32,7 +32,7 @@ class Comment
     private $datetime;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\User", mappedBy="comments")
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="comments")
      */
     private $user;
 
