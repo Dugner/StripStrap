@@ -21,3 +21,7 @@ login:
 admin_home:
     path: /admin
     controller: App\Controller\AdminController::home
+
+download_document:
+    path: /document/{document}
+    controller: App\Controller\DefaultController::downloadDocument
