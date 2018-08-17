@@ -1,0 +1,24 @@
+{% extends 'Admin/base.html.twig' %}
+
+{% block title %}{{ parent() }}User delete{% endblock %}
+
+{% block body %}
+        
+        <section id="main-container">
+
+            {{ form_start(deleteForm) }}
+                <div class="description">
+                    <p>
+                        Are you sure to delete the user: <strong>{{ deleteUser.getUsername() }} &#40;{{ deleteUser.getFirstname() }} {{ deleteUser.getLastname() }}&#41;</strong>
+                    </p>
+                </div>
+                
+                <div class="form-group-row">
+                    {{ form_row(deleteForm.Cancel) }}
+                    {{ form_row(deleteForm.Yes) }}
+                </div>
+            {{ form_end(deleteForm) }}
+
+        </section>
+
+{% endblock %}
