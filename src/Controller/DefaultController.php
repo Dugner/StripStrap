@@ -28,17 +28,12 @@ class DefaultController extends Controller
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
+            $post->setUser($this->getUser());
             $manager->persist($post);
             $manager->flush();
 
             return $this->redirectToRoute('index_list');
         }
-
-        // $posts = $manager->getRepository(Post::class)
-        //     ->findBy(
-        //         ['id' => 'DESC']
-        //     );
-
         $posts = $manager->getRepository(Post::class)->findLimit($this->getParameter('list_limit'));
         shuffle($posts);
 
@@ -69,5 +64,12 @@ class DefaultController extends Controller
         $document->getPath(), $document->getName());
         return new BinaryFileResponse($fileName);
     }
+
+    public function userCard(){
+        return $this->render(
+           'leftsidebar.html.twig'
+        );
+    }
+
 
 }

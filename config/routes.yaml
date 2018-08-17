@@ -24,7 +24,13 @@ login:
 wall_list:
     path: /wall
     controller: App\Controller\PostController::wallPosts
-    
+
+user_card:
+    path: /usercard
+    controller: App\Controller\DefaultController::userCard
+
+
+
 # ADMIN PANEL BELOW
 admin_home:
     path: /admin
