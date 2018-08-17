@@ -4,52 +4,53 @@
 
 {% block body %}
 
-        <div class="row">
-                {% block leftside %}
-                    {% include 'leftsidebar.html.twig' %}
-                {% endblock %}
-            </div>
-
-            <div class="col-md-6">
-                {% block mainsection %}
-                    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-                        <div class="container">
-                            {{ form(homePostForm) }}
-                        </div>
-                        <hr>
-                    {% endif %}
-
-                    <h1 id="posts">Posts: </h1>
-
-                    {% if posts is empty %}
-                        <p>No post found in the website</p>
-                    {% else %}
-                        {% for post in posts %}   
-                            <div class="card">
-                                <div class="card-body">
-                                    <h5 class="card-title"> Vedro(test) </h5>
-                                    {# <h5 class="card-title"> {{post.getUser().getUsername()}}</h5> #}
-                                    <hr>
-                                    <p class="card-text">{{ post.getContent() }}</p>
-                                    <p class="blockquote-footer">{{ post.getDatetime()|date('Y-m-d H:i:s') }}</p>
-                                </div>
-                                <div class="card-footer">
-                                    <p>{{ post.getComments() }}</p>
-                                </div>
-                            </div>    
-                            <br>  
-                        {% endfor %}
-                    {% endif %}
-                    {# {% include 'mainsection.html.twig' %} #}
-                {% endblock %}
-            </div>
-
-            <div class="col-md-3" id="rightbar">
-                {% block rightside %}
-                    {% include 'rightsidebar.html.twig' %}
-                {% endblock %}
-            </div>
+    <div class="row">
+        <div class="col-md-3" id="leftbar">
+            {% block leftside %}
+                {% include 'leftsidebar.html.twig' %}
+            {% endblock %}
         </div>
+
+        <div class="col-md-6">
+            {% block mainsection %}
+                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                    <div class="container">
+                        {{ form(homePostForm) }}
+                    </div>
+                    <hr>
+                {% endif %}
+
+                <h1 id="posts">Posts: </h1>
+
+                {% if posts is empty %}
+                    <p>No post found in the website</p>
+                {% else %}
+                    {% for post in posts %}   
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title"> {{ post.getUser().getUsername() }} </h5>
+                                {# <h5 class="card-title"> {{post.getUser().getUsername()}}</h5> #}
+                                <hr>
+                                <p class="card-text">{{ post.getContent() }}</p>
+                                <p class="blockquote-footer">{{ post.getDatetime()|date('Y-m-d H:i:s') }}</p>
+                            </div>
+                            <div class="card-footer">
+                                <p>{{ post.getComments() }}</p>
+                            </div>
+                        </div>    
+                        <br>  
+                    {% endfor %}
+                {% endif %}
+                {# {% include 'mainsection.html.twig' %} #}
+            {% endblock %}
+        </div>
+
+        <div class="col-md-3" id="rightbar">
+            {% block rightside %}
+                {% include 'rightsidebar.html.twig' %}
+            {% endblock %}
+        </div>
+    </div>
 
 {% endblock %}
 

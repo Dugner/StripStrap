@@ -17,17 +17,14 @@ sign_in:
 logout:
     path: /logout
 
-<<<<<<< HEAD
 login:
     path:   /login
     controller: App\Controller\DefaultController::login
 
-=======
 wall_list:
     path: /wall
     controller: App\Controller\PostController::wallPosts
     
->>>>>>> de1a7052a6fbecbf88e54d980372b678273542e9
 # ADMIN PANEL BELOW
 admin_home:
     path: /admin
