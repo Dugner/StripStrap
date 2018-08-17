@@ -100,6 +100,7 @@ class User implements UserInterface
 
     public function __construct()
     {
+        $this->posts = new ArrayCollection();
         $this->roles = new ArrayCollection();
     }
 
@@ -243,14 +244,30 @@ class User implements UserInterface
         return $this;
     }
 
-    public function getPosts(): ?Post
+    public function getPosts(): ?Collection
     {
         return $this->posts;
     }
 
-    public function setPosts(?Post $posts): self
+    public function addPosts(Post $post): self
     {
-        $this->posts = $posts;
+        if (!$this->posts->contains($post)) {
+            $this->posts[] = $post;
+            $post->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removePosts(Post $post): self
+    {
+        if ($this->posts->contains($post)) {
+            $this->posts->removeElement($post);
+            // set the owning side to null (unless already changed)
+            if ($post->getUser() === $this) {
+                $post->setUser(null);
+            }
+        }
 
         return $this;
     }
