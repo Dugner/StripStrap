@@ -26,7 +26,7 @@ class Game
     private $title;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Character", inversedBy="game")
+     * @ORM\OneToMany(targetEntity="App\Entity\Character", mappedBy="game")
      */
     private $characters;
 
@@ -38,7 +38,7 @@ class Game
     /**
      * @ORM\OneToOne(targetEntity="App\Entity\Document", cascade={"persist", "remove"})
      */
-    private $picure;
+    private $picture;
 
     /**
      * @ORM\Column(type="text")
@@ -50,7 +50,7 @@ class Game
         $this->categories = new ArrayCollection();
     }
 
-    public function getId(): ?int
+    public function getId()
     {
         return $this->id;
     }
@@ -105,14 +105,14 @@ class Game
         return $this;
     }
 
-    public function getPicure(): ?Document
+    public function getPicture()
     {
-        return $this->picure;
+        return $this->picture;
     }
 
-    public function setPicure(?Document $picure): self
+    public function setPicture($picture): self
     {
-        $this->picure = $picure;
+        $this->picture = $picture;
 
         return $this;
     }

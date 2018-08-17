@@ -39,7 +39,7 @@
                                     {% endif %}
                                     <td>
                                         <a href="{{ path('admin_user_detail', { user: user.getId() }) }}"><i class="fas fa-pen-square"></i></a>
-                                        <a href="#"><i class="fas fa-minus-square"></i></a>
+                                        <a href="{{ path('admin_user_delete', { deleteUser: user.getId() })}}"><i class="fas fa-minus-square"></i></a>
                                     </td>
                                 </tr>
                             {% endfor %}

@@ -1,0 +1,38 @@
+{% extends 'Admin/base.html.twig' %}
+
+{% block title %}{{ parent() }}Game Admin Panel{% endblock %}
+
+{% block body %}
+    <section id="main-container">
+        {% if gamelist is empty %}
+            <p>No Users found in the application</p>
+        {% else %}
+            <div class="table-container">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Description</th>
+                            <th>Picture</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for gamelists in gamelist %}
+                            <tr>
+                                <td>{{ gamelists.getTitle() }}</td>
+                                <td>{{ gamelists.getDescription() }}</td>
+                                {% if gamelists.getPicture() is not empty %}
+                                    <td><img src="{{ path('admin_picture', {'document': gamelists.getPicture().getId()}) }}" width='40px'></td>
+                                    <td><a href="{{ path('admin_game_edit', {edit: gamelists.getId()}) }}"><i class="fas fa-pen-square"></i></a>
+                                    <a href="{{ path("admin_gamelist_delete", {delete: gamelists.getId()}) }}"><i class="fas fa-minus-square"></i></a></td>
+                                {% else %}
+                                    <td></td>
+                                {% endif %}
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% endif %}
+    </section>    
+{% endblock %}
