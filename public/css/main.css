@@ -25,6 +25,9 @@ footer p{
 #searchbar{
     margin: auto;
 }
+div.pagination{
+    justify-content: center;
+}
 
 @media (max-width: 768px){
     #leftbar, #rightbar{

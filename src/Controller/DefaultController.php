@@ -33,22 +33,12 @@ class DefaultController extends Controller
             return $this->redirectToRoute('index_list');
         }
 
-        // $posts = $manager->getRepository(Post::class)
-        //     ->findBy(
-        //         ['id' => 'DESC']
-        //     );
-
-        $posts = $manager->getRepository(Post::class)
-            ->findBy(
-                [],
-                ['datetime' => 'DESC'],
-                $this->getParameter('list_limit')
-            );
+        $pagination = $manager->getRepository(Post::class)->paginate($request, $this->get('knp_paginator'), $this->getParameter('list_limit'));
 
         return $this->render(
             'default/homepage.html.twig',
             [
-                'posts' => $posts,
+                'pagination' => $pagination,
                 'homePostForm' => $form->createView(),
             ]
         );
