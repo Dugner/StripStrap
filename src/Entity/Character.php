@@ -33,12 +33,12 @@ class Character
     private $level;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\User", mappedBy="characters")
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="characters")
      */
     private $user;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Game", mappedBy="characters")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Game", inversedBy="characters")
      */
     private $game;
 

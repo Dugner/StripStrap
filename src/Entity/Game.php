@@ -26,7 +26,7 @@ class Game
     private $title;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Character", inversedBy="game")
+     * @ORM\OneToMany(targetEntity="App\Entity\Character", mappedBy="game")
      */
     private $characters;
 

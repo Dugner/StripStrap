@@ -69,7 +69,7 @@ class User implements UserInterface
     private $dateOfBirth;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Friend", inversedBy="user")
+     * @ORM\OneToMany(targetEntity="App\Entity\Friend", mappedBy="user")
      */
     private $friend;
 
@@ -79,7 +79,7 @@ class User implements UserInterface
     private $roles;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Character", inversedBy="user")
+     * @ORM\OneToMany(targetEntity="App\Entity\Character", mappedBy="user")
      */
     private $characters;
 
@@ -89,7 +89,7 @@ class User implements UserInterface
     private $posts;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Comment", inversedBy="user")
+     * @ORM\OneToMany(targetEntity="App\Entity\Comment", mappedBy="user")
      */
     private $comments;
 
@@ -243,14 +243,30 @@ class User implements UserInterface
         return $this;
     }
 
-    public function getCharacters(): ?Character
+    public function getCharacters(): ?Collection
     {
-        return $this->characters;
+        return $this->posts;
     }
 
-    public function setCharacters(?Character $characters): self
+    public function addCharacters(Post $post): self
     {
-        $this->characters = $characters;
+        if (!$this->posts->contains($post)) {
+            $this->posts[] = $post;
+            $post->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removePosts(Post $post): self
+    {
+        if ($this->posts->contains($post)) {
+            $this->posts->removeElement($post);
+            // set the owning side to null (unless already changed)
+            if ($post->getUser() === $this) {
+                $post->setUser(null);
+            }
+        }
 
         return $this;
     }
