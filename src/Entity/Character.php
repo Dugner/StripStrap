@@ -9,7 +9,6 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\CharacterRepository")
- * @ORM\Table("usercharacter")
  */
 class Character
 {
@@ -54,7 +53,6 @@ class Character
 
     public function __construct()
     {
-        $this->user = new ArrayCollection();
         $this->game = new ArrayCollection();
     }
 
@@ -89,32 +87,16 @@ class Character
 
 
     /**
-     * @return Collection|User[]
+     * @return User
      */
-    public function getUser(): Collection
+    public function getUser(): User
     {
         return $this->user;
     }
 
-    public function addUser(User $user): self
+    public function setUser(User $user)
     {
-        if (!$this->user->contains($user)) {
-            $this->user[] = $user;
-            $user->setCharacters($this);
-        }
-
-        return $this;
-    }
-
-    public function removeUser(User $user): self
-    {
-        if ($this->user->contains($user)) {
-            $this->user->removeElement($user);
-            // set the owning side to null (unless already changed)
-            if ($user->getCharacters() === $this) {
-                $user->setCharacters(null);
-            }
-        }
+        $this->user = $user;
 
         return $this;
     }

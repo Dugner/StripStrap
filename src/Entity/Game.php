@@ -47,6 +47,7 @@ class Game
 
     public function __construct()
     {
+        $this->characters = new ArrayCollection();
         $this->categories = new ArrayCollection();
     }
 
