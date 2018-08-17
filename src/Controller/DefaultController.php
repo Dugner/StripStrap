@@ -3,6 +3,8 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
+use App\Entity\Document;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use App\Entity\Character;
 use App\Entity\User;
 use Symfony\Component\HttpFoundation\Request;
@@ -51,7 +53,8 @@ class DefaultController extends Controller
             ]
         );
     }
-    
+
+
     //Login function
     public function login(AuthenticationUtils $authUtils) {
         $error = $authUtils->getLastAuthenticationError();
@@ -63,5 +66,11 @@ class DefaultController extends Controller
             'last_username' => $lastUsername,
             'error'         => $error,
         ));
+    }
+    
+    public function downloadDocumentAdmin(Document $document) {
+        $fileName = sprintf('%s/%s', $document->getPath(), $document->getName());
+
+        return new BinaryFileResponse($fileName);
     }
 }
