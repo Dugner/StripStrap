@@ -65,7 +65,6 @@ class UserController extends Controller{
             return $this->redirectToRoute('homepage');
         }
 
-        return $this->render('signin.html.twig', 
-        ['user_form'=>$form->createView()]);
+        return $this->render('signin.html.twig', ['user_form'=>$form->createView()]);
     }
 }//class
