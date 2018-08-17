@@ -34,6 +34,7 @@ class Character
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="characters")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id", nullable=true, onDelete="SET NULL")
      */
     private $user;
 
