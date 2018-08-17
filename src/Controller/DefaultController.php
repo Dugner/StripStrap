@@ -5,11 +5,11 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use App\Entity\Document;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
+use App\Entity\Character;
 use App\Entity\User;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use App\Entity\Character;
 use App\Entity\Post;
 use App\Form\PostFormType;
 
@@ -34,8 +34,18 @@ class DefaultController extends Controller
 
             return $this->redirectToRoute('index_list');
         }
-        $posts = $manager->getRepository(Post::class)->findLimit($this->getParameter('list_limit'));
-        shuffle($posts);
+
+        // $posts = $manager->getRepository(Post::class)
+        //     ->findBy(
+        //         ['id' => 'DESC']
+        //     );
+
+        $posts = $manager->getRepository(Post::class)
+            ->findBy(
+                [],
+                ['datetime' => 'DESC'],
+                $this->getParameter('list_limit')
+            );
 
         return $this->render(
             'default/homepage.html.twig',
@@ -45,7 +55,8 @@ class DefaultController extends Controller
             ]
         );
     }
-    
+
+
     //Login function
     public function login(AuthenticationUtils $authUtils) {
         $error = $authUtils->getLastAuthenticationError();
@@ -72,4 +83,10 @@ class DefaultController extends Controller
     }
 
 
+    
+    public function downloadDocumentAdmin(Document $document) {
+        $fileName = sprintf('%s/%s', $document->getPath(), $document->getName());
+
+        return new BinaryFileResponse($fileName);
+    }
 }

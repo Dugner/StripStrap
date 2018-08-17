@@ -40,6 +40,30 @@ i {
   margin-right: 7px;
 }
 
+.btn {
+  padding: 10px 15px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.btn:hover {
+  transition-duration: 0.5s;
+  box-shadow: inset 0px 3px 7px 0px rgba(0, 0, 0, 0.5);
+}
+
+.btn-success {
+  background: #9bf09f;
+}
+
+.btn-danger {
+  background: #ff8c8c;
+}
+
+.btn-primary {
+  background: #9be3f0;
+}
+
 /* settings end */
 /* header */
 header {
@@ -63,7 +87,7 @@ header #main-nav .logo-container {
 header #main-nav .logo-container .logo {
   display: block;
   margin: 0 auto;
-  height: 51px;
+  height: 50px;
 }
 
 header #main-nav .nav-container {
@@ -85,7 +109,7 @@ header #main-nav .nav-container .nav-item {
 header #main-nav .nav-container .nav-item .nav-link {
   display: block;
   text-decoration: none;
-  padding: 16px 0;
+  padding: 15px 0;
   background: #8d8d8d;
   color: black;
 }
@@ -271,7 +295,6 @@ main #main-container .table-container .table tbody tr:last-child td {
 
 main #main-container form {
   max-width: 750px;
-  min-width: 350px;
   margin: 0 auto 50px auto;
   border: 2px solid #535353;
   border-radius: 5px;
@@ -296,7 +319,7 @@ main #main-container form > div .form-group label {
   margin: 0 10px 0 0;
 }
 
-main #main-container form > div .form-group input, main #main-container form > div .form-group select {
+main #main-container form > div .form-group input, main #main-container form > div .form-group select, main #main-container form > div .form-group textarea {
   flex: 2;
   padding: 7px 10px;
   border-radius: 5px;
@@ -306,31 +329,17 @@ main #main-container form > div .form-group input, main #main-container form > d
   margin: 0 0 7px 0;
 }
 
-main #main-container form > div .form-group input:focus, main #main-container form > div .form-group select:focus {
+main #main-container form > div .form-group input:focus, main #main-container form > div .form-group select:focus, main #main-container form > div .form-group textarea:focus {
   border: 2px solid #535353;
   background: #9f9f9f;
   color: #fff;
   box-shadow: inset 0px 3px 7px 0px rgba(0, 0, 0, 0.5);
 }
 
-main #main-container form > div .form-group input:hover, main #main-container form > div .form-group select:hover {
+main #main-container form > div .form-group input:hover, main #main-container form > div .form-group select:hover, main #main-container form > div .form-group textarea:hover {
   transition-duration: 0.5s;
   border-color: #535353;
   background: #9f9f9f;
-  box-shadow: inset 0px 3px 7px 0px rgba(0, 0, 0, 0.5);
-}
-
-main #main-container form > div .form-group button {
-  padding: 10px 15px;
-  border: none;
-  cursor: pointer;
-  border-radius: 5px;
-  background: #8d8d8d;
-}
-
-main #main-container form > div .form-group button:hover {
-  transition-duration: 0.5s;
-  background: #9bf09f;
   box-shadow: inset 0px 3px 7px 0px rgba(0, 0, 0, 0.5);
 }
 
@@ -355,6 +364,17 @@ main #main-container form > div .custom-file {
 
 main #main-container form > div .form-group > .form-group {
   flex: 2;
+}
+
+main #main-container form .form-group-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+main #main-container form .form-group-row .form-group {
+  flex: 0;
+  margin: 0 10px 0 0;
 }
 
 /* main end */
@@ -413,7 +433,7 @@ main #m-nav-left .m-nav-container .m-nav-item {
 main #m-nav-left .m-nav-container .m-nav-item .m-nav-link {
   text-decoration: none;
   display: block;
-  padding: 16px 0;
+  padding: 15px 0;
 }
 
 main #m-nav-left .m-nav-container .dropdown {

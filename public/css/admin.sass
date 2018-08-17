@@ -81,8 +81,9 @@ $formButton_borderSize: 2px
 $formButton_borderStyle: solid
 $formButton_borderColor: $form_borderColor
 $formButton_borderRadius: 5px
-$formButton_bg: #8d8d8d
-$formButtonHover_bg: #9bf09f
+$formButtonSuccess_bg: #9bf09f
+$fromButtonDanger_bg: #ff8c8c
+$fromButtonPrimary_bg: #9be3f0
 
 /* variable end */
 /* settings */
@@ -114,6 +115,22 @@ i
     #m-toggle-nav-left
         i
             margin-right: 7px
+
+// buttons
+.btn
+    padding: 10px 15px
+    border: none
+    cursor: pointer
+    border-radius: $formButton_borderRadius
+    &:hover
+        transition-duration: 0.5s
+        box-shadow: inset 0px 3px 7px 0px rgba(0,0,0,0.5)
+.btn-success
+    background: $formButtonSuccess_bg
+.btn-danger
+    background: $fromButtonDanger_bg
+.btn-primary
+    background: $fromButtonPrimary_bg
 /* settings end */
 /* header */
 
@@ -136,7 +153,7 @@ header
             .logo
                 display: block
                 margin: 0 auto
-                height: 51px
+                height: 50px
 
         .nav-container
             width: 100px
@@ -155,7 +172,7 @@ header
                 .nav-link
                     display: block
                     text-decoration: none
-                    padding: 16px 0
+                    padding: 15px 0
                     background: $mainNav_linkBg
                     color: $mainNav_linkColor
                     &:hover
@@ -304,13 +321,12 @@ main
         // form
         form
             max-width: 750px
-            min-width: 350px
             margin: 0 auto 50px auto
             border: $form_borderSize $form_borderStyle $form_borderColor
             border-radius: 5px
             padding: 7px
             background: $form_bg
-            box-shadow: 0px 4px 5px 1px rgba(0,0,0,0.5);
+            box-shadow: 0px 4px 5px 1px rgba(0,0,0,0.5)
 
             >div
                 padding: 5px
@@ -324,7 +340,7 @@ main
                         padding: 7px 0
                         text-align: right
                         margin: 0 10px 0 0
-                    input, select
+                    input, select, textarea
                         flex: 2
                         padding: 7px 10px
                         border-radius: $formInput_borderRadius
@@ -343,16 +359,6 @@ main
                             background: $formInputHover_bg
                             box-shadow: inset 0px 3px 7px 0px rgba(0,0,0,0.5)
 
-                    button
-                        padding: 10px 15px
-                        border: none
-                        cursor: pointer
-                        border-radius: $formButton_borderRadius
-                        background: $formButton_bg
-                        &:hover
-                            transition-duration: 0.5s
-                            background: $formButtonHover_bg
-                            box-shadow: inset 0px 3px 7px 0px rgba(0,0,0,0.5)
 
                     select
                         margin: 0 7px 7px 0
@@ -371,6 +377,14 @@ main
 
                 .form-group > .form-group
                     flex: 2
+
+            .form-group-row
+                display: flex
+                flex-direction: row
+                justify-content: flex-end
+                .form-group
+                    flex: 0
+                    margin: 0 10px 0 0
 
 /* main end */
 /* footer */
@@ -425,7 +439,7 @@ main
                 .m-nav-link
                     text-decoration: none
                     display: block
-                    padding: 16px 0
+                    padding: 15px 0
 
             .dropdown
                 background: $navLeft_dropdownBg
