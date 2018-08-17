@@ -41,4 +41,13 @@ $(function(){
 
     });
 
+    /* deleteuser */
+    $('#delete_user_form_Cancel').click(function ()
+    {
+       
+        // redirect to the page back
+        window.history.back();
+
+    });
+
 });

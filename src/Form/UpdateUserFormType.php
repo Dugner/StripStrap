@@ -32,10 +32,10 @@ class UpdateUserFormType extends AbstractType
             ])
             ->add('characters', TextType::class, ['label' => 'Character:', 'required' => false]);
 
-            if ($options['standalone'])
-            {
-                $builder->add('Update', SubmitType::class);
-            }
+        if ($options['standalone'])
+        {
+            $builder->add('Update', SubmitType::class, ['attr' => ['class' => 'btn-success']]);
+        }
     }
 
     public function configureOptions(OptionsResolver $resolver)

@@ -296,7 +296,7 @@ main #main-container form > div .form-group label {
   margin: 0 10px 0 0;
 }
 
-main #main-container form > div .form-group input, main #main-container form > div .form-group select {
+main #main-container form > div .form-group input, main #main-container form > div .form-group select, main #main-container form > div .form-group textarea {
   flex: 2;
   padding: 7px 10px;
   border-radius: 5px;
@@ -306,31 +306,17 @@ main #main-container form > div .form-group input, main #main-container form > d
   margin: 0 0 7px 0;
 }
 
-main #main-container form > div .form-group input:focus, main #main-container form > div .form-group select:focus {
+main #main-container form > div .form-group input:focus, main #main-container form > div .form-group select:focus, main #main-container form > div .form-group textarea:focus {
   border: 2px solid #535353;
   background: #9f9f9f;
   color: #fff;
   box-shadow: inset 0px 3px 7px 0px rgba(0, 0, 0, 0.5);
 }
 
-main #main-container form > div .form-group input:hover, main #main-container form > div .form-group select:hover {
+main #main-container form > div .form-group input:hover, main #main-container form > div .form-group select:hover, main #main-container form > div .form-group textarea:hover {
   transition-duration: 0.5s;
   border-color: #535353;
   background: #9f9f9f;
-  box-shadow: inset 0px 3px 7px 0px rgba(0, 0, 0, 0.5);
-}
-
-main #main-container form > div .form-group button {
-  padding: 10px 15px;
-  border: none;
-  cursor: pointer;
-  border-radius: 5px;
-  background: #8d8d8d;
-}
-
-main #main-container form > div .form-group button:hover {
-  transition-duration: 0.5s;
-  background: #9bf09f;
   box-shadow: inset 0px 3px 7px 0px rgba(0, 0, 0, 0.5);
 }
 
@@ -355,6 +341,37 @@ main #main-container form > div .custom-file {
 
 main #main-container form > div .form-group > .form-group {
   flex: 2;
+}
+
+main #main-container form .btn {
+  padding: 10px 15px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+main #main-container form .btn:hover {
+  transition-duration: 0.5s;
+  box-shadow: inset 0px 3px 7px 0px rgba(0, 0, 0, 0.5);
+}
+
+main #main-container form .btn-success {
+  background: #9bf09f;
+}
+
+main #main-container form .btn-danger {
+  background: #ff8c8c;
+}
+
+main #main-container form[name='delete_user_form'] .form-group-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+main #main-container form[name='delete_user_form'] .form-group-row .form-group {
+  flex: 0;
+  margin: 0 10px 0 0;
 }
 
 /* main end */

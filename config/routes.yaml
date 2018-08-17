@@ -28,3 +28,7 @@ admin_home:
 admin_user_detail:
     path: /admin/user/details/{user}
     controller: App\Controller\AdminController::userDetails
+
+admin_user_delete:
+    path: /admin/user/delete/{deleteUser}
+    controller: App\Controller\AdminController::userDelete
