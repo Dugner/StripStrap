@@ -29,12 +29,13 @@ class PostController extends Controller
             return $this->redirectToRoute('wall_list');
         }
 
-        // $posts = $manager->getRepository(Post::class)
-        //     ->findBy(
-        //         ['id' => 'DESC']
-        //     );
+        $posts = $manager->getRepository(Post::class)
+            ->findBy(
+                ['user' => $this->getUser()],
+                ['datetime' => 'DESC']
+            );
 
-        $posts = $manager->getRepository(Post::class)->findAll();
+        // $posts = $manager->getRepository(Post::class)->findAll();
 
         return $this->render(
             'wall/wall.html.twig',

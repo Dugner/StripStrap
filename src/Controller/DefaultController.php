@@ -33,7 +33,8 @@ class DefaultController extends Controller
         //         ['id' => 'DESC']
         //     );
 
-        $posts = $manager->getRepository(Post::class)->findAll();
+        $posts = $manager->getRepository(Post::class)->findLimit($this->getParameter('list_limit'));
+        shuffle($posts);
 
         return $this->render(
             'default/homepage.html.twig',

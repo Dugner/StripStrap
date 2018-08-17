@@ -6,6 +6,7 @@
 parameters:
     locale: 'en'
     upload_dir: "%kernel.root_dir%/../var/upload"
+    list_limit: 10
 
 services:
     # default configuration for services in *this* file

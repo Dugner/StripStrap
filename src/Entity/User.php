@@ -81,7 +81,7 @@ class User
     private $characters;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Post", inversedBy="user")
+     * @ORM\OneToMany(targetEntity="App\Entity\Post", mappedBy="user")
      */
     private $posts;
 
