@@ -131,17 +131,37 @@
 
     public function editGame(Game $edit, Request $request)
     {
-        $document = $this->getDoctrine()->getRepository(Document::class);
-        $image = $document->find($edit);
-
-        
+        $picture = $edit->getPicture();
+        if ($picture) {
+            $file = new File(
+                $picture->getPath() . '/' . $picture->getName()
+            );
+            $edit->setPicture($file);
+        }
 
         $formEdit = $this->createForm(GameFormType::class, $edit, ['standalone' => true]);
         $formEdit -> handleRequest($request);
 
         if($formEdit->isSubmitted() && $formEdit->isValid())    {
             
-            $this->getDoctrine()->getManager()->flush();
+            $file = $edit->getPicture();
+            $filename = uniqid().'.'.$file->guessExtension();
+            $manager = $this->getDoctrine()->getManager();
+            if($file){
+
+                $document = new Document();
+                $document->setPath($this->getParameter('upload_dir'))
+                    ->setMimeType($file->getMimeType())
+                    ->setName($file->getFilename());
+
+                $file->move($this->getParameter('upload_dir'));
+
+                $edit->setPicture($document);
+
+                $manager->persist($document);
+            
+            }
+            $manager->flush();
 
             return $this->redirectToRoute('admin_game_list', ['edit' => $edit->getId()]);
         }
