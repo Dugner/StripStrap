@@ -9,6 +9,9 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use App\Entity\Role;
+use App\Entity\Comment;
+use App\Entity\Character;
+use App\Entity\Post;
 
 /**
  * @ORM\Entity()
@@ -69,9 +72,9 @@ class User implements UserInterface
     private $dateOfBirth;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Friend", inversedBy="user")
+     * @ORM\OneToMany(targetEntity="App\Entity\Friend", mappedBy="user")
      */
-    private $friend;
+    private $friends;
 
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Role")
@@ -79,7 +82,7 @@ class User implements UserInterface
     private $roles;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Character", inversedBy="user")
+     * @ORM\OneToMany(targetEntity="App\Entity\Character", mappedBy="user")
      */
     private $characters;
 
@@ -89,7 +92,7 @@ class User implements UserInterface
     private $posts;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Comment", inversedBy="user")
+     * @ORM\OneToMany(targetEntity="App\Entity\Comment", mappedBy="user")
      */
     private $comments;
 
@@ -100,6 +103,10 @@ class User implements UserInterface
 
     public function __construct()
     {
+        $this->friends = new ArrayCollection();
+        $this->characters = new ArrayCollection();
+        $this->posts = new ArrayCollection();
+        $this->comments = new ArrayCollection();
         $this->roles = new ArrayCollection();
     }
 
@@ -193,14 +200,30 @@ class User implements UserInterface
         return $this;
     }
 
-    public function getFriend(): ?Friend
+    public function getFriends(): ?Collection
     {
-        return $this->friend;
+        return $this->friends;
     }
 
-    public function setFriend(?Friend $friend): self
+    public function addFriends(Friend $friend): self
     {
-        $this->friend = $friend;
+        if (!$this->friends->contains($friend)) {
+            $this->friends[] = $friend;
+            $friend->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFriends(Friend $friend): self
+    {
+        if ($this->friends->contains($friend)) {
+            $this->friends->removeElement($friend);
+            // set the owning side to null (unless already changed)
+            if ($friend->getUser() === $this) {
+                $friend->setUser(null);
+            }
+        }
 
         return $this;
     }
@@ -242,38 +265,86 @@ class User implements UserInterface
         return $this;
     }
 
-    public function getCharacters(): ?Character
+    public function getCharacters(): ?Collection
     {
         return $this->characters;
     }
 
-    public function setCharacters(?Character $characters): self
+    public function addCharacters(Character $character): self
     {
-        $this->characters = $characters;
+        if (!$this->characters->contains($character)) {
+            $this->characters[] = $character;
+            $character->setUser($this);
+        }
 
         return $this;
     }
 
-    public function getPosts(): ?Post
+    public function removeCharacters(Character $character): self
+    {
+        if ($this->characters->contains($character)) {
+            $this->characters->removeElement($character);
+            // set the owning side to null (unless already changed)
+            if ($character->getUser() === $this) {
+                $character->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getPosts(): ?Collection
     {
         return $this->posts;
     }
 
-    public function setPosts(?Post $posts): self
+    public function addPosts(Post $post): self
     {
-        $this->posts = $posts;
+        if (!$this->posts->contains($post)) {
+            $this->posts[] = $post;
+            $post->setUser($this);
+        }
 
         return $this;
     }
 
-    public function getComments(): ?Comment
+    public function removePosts(Post $post): self
+    {
+        if ($this->posts->contains($post)) {
+            $this->posts->removeElement($post);
+            // set the owning side to null (unless already changed)
+            if ($post->getUser() === $this) {
+                $post->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getComments(): ?Collection
     {
         return $this->comments;
     }
 
-    public function setComments(?Comment $comments): self
+    public function addComments(Comment $comment): self
     {
-        $this->comments = $comments;
+        if (!$this->comments->contains($comment)) {
+            $this->comments[] = $comment;
+            $post->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeComments(Comment $comment): self
+    {
+        if ($this->comments->contains($comment)) {
+            $this->comments->removeElement($comment);
+            // set the owning side to null (unless already changed)
+            if ($comment->getUser() === $this) {
+                $comment->setUser(null);
+            }
+        }
 
         return $this;
     }

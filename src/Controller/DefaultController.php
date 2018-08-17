@@ -3,6 +3,8 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
+use App\Entity\Document;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use App\Entity\Character;
 use App\Entity\User;
 use Symfony\Component\HttpFoundation\Request;
@@ -24,6 +26,7 @@ class DefaultController extends Controller
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
+            $post->setUser($this->getUser());
             $manager->persist($post);
             $manager->flush();
 
@@ -35,8 +38,12 @@ class DefaultController extends Controller
         //         ['id' => 'DESC']
         //     );
 
-        $posts = $manager->getRepository(Post::class)->findLimit($this->getParameter('list_limit'));
-        shuffle($posts);
+        $posts = $manager->getRepository(Post::class)
+            ->findBy(
+                [],
+                ['datetime' => 'DESC'],
+                $this->getParameter('list_limit')
+            );
 
         return $this->render(
             'default/homepage.html.twig',
@@ -46,7 +53,8 @@ class DefaultController extends Controller
             ]
         );
     }
-    
+
+
     //Login function
     public function login(AuthenticationUtils $authUtils) {
         $error = $authUtils->getLastAuthenticationError();
@@ -58,5 +66,11 @@ class DefaultController extends Controller
             'last_username' => $lastUsername,
             'error'         => $error,
         ));
+    }
+    
+    public function downloadDocumentAdmin(Document $document) {
+        $fileName = sprintf('%s/%s', $document->getPath(), $document->getName());
+
+        return new BinaryFileResponse($fileName);
     }
 }
