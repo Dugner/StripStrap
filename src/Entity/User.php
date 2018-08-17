@@ -277,9 +277,7 @@ class User implements UserInterface
         $this->picture = $picture;
 
         return $this;
-    }
-<<<<<<< HEAD
-    
+    }  
 
     public function eraseCredentials()
     {
@@ -290,6 +288,4 @@ class User implements UserInterface
     {
       return null;
     }
-=======
->>>>>>> de1a7052a6fbecbf88e54d980372b678273542e9
 }
