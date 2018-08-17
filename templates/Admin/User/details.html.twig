@@ -1,14 +1,13 @@
 {% extends 'Admin/base.html.twig' %}
 
-{% block title %}{{ parent() }}Game Admin Panel{% endblock %}
+{% block title %}{{ parent() }}User details{% endblock %}
 
 {% block body %}
-
         
         <section id="main-container">
 
-           {{ form(game_add) }}
+            {{ form(updateForm) }}
 
         </section>
-        
+
 {% endblock %}

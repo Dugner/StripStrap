@@ -4,7 +4,7 @@
 
                 <nav id="main-nav" class="row">
                     <figure class="logo-container">
-                        <img class="logo" src="{{ asset('/img/logo.png') }}" alt="StripStrap.com">
+                        <a href="{{ path('homepage') }}"><img class="logo" src="{{ asset('/img/logo.png') }}" alt="StripStrap.com"></a>
                     </figure>
                     
                     <ul class="nav-container">
@@ -23,7 +23,6 @@
                             <li class="nav-item dropdown"><a class="nav-link"><i class="fas fa-users"></i> User management</a>
                                 <ul class="nav-container hidden">
                                     <li class="nav-item"><a href="#" class="nav-link"><i class="fas fa-list-ul"></i> List all users</a></li>
-                                    <li class="nav-item"><a href="#" class="nav-link"><i class="fas fa-plus-circle"></i> Add a user</a></li>
                                 </ul>
                             </li>
                             <li class="nav-item dropdown"><a class="nav-link"><i class="fas fa-newspaper"></i> Post management</a>
@@ -49,7 +48,6 @@
                             <li class="m-nav-item dropdown"><a class="m-nav-link"><i class="fas fa-users"></i></a>
                                 <ul class="m-nav-container hidden">
                                     <li class="m-nav-item"><a href="#" class="m-nav-link"><i class="fas fa-list-ul"></i></a></li>
-                                    <li class="m-nav-item"><a href="#" class="m-nav-link"><i class="fas fa-plus-circle"></i></a></li>
                                 </ul>
                             </li>
                             <li class="m-nav-item dropdown"><a class="m-nav-link"><i class="fas fa-newspaper"></i></a>
@@ -59,7 +57,7 @@
                             </li>
                             <li class="m-nav-item dropdown"><a class="m-nav-link"><i class="fas fa-gamepad"></i></a>
                                 <ul class="m-nav-container hidden">
-                                    <li class="m-nav-item"><a href="#" class="m-nav-link"><i class="fas fa-list-ul"></i></a></li>
+                                    <li class="m-nav-item"><a href="{{ path ("admin_game_list") }}" class="m-nav-link"><i class="fas fa-list-ul"></i></a></li>
                                     <li class="m-nav-item"><a href="{{ path ("admin_game") }}" class="m-nav-link"><i class="fas fa-plus-circle"></i></a></li>
                                 </ul>
                             </li>

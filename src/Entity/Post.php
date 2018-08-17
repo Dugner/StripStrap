@@ -44,23 +44,17 @@ class Post
     public function __construct()
     {
         $this->user = new ArrayCollection();
+        $this->datetime = new \DateTime();
     }
 
-    public function getId(): ?int
+    public function getId()
     {
         return $this->id;
     }
 
-    public function getDatetime(): ?string
+    public function getDatetime()
     {
         return $this->datetime;
-    }
-
-    public function setDatetime(string $datetime): self
-    {
-        $this->datetime = $datetime;
-
-        return $this;
     }
 
     public function getComments(): ?Comment
