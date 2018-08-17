@@ -24,6 +24,7 @@ class DefaultController extends Controller
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
+            $post->setUser($this->getUser());
             $manager->persist($post);
             $manager->flush();
 
@@ -35,8 +36,12 @@ class DefaultController extends Controller
         //         ['id' => 'DESC']
         //     );
 
-        $posts = $manager->getRepository(Post::class)->findLimit($this->getParameter('list_limit'));
-        shuffle($posts);
+        $posts = $manager->getRepository(Post::class)
+            ->findBy(
+                [],
+                ['datetime' => 'DESC'],
+                $this->getParameter('list_limit')
+            );
 
         return $this->render(
             'default/homepage.html.twig',
