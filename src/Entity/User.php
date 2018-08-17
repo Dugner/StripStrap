@@ -231,6 +231,17 @@ class User implements UserInterface
         return $this;
     }
 
+    public function getRole()
+    {
+        return $this->roles;
+    }
+
+    public function setRole(array $roles)
+    {
+        $this->roles = $roles;
+        return $this;
+    }
+
     public function getCharacters(): ?Character
     {
         return $this->characters;
@@ -278,7 +289,6 @@ class User implements UserInterface
 
         return $this;
     }
-<<<<<<< HEAD
     
 
     public function eraseCredentials()
@@ -290,6 +300,4 @@ class User implements UserInterface
     {
       return null;
     }
-=======
->>>>>>> de1a7052a6fbecbf88e54d980372b678273542e9
 }

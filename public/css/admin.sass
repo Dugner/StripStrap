@@ -83,6 +83,7 @@ $formButton_borderColor: $form_borderColor
 $formButton_borderRadius: 5px
 $formButtonSuccess_bg: #9bf09f
 $fromButtonDanger_bg: #ff8c8c
+$fromButtonPrimary_bg: #9be3f0
 
 /* variable end */
 /* settings */
@@ -114,6 +115,22 @@ i
     #m-toggle-nav-left
         i
             margin-right: 7px
+
+// buttons
+.btn
+    padding: 10px 15px
+    border: none
+    cursor: pointer
+    border-radius: $formButton_borderRadius
+    &:hover
+        transition-duration: 0.5s
+        box-shadow: inset 0px 3px 7px 0px rgba(0,0,0,0.5)
+.btn-success
+    background: $formButtonSuccess_bg
+.btn-danger
+    background: $fromButtonDanger_bg
+.btn-primary
+    background: $fromButtonPrimary_bg
 /* settings end */
 /* header */
 
@@ -361,21 +378,6 @@ main
 
                 .form-group > .form-group
                     flex: 2
-
-            .btn
-                padding: 10px 15px
-                border: none
-                cursor: pointer
-                border-radius: $formButton_borderRadius
-                &:hover
-                    transition-duration: 0.5s
-                    box-shadow: inset 0px 3px 7px 0px rgba(0,0,0,0.5)
-            .btn-success
-                background: $formButtonSuccess_bg
-            .btn-danger
-                background: $fromButtonDanger_bg
-
-        form[name = 'delete_user_form']
 
             .form-group-row
                 display: flex

@@ -11,6 +11,7 @@ use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\ButtonType;
 use App\Entity\Role;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 
@@ -24,13 +25,14 @@ class UpdateUserFormType extends AbstractType
             ->add('email', EmailType::class, ['label' => 'Email:'])
             ->add('country', TextType::class, ['label' => 'Country:'])
             ->add('dateOfBirth', BirthdayType::class, ['label' => 'Birthday:'])
-            ->add('roles', EntityType::class, [
+            ->add('role', EntityType::class, [
                 'class' => Role::class,
                 'expanded' => true,
                 'multiple' => true,
                 'label' => 'The list of roles a user can get:'
             ])
-            ->add('characters', TextType::class, ['label' => 'Character:', 'required' => false]);
+            ->add('characters', TextType::class, ['label' => 'Character:', 'required' => false])
+            ->add('Cancel', ButtonType::class, ['attr' => ['class' => 'btn-primary btn-cancel']]);
 
         if ($options['standalone'])
         {

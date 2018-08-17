@@ -6,7 +6,23 @@
         
         <section id="main-container">
 
-            {{ form(updateForm) }}
+            {{ form_start(updateForm) }}
+                <div>
+                    {{ form_row(updateForm.username) }}
+                    {{ form_row(updateForm.firstname) }}
+                    {{ form_row(updateForm.lastname) }}
+                    {{ form_row(updateForm.email) }}
+                    {{ form_row(updateForm.country) }}
+                    {{ form_row(updateForm.dateOfBirth) }}
+                    {{ form_row(updateForm.role) }}
+                    {{ form_row(updateForm.characters) }}
+                </div>
+
+                <div class="form-group-row">
+                    {{ form_row(updateForm.Cancel) }}
+                    {{ form_row(updateForm.Update) }}
+                </div>
+            {{ form_end(updateForm) }}
 
         </section>
 

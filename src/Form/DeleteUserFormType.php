@@ -13,7 +13,7 @@ class DeleteUserFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('Cancel', ButtonType::class, ['attr' => ['class' => 'btn-success']]);
+        $builder->add('Cancel', ButtonType::class, ['attr' => ['class' => 'btn-success btn-cancel']]);
 
         if ($options['standalone'])
         {

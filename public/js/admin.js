@@ -41,8 +41,8 @@ $(function(){
 
     });
 
-    /* deleteuser */
-    $('#delete_user_form_Cancel').click(function ()
+    /* go back (cancel button) */
+    $('.btn-cancel').click(function ()
     {
        
         // redirect to the page back

@@ -40,6 +40,30 @@ i {
   margin-right: 7px;
 }
 
+.btn {
+  padding: 10px 15px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.btn:hover {
+  transition-duration: 0.5s;
+  box-shadow: inset 0px 3px 7px 0px rgba(0, 0, 0, 0.5);
+}
+
+.btn-success {
+  background: #9bf09f;
+}
+
+.btn-danger {
+  background: #ff8c8c;
+}
+
+.btn-primary {
+  background: #9be3f0;
+}
+
 /* settings end */
 /* header */
 header {
@@ -343,33 +367,13 @@ main #main-container form > div .form-group > .form-group {
   flex: 2;
 }
 
-main #main-container form .btn {
-  padding: 10px 15px;
-  border: none;
-  cursor: pointer;
-  border-radius: 5px;
-}
-
-main #main-container form .btn:hover {
-  transition-duration: 0.5s;
-  box-shadow: inset 0px 3px 7px 0px rgba(0, 0, 0, 0.5);
-}
-
-main #main-container form .btn-success {
-  background: #9bf09f;
-}
-
-main #main-container form .btn-danger {
-  background: #ff8c8c;
-}
-
-main #main-container form[name='delete_user_form'] .form-group-row {
+main #main-container form .form-group-row {
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
 }
 
-main #main-container form[name='delete_user_form'] .form-group-row .form-group {
+main #main-container form .form-group-row .form-group {
   flex: 0;
   margin: 0 10px 0 0;
 }
