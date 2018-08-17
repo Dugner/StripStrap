@@ -1,7 +1,5 @@
 <?php
-
 namespace App\Entity;
-
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -12,7 +10,6 @@ use App\Entity\Role;
 use App\Entity\Comment;
 use App\Entity\Character;
 use App\Entity\Post;
-
 /**
  * @ORM\Entity()
  * @UniqueEntity("username")
@@ -26,81 +23,67 @@ class User implements UserInterface
      * @ORM\Column(type="string", length=36) 
      */
     private $id;
-
     /**
      * @ORM\Column(type="string", length=255)
      */
     private $username;
-
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank()
      * Assert\Length(min=3, max=255)
      */
     private $firstname;
-
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank()
      * Assert\Length(min=3, max=255)
      */
     private $lastname;
-
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank()
      * Assert\Length(min=8, max=255)
      */
     private $password;
-
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank()
      */
     private $email;
-
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank()
      */
     private $country;
-
     /**
      * @ORM\Column(type="date")
      * @Assert\NotBlank()
      */
     private $dateOfBirth;
-
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Friend", mappedBy="user")
      */
     private $friends;
-
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Role")
      */
     private $roles;
-
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Character", mappedBy="user")
      */
     private $characters;
-
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Post", mappedBy="user")
      */
     private $posts;
-
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Comment", mappedBy="user")
      */
     private $comments;
-
     /**
      * @ORM\OneToOne(targetEntity="App\Entity\Document", cascade={"persist", "remove"})
      */
     private $picture;
-
     public function __construct()
     {
         $this->friends = new ArrayCollection();
@@ -109,112 +92,85 @@ class User implements UserInterface
         $this->comments = new ArrayCollection();
         $this->roles = new ArrayCollection();
     }
-
-
     public function getId()
     {
         return $this->id;
     }
-
     public function getUsername()
     {
         return $this->username;
     }
-
     public function setUsername(string $username): self
     {
         $this->username = $username;
-
         return $this;
     }
-
     public function getFirstname(): ?string
     {
         return $this->firstname;
     }
-
     public function setFirstname(string $firstname): self
     {
         $this->firstname = $firstname;
-
         return $this;
     }
-
     public function getLastname(): ?string
     {
         return $this->lastname;
     }
-
     public function setLastname(string $lastname): self
     {
         $this->lastname = $lastname;
-
         return $this;
     }
-
     public function getPassword()
     {
         return $this->password;
     }
-
     public function setPassword(string $password): self
     {
         $this->password = $password;
-
         return $this;
     }
-
     public function getCountry(): ?string
     {
         return $this->country;
     }
-
     public function setCountry(string $country): self
     {
         $this->country = $country;
-
         return $this;
     }
-
     public function getEmail(): ?string
     {
         return $this->email;
     }
-
     public function setEmail(string $email): self
     {
         $this->email = $email;
-
         return $this;
     }
-
     public function getDateOfBirth(): ?\DateTimeInterface
     {
         return $this->dateOfBirth;
     }
-
     public function setDateOfBirth(\DateTimeInterface $dateOfBirth): self
     {
         $this->dateOfBirth = $dateOfBirth;
-
         return $this;
     }
-
     public function getFriends(): ?Collection
     {
         return $this->friends;
     }
-
     public function addFriends(Friend $friend): self
     {
         if (!$this->friends->contains($friend)) {
             $this->friends[] = $friend;
             $friend->setUser($this);
         }
-
         return $this;
     }
-
     public function removeFriends(Friend $friend): self
     {
         if ($this->friends->contains($friend)) {
@@ -224,10 +180,8 @@ class User implements UserInterface
                 $friend->setUser(null);
             }
         }
-
         return $this;
     }
-
     /**
      * @return Role[]
      */
@@ -235,51 +189,41 @@ class User implements UserInterface
     {
         return array_map('strval', $this->roles->toArray());
     }
-
     public function addRole(Role $role): self
     {
         if (!$this->roles->contains($role)) {
             $this->roles[] = $role;
         }
-
         return $this;
     }
-
     public function removeRole(Role $role): self
     {
         if ($this->roles->contains($role)) {
             $this->roles->removeElement($role);
         }
-
         return $this;
     }
-
     public function getRole()
     {
         return $this->roles;
     }
-
     public function setRole(array $roles)
     {
         $this->roles = $roles;
         return $this;
     }
-
     public function getCharacters(): ?Collection
     {
         return $this->characters;
     }
-
     public function addCharacters(Character $character): self
     {
         if (!$this->characters->contains($character)) {
             $this->characters[] = $character;
             $character->setUser($this);
         }
-
         return $this;
     }
-
     public function removeCharacters(Character $character): self
     {
         if ($this->characters->contains($character)) {
@@ -289,25 +233,20 @@ class User implements UserInterface
                 $character->setUser(null);
             }
         }
-
         return $this;
     }
-
     public function getPosts(): ?Collection
     {
         return $this->posts;
     }
-
     public function addPosts(Post $post): self
     {
         if (!$this->posts->contains($post)) {
             $this->posts[] = $post;
             $post->setUser($this);
         }
-
         return $this;
     }
-
     public function removePosts(Post $post): self
     {
         if ($this->posts->contains($post)) {
@@ -317,25 +256,20 @@ class User implements UserInterface
                 $post->setUser(null);
             }
         }
-
         return $this;
     }
-
     public function getComments(): ?Collection
     {
         return $this->comments;
     }
-
     public function addComments(Comment $comment): self
     {
         if (!$this->comments->contains($comment)) {
             $this->comments[] = $comment;
             $post->setUser($this);
         }
-
         return $this;
     }
-
     public function removeComments(Comment $comment): self
     {
         if ($this->comments->contains($comment)) {
@@ -345,23 +279,18 @@ class User implements UserInterface
                 $comment->setUser(null);
             }
         }
-
         return $this;
     }
-
     public function getPicture()
     {
         return $this->picture;
     }
-
     public function setPicture($picture): self
     {
         $this->picture = $picture;
-
         return $this;
     }
     
-
     public function eraseCredentials()
     {
       return null;
