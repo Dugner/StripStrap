@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} {{parent()}} Wall {% endblock %}
+
+{% block body %}
+
+    <div class="row">
+        <div class="col-md-3" id="leftbar">
+            {% block leftside %}
+                {% include 'leftsidebar.html.twig' %}
+            {% endblock %}
+        </div>
+
+        <div class="col-md-6">
+            {% block mainsection %}
+                <div class="container">
+                    {{ form(postForm) }}
+                </div>
+                <hr>
+
+                <h1 id="wallposts">Your posts:</h1>
+
+                {% if posts is empty %}
+                    <p>No post found in the website</p>
+                {% else %}
+                    {% for post in posts %}   
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title"> Vedro(test) </h5>
+                                {# <h5 class="card-title"> {{post.getUser().getUsername()}}</h5> #}
+                                <hr>
+                                <p class="card-text">{{ post.getContent() }}</p>
+                                <p class="blockquote-footer">{{ post.getDatetime()|date('Y-m-d H:i:s') }}</p>
+                            </div>
+                            <div class="card-footer">
+                                <p>{{ post.getComments() }}</p>
+                            </div>
+                        </div>      
+                    {% endfor %}
+                {% endif %}
+                
+            {% endblock %}
+        </div>
+
+        <div class="col-md-3" id="rightbar">
+            {% block rightside %}
+                {% include 'rightsidebar.html.twig' %}
+            {% endblock %}
+        </div>
+    </div>
+
+{% endblock %}

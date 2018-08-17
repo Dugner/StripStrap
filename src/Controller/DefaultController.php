@@ -9,51 +9,59 @@ use App\Entity\User;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-
-
+use App\Entity\Character;
+use App\Entity\Post;
+use App\Form\PostFormType;
 
 
 class DefaultController extends Controller
 {
-
-
     public function homepage(Request $request)
     {
-            //$id= $request->query->get('id');
+        $manager = $this->getDoctrine()->getManager();
+        $post = new Post();
+        $form = $this->createForm(
+            PostFormType::class,
+            $post,
+            ['standalone' => true]
+        );
 
-            //if(!$id){
-                //throw new NotFoundHttpException();
-            //}
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $manager->persist($post);
+            $manager->flush();
 
-           // $User = [];
-           // return new Response(
-                //$this->twig->render(
-                   // 'leftsidebar.html.twig',
-                   // ['users'=>$User[$id]]
+            return $this->redirectToRoute('index_list');
+        }
 
-                //)
-           // ); 
-            //$manager = $this->getDoctrine()->getManager();
-            //$users= $manager->getRepository(User::class)->findAll();
-    
-    
-        return $this->render('Default/homepage.html.twig');
+        // $posts = $manager->getRepository(Post::class)
+        //     ->findBy(
+        //         ['id' => 'DESC']
+        //     );
+
+        $posts = $manager->getRepository(Post::class)->findLimit($this->getParameter('list_limit'));
+        shuffle($posts);
+
+        return $this->render(
+            'default/homepage.html.twig',
+            [
+                'posts' => $posts,
+                'homePostForm' => $form->createView(),
+            ]
+        );
     }
     
     //Login function
-
-    public function login(AuthenticationUtils $authUtils){
-
+    public function login(AuthenticationUtils $authUtils) {
         $error = $authUtils->getLastAuthenticationError();
 
-            // last username entered by the user
+        // last username entered by the user
         $lastUsername = $authUtils->getLastUsername();
 
         return $this->render('Default/login.html.twig', array(
             'last_username' => $lastUsername,
             'error'         => $error,
         ));
-
     }
 
     public function downloadDocument(Document $document){

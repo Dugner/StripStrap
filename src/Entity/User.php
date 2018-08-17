@@ -7,9 +7,13 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use App\Entity\Role;
 
 /**
  * @ORM\Entity()
+ * @UniqueEntity("username")
+ * @UniqueEntity("email")
  */
 class User implements UserInterface
 {
@@ -80,7 +84,7 @@ class User implements UserInterface
     private $characters;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Post", inversedBy="user")
+     * @ORM\OneToMany(targetEntity="App\Entity\Post", mappedBy="user")
      */
     private $posts;
 
@@ -100,7 +104,7 @@ class User implements UserInterface
     }
 
 
-    public function getId(): ?int
+    public function getId()
     {
         return $this->id;
     }
@@ -202,12 +206,11 @@ class User implements UserInterface
     }
 
     /**
-     * @return Collection|Role[]
+     * @return Role[]
      */
     public function getRoles(): array
     {
-        return array_map('strval',
-        $this->roles->toArray());
+        return array_map('strval', $this->roles->toArray());
     }
 
     public function addRole(Role $role): self

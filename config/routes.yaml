@@ -6,6 +6,10 @@ homepage:
     path: /
     controller: App\Controller\DefaultController::homepage
 
+index_list:
+    path: /
+    controller: App\Controller\PostController::homePosts
+
 sign_in:
     path: /signin
     controller: App\Controller\UserController::userForm
@@ -17,6 +21,10 @@ login:
     path:   /login
     controller: App\Controller\DefaultController::login
 
+wall_list:
+    path: /wall
+    controller: App\Controller\PostController::wallPosts
+    
 # ADMIN PANEL BELOW
 admin_home:
     path: /admin
@@ -25,3 +33,8 @@ admin_home:
 download_document:
     path: /document/{document}
     controller: App\Controller\DefaultController::downloadDocument
+
+
+admin_user_detail:
+    path: /admin/user/details/{user}
+    controller: App\Controller\AdminController::userDetails
