@@ -6,6 +6,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use App\Entity\Post;
+use App\Entity\User;
 use App\Form\PostFormType;
 use Symfony\Component\Validator\Constraints\DateTime;
 
@@ -30,10 +31,13 @@ class PostController extends Controller
             return $this->redirectToRoute('wall_list');
         }
 
-        $posts = $manager->getRepository(Post::class)
-            ->findBy(
-                ['user' => $this->getUser()],
-                ['datetime' => 'DESC']
+        $pagination = $manager
+            ->getRepository(Post::class)
+            ->paginateWall(
+                $request, 
+                $this->get('knp_paginator'), 
+                $this->getParameter('list_limit'), 
+                $this->getUser()
             );
 
         // $posts = $manager->getRepository(Post::class)->findAll();
@@ -41,7 +45,7 @@ class PostController extends Controller
         return $this->render(
             'wall/wall.html.twig',
             [
-                'posts' => $posts,
+                'pagination' => $pagination,
                 'postForm' => $form->createView(),
             ]
         );
