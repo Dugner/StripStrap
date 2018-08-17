@@ -34,7 +34,7 @@
                                     <td>{{ user.getDateOfBirth()|date('d/m/Y') }}</td>
                                     <td>{{ user.getCountry() }}</td>
                                     {% if user.getCharacter() is empty %}
-                                        <td>No Charater</td>
+                                        <td>No Character</td>
                                     {% else %}
                                         <td>{{ user.getCharacter()[0].name() }}</td>
                                     {% endif %}

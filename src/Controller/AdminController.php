@@ -41,7 +41,7 @@
         {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('admin_user_detail', ['user' => $user->getId()]);
+            return $this->redirectToRoute('admin_home', ['user' => $user->getId()]);
         }
 
         return $this->render('Admin/User/details.html.twig',
