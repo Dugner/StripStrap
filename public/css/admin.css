@@ -87,7 +87,7 @@ header #main-nav .logo-container {
 header #main-nav .logo-container .logo {
   display: block;
   margin: 0 auto;
-  height: 51px;
+  height: 50px;
 }
 
 header #main-nav .nav-container {
@@ -109,7 +109,7 @@ header #main-nav .nav-container .nav-item {
 header #main-nav .nav-container .nav-item .nav-link {
   display: block;
   text-decoration: none;
-  padding: 16px 0;
+  padding: 15px 0;
   background: #8d8d8d;
   color: black;
 }
@@ -295,7 +295,6 @@ main #main-container .table-container .table tbody tr:last-child td {
 
 main #main-container form {
   max-width: 750px;
-  min-width: 350px;
   margin: 0 auto 50px auto;
   border: 2px solid #535353;
   border-radius: 5px;
@@ -434,7 +433,7 @@ main #m-nav-left .m-nav-container .m-nav-item {
 main #m-nav-left .m-nav-container .m-nav-item .m-nav-link {
   text-decoration: none;
   display: block;
-  padding: 16px 0;
+  padding: 15px 0;
 }
 
 main #m-nav-left .m-nav-container .dropdown {

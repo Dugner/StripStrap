@@ -235,6 +235,18 @@ class User implements UserInterface
         }
         return $this;
     }
+
+    public function getCharacter()
+    {
+        return $this->characters;
+    }
+
+    public function setCharacter(array $characters)
+    {
+        $this->characters = $characters;
+        return $this;
+    }
+
     public function getPosts(): ?Collection
     {
         return $this->posts;
