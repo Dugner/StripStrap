@@ -131,11 +131,7 @@
 
     public function editGame(Game $edit, Request $request)
     {
-        $document = $this->getDoctrine()->getRepository(Document::class);
-        $image = $document->find($edit);
-
-        
-
+        //$edit->setPicture(null);
         $formEdit = $this->createForm(GameFormType::class, $edit, ['standalone' => true]);
         $formEdit -> handleRequest($request);
 

@@ -24,11 +24,11 @@
                                 <td>{{ gamelists.getDescription() }}</td>
                                 {% if gamelists.getPicture() is not empty %}
                                     <td><img src="{{ path('admin_picture', {'document': gamelists.getPicture().getId()}) }}" width='40px'></td>
-                                    <td><a href="{{ path('admin_game_edit', {edit: gamelists.getId()}) }}"><i class="fas fa-pen-square"></i></a>
-                                    <a href="{{ path("admin_gamelist_delete", {delete: gamelists.getId()}) }}"><i class="fas fa-minus-square"></i></a></td>
-                                {% else %}
+                                {% else %}   
                                     <td></td>
                                 {% endif %}
+                                    <td><a href="{{ path('admin_game_edit', {edit: gamelists.getId()}) }}"><i class="fas fa-pen-square"></i></a>
+                                    <a href="{{ path("admin_gamelist_delete", {delete: gamelists.getId()}) }}"><i class="fas fa-minus-square"></i></a></td>
                         {% endfor %}
                     </tbody>
                 </table>
