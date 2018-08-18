@@ -12,6 +12,7 @@
     use App\Form\UpdateUserFormType;
     use Symfony\Component\HttpFoundation\File\File;
     use App\Form\DeleteUserFormType;
+    use App\Entity\Post;
 
 
     class AdminController extends Controller
@@ -190,5 +191,40 @@
 
         return $this->redirectToRoute('admin_game_list');
     }
+
+    public function deletePosts($deletePost)
+    {
+        $post = $this->getDoctrine()->getManager();
+        $deletePost = $post->getRepository(Post::class)->find($deletePost);
+
+        if(!$deletePost)
+        {
+            throw $this->createNotFoundedException(
+                'No Product found for Id' .$deletePost
+            );
+        }
+
+        $post->remove($deletePost);
+        $post->flush();
+
+        return $this->redirectToRoute('admin_post_list');
+    }
+
+    public function displayPostList()
+    {
+        $manager = $this->getDoctrine()->getManager();
+
+        $postList = $manager->getRepository(Post::class)->findAll();
+
+        return $this->render(
+            'Admin/posts/postlist.html.twig',
+            ['postLists'=>$postList]
+        
+        );
+    }
+    
+
+
+
 }
 ?>
