@@ -58,3 +58,11 @@ admin_user_detail:
 admin_user_delete:
     path: /admin/user/delete/{deleteUser}
     controller: App\Controller\AdminController::userDelete
+
+admin_post_delete:
+    path: /admin/post/delete/{deletePost}
+    controller: App\Controller\AdminController::deletePosts
+
+admin_post_list:
+    path: /admin/post
+    controller: App\Controller\AdminController::displayPostList
