@@ -34,6 +34,11 @@ class Comment
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Post", inversedBy="comments")
      */
+    private $post;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Post", inversedBy="comments")
+     */
     private $user;
 
     public function __construct()
@@ -61,6 +66,21 @@ class Comment
     public function getDatetime(): ?string
     {
         return $this->datetime;
+    }
+
+    /**
+     * @return Post
+     */
+    public function getPost(): Post
+    {
+        return $this->post;
+    }
+
+    public function setPost(Post $post)
+    {
+        $this->post = $user;
+
+        return $this;
     }
 
     /**

@@ -84,6 +84,7 @@ class User implements UserInterface
      * @ORM\OneToOne(targetEntity="App\Entity\Document", cascade={"persist", "remove"})
      */
     private $picture;
+
     public function __construct()
     {
         $this->friends = new ArrayCollection();
@@ -214,36 +215,25 @@ class User implements UserInterface
     }
     public function getUserCharacters(): ?Collection
     {
-        return $this->UserCharacters;
+        return $this->userCharacters;
     }
-    public function addUserCharacters(UserCharacter $UserCharacter): self
+    public function addUserCharacters(UserCharacter $userCharacter): self
     {
-        if (!$this->UserCharacters->contains($UserCharacter)) {
-            $this->UserCharacters[] = $UserCharacter;
-            $UserCharacter->setUser($this);
+        if (!$this->userCharacters->contains($userCharacter)) {
+            $this->userCharacters[] = $userCharacter;
+            $userCharacter->setUser($this);
         }
         return $this;
     }
-    public function removeUserCharacters(UserCharacter $UserCharacter): self
+    public function removeUserCharacters(UserCharacter $userCharacter): self
     {
-        if ($this->UserCharacters->contains($UserCharacter)) {
-            $this->UserCharacters->removeElement($UserCharacter);
+        if ($this->userCharacters->contains($userCharacter)) {
+            $this->userCharacters->removeElement($userCharacter);
             // set the owning side to null (unless already changed)
-            if ($UserCharacter->getUser() === $this) {
-                $UserCharacter->setUser(null);
+            if ($userCharacter->getUser() === $this) {
+                $userCharacter->setUser(null);
             }
         }
-        return $this;
-    }
-
-    public function getUserCharacter()
-    {
-        return $this->UserCharacters;
-    }
-
-    public function setUserCharacter(array $UserCharacters)
-    {
-        $this->UserCharacters = $UserCharacters;
         return $this;
     }
 
