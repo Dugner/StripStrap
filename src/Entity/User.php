@@ -8,7 +8,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use App\Entity\Role;
 use App\Entity\Comment;
-use App\Entity\Character;
+use App\Entity\UserCharacter;
 use App\Entity\Post;
 /**
  * @ORM\Entity()
@@ -69,9 +69,9 @@ class User implements UserInterface
      */
     private $roles;
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Character", mappedBy="user")
+     * @ORM\OneToMany(targetEntity="App\Entity\UserCharacter", mappedBy="user")
      */
-    private $characters;
+    private $userCharacters;
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Post", mappedBy="user")
      */
@@ -87,7 +87,7 @@ class User implements UserInterface
     public function __construct()
     {
         $this->friends = new ArrayCollection();
-        $this->characters = new ArrayCollection();
+        $this->UserCharacters = new ArrayCollection();
         $this->posts = new ArrayCollection();
         $this->comments = new ArrayCollection();
         $this->roles = new ArrayCollection();
@@ -212,38 +212,38 @@ class User implements UserInterface
         $this->roles = $roles;
         return $this;
     }
-    public function getCharacters(): ?Collection
+    public function getUserCharacters(): ?Collection
     {
-        return $this->characters;
+        return $this->UserCharacters;
     }
-    public function addCharacters(Character $character): self
+    public function addUserCharacters(UserCharacter $UserCharacter): self
     {
-        if (!$this->characters->contains($character)) {
-            $this->characters[] = $character;
-            $character->setUser($this);
+        if (!$this->UserCharacters->contains($UserCharacter)) {
+            $this->UserCharacters[] = $UserCharacter;
+            $UserCharacter->setUser($this);
         }
         return $this;
     }
-    public function removeCharacters(Character $character): self
+    public function removeUserCharacters(UserCharacter $UserCharacter): self
     {
-        if ($this->characters->contains($character)) {
-            $this->characters->removeElement($character);
+        if ($this->UserCharacters->contains($UserCharacter)) {
+            $this->UserCharacters->removeElement($UserCharacter);
             // set the owning side to null (unless already changed)
-            if ($character->getUser() === $this) {
-                $character->setUser(null);
+            if ($UserCharacter->getUser() === $this) {
+                $UserCharacter->setUser(null);
             }
         }
         return $this;
     }
 
-    public function getCharacter()
+    public function getUserCharacter()
     {
-        return $this->characters;
+        return $this->UserCharacters;
     }
 
-    public function setCharacter(array $characters)
+    public function setUserCharacter(array $UserCharacters)
     {
-        $this->characters = $characters;
+        $this->UserCharacters = $UserCharacters;
         return $this;
     }
 

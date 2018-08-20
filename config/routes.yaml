@@ -58,3 +58,7 @@ admin_user_detail:
 admin_user_delete:
     path: /admin/user/delete/{deleteUser}
     controller: App\Controller\AdminController::userDelete
+
+profile:
+    path: /profile/{user}
+    controller: App\Controller\UserController::profile

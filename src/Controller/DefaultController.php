@@ -5,7 +5,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use App\Entity\Document;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
-use App\Entity\Character;
+use App\Entity\UserCharacter;
 use App\Entity\User;
 use Symfony\Component\HttpFoundation\Request;
 use App\Entity\Post;
