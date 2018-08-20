@@ -16,7 +16,8 @@ class CommentFormType extends AbstractType
         $builder
             ->add(
                 'content',
-                TextareaType::class
+                TextareaType::class,
+                ['label' => 'Write a comment']
             );
         
         if ($options['standalone']) {

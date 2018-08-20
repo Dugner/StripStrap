@@ -32,8 +32,10 @@ class CommentController extends Controller
             return $this->redirectToRoute('wall_comment');
         }
 
+        $comments = $manager->getRepository(Comment::class)->findAll();
+
         return $this->render(
-            'wall/wall.html.twig',
+            'Comment/comment.html.twig',
             [
                 'comments' => $comments,
                 'commentForm' => $form->createView()

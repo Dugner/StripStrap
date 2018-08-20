@@ -46,7 +46,7 @@ class Comment
         $this->datetime = new \DateTime();
     }
 
-    public function getId(): ?int
+    public function getId()
     {
         return $this->id;
     }
