@@ -8,10 +8,9 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\CharacterRepository")
- * @ORM\Table(name="user_character")
+ * @ORM\Entity(repositoryClass="App\Repository\UserCharacterRepository")
  */
-class Character
+class UserCharacter
 {
     /**
      * @ORM\Id()
@@ -33,13 +32,18 @@ class Character
     private $level;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="characters")
+     * @ORM\Column(type="boolean")
+     */
+    private $report;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="UserCharacters")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id", nullable=true, onDelete="SET NULL")
      */
     private $user;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Game", inversedBy="characters")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Game", inversedBy="UserCharacters")
      */
     private $game;
 
@@ -87,6 +91,17 @@ class Character
         return $this;
     }
 
+    public function getGame(): ?Game
+    {
+        return $this->game;
+    }
+
+    public function setUserCharacters(?Game $game): self
+    {
+        $this->game = $game;
+
+        return $this;
+    }
 
     /**
      * @return User
@@ -99,37 +114,6 @@ class Character
     public function setUser(User $user)
     {
         $this->user = $user;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|Game[]
-     */
-    public function getGame(): Collection
-    {
-        return $this->game;
-    }
-
-    public function addGame(Game $game): self
-    {
-        if (!$this->game->contains($game)) {
-            $this->game[] = $game;
-            $game->setCharacters($this);
-        }
-
-        return $this;
-    }
-
-    public function removeGame(Game $game): self
-    {
-        if ($this->game->contains($game)) {
-            $this->game->removeElement($game);
-            // set the owning side to null (unless already changed)
-            if ($game->getCharacters() === $this) {
-                $game->setCharacters(null);
-            }
-        }
 
         return $this;
     }

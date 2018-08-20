@@ -28,9 +28,9 @@ class Game
     private $title;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Character", mappedBy="game")
+     * @ORM\OneToMany(targetEntity="App\Entity\UserCharacter", mappedBy="game")
      */
-    private $characters;
+    private $userCharacters;
 
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Category")
@@ -49,7 +49,7 @@ class Game
 
     public function __construct()
     {
-        $this->characters = new ArrayCollection();
+        $this->UserCharacters = new ArrayCollection();
         $this->categories = new ArrayCollection();
     }
 
@@ -70,15 +70,29 @@ class Game
         return $this;
     }
 
-    public function getCharacters(): ?Character
+    public function getUserCharacters(): ?Collection
     {
-        return $this->characters;
+        return $this->userCharacters;
     }
 
-    public function setCharacters(?Character $characters): self
+    public function addUserCharacters(UserCharacter $userCharacter): self
     {
-        $this->characters = $characters;
+        if (!$this->userCharacters->contains($userCharacter)) {
+            $this->userCharacters[] = $userCharacter;
+            $userCharacter->setUser($this);
+        }
+        return $this;
+    }
 
+    public function removeUserCharacters(UserCharacter $userCharacter): self
+    {
+        if ($this->userCharacters->contains($userCharacter)) {
+            $this->userCharacters->removeElement($userCharacter);
+            // set the owning side to null (unless already changed)
+            if ($userCharacter->getUser() === $this) {
+                $userCharacter->setUser(null);
+            }
+        }
         return $this;
     }
 

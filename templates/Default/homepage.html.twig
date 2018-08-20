@@ -21,27 +21,29 @@
                 {% endif %}
 
                 <h1 id="posts">Posts: </h1>
-
-                {% if posts is empty %}
+                
+                {% set postCount = pagination.getTotalItemCount %}
+                {% if postCount == 0 %}
                     <p>No post found in the website</p>
                 {% else %}
-                    {% for post in posts %}   
+                    {% for post in pagination %}   
                         <div class="card">
                             <div class="card-body">
                                 <h5 class="card-title"> {{ post.getUser().getUsername() }} </h5>
-                                {# <h5 class="card-title"> {{post.getUser().getUsername()}}</h5> #}
                                 <hr>
                                 <p class="card-text">{{ post.getContent() }}</p>
                                 <p class="blockquote-footer">{{ post.getDatetime()|date('Y-m-d H:i:s') }}</p>
                             </div>
                             <div class="card-footer">
-                                <p>{{ post.getComments() }}</p>
+                                <p>{# {{ post.getComments() }} #}</p>
                             </div>
                         </div>    
                         <br>  
                     {% endfor %}
+                    <div class="pagination">
+                        {{ knp_pagination_render(pagination) }}
+                    </div>
                 {% endif %}
-                {# {% include 'mainsection.html.twig' %} #}
             {% endblock %}
         </div>
 

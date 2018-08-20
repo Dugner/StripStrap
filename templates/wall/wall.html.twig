@@ -20,10 +20,11 @@
 
                 <h1 id="wallposts">Your posts:</h1>
 
-                {% if posts is empty %}
+                {% set postCount = pagination.getTotalItemCount %}
+                {% if postCount == 0 %}
                     <p>No post found in the website</p>
                 {% else %}
-                    {% for post in posts %}   
+                    {% for post in pagination %}   
                         <div class="card">
                             <div class="card-body">
                                 {# <h5 class="card-title"> Vedro(test) </h5> #}
@@ -35,8 +36,12 @@
                             <div class="card-footer">
                                 <p>{{ post.getComments() }}</p>
                             </div>
-                        </div>      
+                        </div>    
+                        <br>        
                     {% endfor %}
+                    <div class="pagination">
+                        {{ knp_pagination_render(pagination) }}
+                    </div>
                 {% endif %}
                 
             {% endblock %}

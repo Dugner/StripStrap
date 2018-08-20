@@ -8,7 +8,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use App\Entity\Role;
 use App\Entity\Comment;
-use App\Entity\Character;
+use App\Entity\UserCharacter;
 use App\Entity\Post;
 /**
  * @ORM\Entity()
@@ -69,9 +69,9 @@ class User implements UserInterface
      */
     private $roles;
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Character", mappedBy="user")
+     * @ORM\OneToMany(targetEntity="App\Entity\UserCharacter", mappedBy="user")
      */
-    private $characters;
+    private $userCharacters;
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Post", mappedBy="user")
      */
@@ -84,10 +84,11 @@ class User implements UserInterface
      * @ORM\OneToOne(targetEntity="App\Entity\Document", cascade={"persist", "remove"})
      */
     private $picture;
+
     public function __construct()
     {
         $this->friends = new ArrayCollection();
-        $this->characters = new ArrayCollection();
+        $this->UserCharacters = new ArrayCollection();
         $this->posts = new ArrayCollection();
         $this->comments = new ArrayCollection();
         $this->roles = new ArrayCollection();
@@ -212,38 +213,27 @@ class User implements UserInterface
         $this->roles = $roles;
         return $this;
     }
-    public function getCharacters(): ?Collection
+    public function getUserCharacters(): ?Collection
     {
-        return $this->characters;
+        return $this->userCharacters;
     }
-    public function addCharacters(Character $character): self
+    public function addUserCharacters(UserCharacter $userCharacter): self
     {
-        if (!$this->characters->contains($character)) {
-            $this->characters[] = $character;
-            $character->setUser($this);
+        if (!$this->userCharacters->contains($userCharacter)) {
+            $this->userCharacters[] = $userCharacter;
+            $userCharacter->setUser($this);
         }
         return $this;
     }
-    public function removeCharacters(Character $character): self
+    public function removeUserCharacters(UserCharacter $userCharacter): self
     {
-        if ($this->characters->contains($character)) {
-            $this->characters->removeElement($character);
+        if ($this->userCharacters->contains($userCharacter)) {
+            $this->userCharacters->removeElement($userCharacter);
             // set the owning side to null (unless already changed)
-            if ($character->getUser() === $this) {
-                $character->setUser(null);
+            if ($userCharacter->getUser() === $this) {
+                $userCharacter->setUser(null);
             }
         }
-        return $this;
-    }
-
-    public function getCharacter()
-    {
-        return $this->characters;
-    }
-
-    public function setCharacter(array $characters)
-    {
-        $this->characters = $characters;
         return $this;
     }
 
