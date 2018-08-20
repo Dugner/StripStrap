@@ -26,9 +26,9 @@ class Game
     private $title;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Character", mappedBy="game")
+     * @ORM\OneToMany(targetEntity="App\Entity\UserCharacter", mappedBy="game")
      */
-    private $characters;
+    private $userCharacters;
 
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Category")
@@ -47,7 +47,7 @@ class Game
 
     public function __construct()
     {
-        $this->characters = new ArrayCollection();
+        $this->UserCharacters = new ArrayCollection();
         $this->categories = new ArrayCollection();
     }
 
@@ -68,14 +68,14 @@ class Game
         return $this;
     }
 
-    public function getCharacters(): ?Character
+    public function getUserCharacters(): ?UserCharacter
     {
-        return $this->characters;
+        return $this->UserCharacters;
     }
 
-    public function setCharacters(?Character $characters): self
+    public function setUserCharacters(?UserCharacter $UserCharacters): self
     {
-        $this->characters = $characters;
+        $this->UserCharacters = $UserCharacters;
 
         return $this;
     }

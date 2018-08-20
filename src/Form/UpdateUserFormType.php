@@ -14,7 +14,7 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\ButtonType;
 use App\Entity\Role;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
-use App\Entity\Character;
+use App\Entity\UserCharacter;
 
 class UpdateUserFormType extends AbstractType
 {
