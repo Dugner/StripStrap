@@ -3,7 +3,7 @@
   <img class="card-img-top" src="{{ path('download_document', {'document': app.user.getPicture().getId()})  }}" alt="Card image cap">
   <div class="card-body">
     <h5 class="card-title">{{ app.user.getUsername()}} </h5>
-    <p class="card-text"> {{ app.user.getCharacters().getDetail() }}</p>
+    <p class="card-text"> {# {{ app.user.getCharacters().getDetail() }} #}</p>
     <p> Afficher les jeux</p>
     <h7>Level {#{{ app.user.getCharacters().getLevel() }}#}</h7>
     <br>
