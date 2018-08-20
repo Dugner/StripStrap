@@ -9,6 +9,8 @@ use App\Entity\Post;
 use App\Entity\User;
 use App\Form\PostFormType;
 use Symfony\Component\Validator\Constraints\DateTime;
+use App\Entity\Comment;
+use App\Form\CommentFormType;
 
 class PostController extends Controller
 {
