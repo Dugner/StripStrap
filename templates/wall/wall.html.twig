@@ -27,11 +27,13 @@
                     {% for post in pagination %}   
                         <div class="card">
                             <div class="card-body">
-                                {# <h5 class="card-title"> Vedro(test) </h5> #}
                                 <h5 class="card-title"> {{post.getUser().getUsername()}}</h5>
                                 <hr>
                                 <p class="card-text">{{ post.getContent() }}</p>
                                 <p class="blockquote-footer">{{ post.getDatetime()|date('Y-m-d H:i:s') }}</p>
+                            </div>
+                            <div class="card-footer text-muted">
+                                <a href="{{ path("wall_comment", {post: post.getId()}) }}" class="btn btn-info" role="button">Details</a>
                             </div>
                         </div>    
                         <br>        

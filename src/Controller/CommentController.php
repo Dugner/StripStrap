@@ -13,7 +13,7 @@ use Symfony\Component\Validator\Constraints\DateTime;
 
 class CommentController extends Controller
 {
-    public function commentPosts(Request $request)
+    public function commentPosts(Post $post, Request $request)
     {
         $manager = $this->getDoctrine()->getManager();
         $comment = new Comment();
@@ -25,11 +25,11 @@ class CommentController extends Controller
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $comment->setUser($this-getUser());
+            $comment->setUser($this->getUser());
             $manager->persist($comment);
             $manager->flush();
 
-            return $this->redirectToRoute('wall_comment');
+            return $this->redirectToRoute("wall_comment", ['post' => $post->getId()]);
         }
 
         $comments = $manager->getRepository(Comment::class)->findAll();
@@ -37,6 +37,7 @@ class CommentController extends Controller
         return $this->render(
             'Comment/comment.html.twig',
             [
+                'post' => $post,
                 'comments' => $comments,
                 'commentForm' => $form->createView()
             ]

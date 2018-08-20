@@ -30,7 +30,7 @@ wall_list:
     controller: App\Controller\PostController::wallPosts
 
 wall_comment:
-    path: /comment
+    path: /comment/{post}
     controller: App\Controller\CommentController::commentPosts
 
 user_card:
