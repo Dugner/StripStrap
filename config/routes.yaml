@@ -22,12 +22,16 @@ logout:
     path: /logout
 
 login:
-    path:   /login
+    path: /login
     controller: App\Controller\DefaultController::login
 
 wall_list:
     path: /wall
     controller: App\Controller\PostController::wallPosts
+
+wall_comment:
+    path: /comment
+    controller: App\Controller\CommentController::commentPosts
 
 user_card:
     path: /usercard

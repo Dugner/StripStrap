@@ -34,9 +34,6 @@
                                 <p class="card-text">{{ post.getContent() }}</p>
                                 <p class="blockquote-footer">{{ post.getDatetime()|date('Y-m-d H:i:s') }}</p>
                             </div>
-                            <div class="card-footer">
-                                <p>{# {{ post.getComments() }} #}</p>
-                            </div>
                         </div>    
                         <br>  
                     {% endfor %}

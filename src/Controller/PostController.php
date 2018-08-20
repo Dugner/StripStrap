@@ -40,13 +40,11 @@ class PostController extends Controller
                 $this->getUser()
             );
 
-        // $posts = $manager->getRepository(Post::class)->findAll();
-
         return $this->render(
             'wall/wall.html.twig',
             [
                 'pagination' => $pagination,
-                'postForm' => $form->createView(),
+                'postForm' => $form->createView()
             ]
         );
     }

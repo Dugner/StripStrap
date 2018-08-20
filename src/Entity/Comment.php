@@ -43,9 +43,10 @@ class Comment
 
     public function __construct()
     {
+        $this->datetime = new \DateTime();
     }
 
-    public function getId(): ?int
+    public function getId()
     {
         return $this->id;
     }
@@ -65,13 +66,6 @@ class Comment
     public function getDatetime(): ?string
     {
         return $this->datetime;
-    }
-
-    public function setDatetime(string $datetime): self
-    {
-        $this->datetime = $datetime;
-
-        return $this;
     }
 
     /**
