@@ -6,7 +6,7 @@
 
     <div>
         <h1> My details </h1>
-        <img class="card-img-top" src="{{ path('download_document', {'document': app.user.getPicture().getId()})  }}" alt="Card image cap" width="100px">
+        <img class="card-img-top" width="100"src="{{ path('download_document', {'document': app.user.getPicture().getId()})  }}" alt="Card image cap" >
         <h5> {{ app.user.getUsername() }} <h5>
         <h6> {{ app.user.getFirstname() }}{{ app.user.getLastname() }} <h6>
         <p> {{ app.user.getEmail() }} </p>
@@ -27,7 +27,7 @@
     <h1> My games </h1>
 
     <ul>
-     <li>{# {{ app.user.getUserCharacters()[0].getGame().getTitle()}} #}</li>
+     <li> {{ app.user.getUserCharacters()[0].getGame().getTitle()}} </li>
     </ul>
     
     </div>
