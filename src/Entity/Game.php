@@ -68,15 +68,29 @@ class Game
         return $this;
     }
 
-    public function getUserCharacters(): ?UserCharacter
+    public function getUserCharacters(): ?Collection
     {
-        return $this->UserCharacters;
+        return $this->userCharacters;
     }
 
-    public function setUserCharacters(?UserCharacter $UserCharacters): self
+    public function addUserCharacters(UserCharacter $userCharacter): self
     {
-        $this->UserCharacters = $UserCharacters;
+        if (!$this->userCharacters->contains($userCharacter)) {
+            $this->userCharacters[] = $userCharacter;
+            $userCharacter->setUser($this);
+        }
+        return $this;
+    }
 
+    public function removeUserCharacters(UserCharacter $userCharacter): self
+    {
+        if ($this->userCharacters->contains($userCharacter)) {
+            $this->userCharacters->removeElement($userCharacter);
+            // set the owning side to null (unless already changed)
+            if ($userCharacter->getUser() === $this) {
+                $userCharacter->setUser(null);
+            }
+        }
         return $this;
     }
 
