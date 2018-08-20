@@ -33,11 +33,6 @@
                                     <td>{{ user.getEmail() }}</td>
                                     <td>{{ user.getDateOfBirth()|date('d/m/Y') }}</td>
                                     <td>{{ user.getCountry() }}</td>
-                                    {% if user.getUserCharacter() is empty %}
-                                        <td>No UserCharacter</td>
-                                    {% else %}
-                                        <td>{{ user.getUserCharacter()[0].name() }}</td>
-                                    {% endif %}
                                     <td>
                                     <a href="{{ path('admin_user_detail', { user: user.getId() }) }}"><i class="fas fa-pen-square"></i></a>
                                     <a href="{{ path('admin_user_delete', { deleteUser: user.getId() })}}"><i class="fas fa-minus-square"></i></a>

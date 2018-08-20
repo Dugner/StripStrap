@@ -40,7 +40,7 @@ user_info:
 # ADMIN PANEL BELOW
 admin_home:
     path: /admin
-    controller: App\Controller\AdminController::home
+    controller: App\Controller\AdminController::userList
 
 admin_game:
     path: /admin/game
