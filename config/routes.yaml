@@ -66,3 +66,11 @@ admin_post_delete:
 admin_post_list:
     path: /admin/post
     controller: App\Controller\AdminController::displayPostList
+
+admin_category_list:
+    path: /admin/category
+    controller: App\Controller\AdminController::categoryForm
+
+admin_category_delete:
+    path: /admin/category/{categoryDel}
+    controller: App\Controller\AdminController::categoryDelete
