@@ -7,44 +7,36 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use App\Entity\Post;
 use App\Entity\User;
-use App\Form\PostFormType;
+use App\Entity\Comment;
+use App\Form\CommentFormType;
 use Symfony\Component\Validator\Constraints\DateTime;
 
-class PostController extends Controller
+class CommentController extends Controller
 {
-    public function wallPosts(Request $request)
+    public function commentPosts(Request $request)
     {
         $manager = $this->getDoctrine()->getManager();
-        $post = new Post();
+        $comment = new Comment();
         $form = $this->createForm(
-            PostFormType::class,
-            $post,
+            CommentFormType::class,
+            $comment,
             ['standalone' => true]
         );
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $post->setUser($this->getUser());
-            $manager->persist($post);
+            $comment->setUser($this-getUser());
+            $manager->persist($comment);
             $manager->flush();
 
-            return $this->redirectToRoute('wall_list');
+            return $this->redirectToRoute('wall_comment');
         }
-
-        $pagination = $manager
-            ->getRepository(Post::class)
-            ->paginateWall(
-                $request, 
-                $this->get('knp_paginator'), 
-                $this->getParameter('list_limit'), 
-                $this->getUser()
-            );
 
         return $this->render(
             'wall/wall.html.twig',
             [
-                'pagination' => $pagination,
-                'postForm' => $form->createView()
+                'comments' => $comments,
+                'commentForm' => $form->createView()
             ]
         );
     }

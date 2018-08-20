@@ -35,7 +35,12 @@
                                 <p class="blockquote-footer">{{ post.getDatetime()|date('Y-m-d H:i:s') }}</p>
                             </div>
                             <div class="card-footer">
-                                <p>{{ post.getComments() }}</p>
+                                <a class="btn btn-primary" data-toggle="collapse" href="#{{ post.getId() }}" role="button" aria-expanded="false" aria-controls="collapseExample">Link with href</a>
+                                <div class="collapse" id="{{ post.getId() }}">
+                                    <div class="card card-body">
+                                        <p>{{ post.getComments() }}</p>
+                                    </div>
+                                </div>
                             </div>
                         </div>    
                         <br>  

@@ -34,7 +34,12 @@
                                 <p class="blockquote-footer">{{ post.getDatetime()|date('Y-m-d H:i:s') }}</p>
                             </div>
                             <div class="card-footer">
-                                <p>{{ post.getComments() }}</p>
+                                <div class="container">
+                                    {{ form(commentForm) }}
+                                </div>
+                                <div class="container">
+                                    <p>{{ post.getComments() }}</p>
+                                </div>
                             </div>
                         </div>    
                         <br>        
