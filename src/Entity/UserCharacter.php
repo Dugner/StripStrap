@@ -91,6 +91,17 @@ class UserCharacter
         return $this;
     }
 
+    public function getGame(): ?Game
+    {
+        return $this->game;
+    }
+
+    public function setUserCharacters(?Game $game): self
+    {
+        $this->game = $game;
+
+        return $this;
+    }
 
     /**
      * @return User
@@ -103,37 +114,6 @@ class UserCharacter
     public function setUser(User $user)
     {
         $this->user = $user;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|Game[]
-     */
-    public function getGame(): Collection
-    {
-        return $this->game;
-    }
-
-    public function addGame(Game $game): self
-    {
-        if (!$this->game->contains($game)) {
-            $this->game[] = $game;
-            $game->setUserCharacters($this);
-        }
-
-        return $this;
-    }
-
-    public function removeGame(Game $game): self
-    {
-        if ($this->game->contains($game)) {
-            $this->game->removeElement($game);
-            // set the owning side to null (unless already changed)
-            if ($game->getUserCharacters() === $this) {
-                $game->setUserCharacters(null);
-            }
-        }
 
         return $this;
     }
