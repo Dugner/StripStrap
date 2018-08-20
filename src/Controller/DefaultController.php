@@ -8,6 +8,8 @@ use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use App\Entity\UserCharacter;
 use App\Entity\User;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use App\Entity\Post;
 use App\Form\PostFormType;
 
@@ -57,6 +59,20 @@ class DefaultController extends Controller
             'error'         => $error,
         ));
     }
+
+    public function downloadDocument(Document $document){
+        $fileName = sprintf('%s/%s',
+        $document->getPath(), $document->getName());
+        return new BinaryFileResponse($fileName);
+    }
+
+    public function userCard(){
+        return $this->render(
+           'leftsidebar.html.twig'
+        );
+    }
+
+
     
     public function downloadDocumentAdmin(Document $document) {
         $fileName = sprintf('%s/%s', $document->getPath(), $document->getName());

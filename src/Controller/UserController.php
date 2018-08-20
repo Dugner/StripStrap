@@ -65,15 +65,17 @@ class UserController extends Controller{
             return $this->redirectToRoute('homepage');
         }
 
-        return $this->render('signin.html.twig', ['user_form'=>$form->createView()]);
+        return $this->render('signin.html.twig', 
+        ['user_form'=>$form->createView()]);
+
     }
 
     public function profile(User $user) {
-        $UserCharacter = new UserCharacter();
+        $userCharacter = new UserCharacter();
         
         $UserCharacterForm = $this->createForm(
             UserCharacterFormType::class,
-            $UserCharacter,
+            $userCharacter,
             ['standalone' => true]
         );
 

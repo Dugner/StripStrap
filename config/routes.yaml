@@ -13,6 +13,10 @@ index_list:
 sign_in:
     path: /signin
     controller: App\Controller\UserController::userForm
+
+download_document:
+    path: /document/{document}
+    controller: App\Controller\DefaultController::downloadDocument
     
 logout:
     path: /logout
@@ -24,11 +28,19 @@ login:
 wall_list:
     path: /wall
     controller: App\Controller\PostController::wallPosts
-    
+
+user_card:
+    path: /usercard
+    controller: App\Controller\DefaultController::userCard
+
+user_info:
+    path: /userinfo
+    controller: App\Controller\ProfileController::userInfos
+
 # ADMIN PANEL BELOW
 admin_home:
     path: /admin
-    controller: App\Controller\AdminController::userList
+    controller: App\Controller\AdminController::home
 
 admin_game:
     path: /admin/game
@@ -62,3 +74,11 @@ admin_user_delete:
 profile:
     path: /profile/{user}
     controller: App\Controller\UserController::profile
+
+admin_post_delete:
+    path: /admin/post/delete/{deletePost}
+    controller: App\Controller\AdminController::deletePosts
+
+admin_post_list:
+    path: /admin/post
+    controller: App\Controller\AdminController::displayPostList
