@@ -6,6 +6,8 @@ use App\Entity\Post;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 use App\Entity\User;
+use Symfony\Component\HttpFoundation\Request;
+use Knp\Component\Pager\Paginator;
 
 /**
  * @method Post|null find($id, $lockMode = null, $lockVersion = null)
@@ -20,12 +22,38 @@ class PostRepository extends ServiceEntityRepository
         parent::__construct($registry, Post::class);
     }
 
-    public function findLimit(int $limit)
+    public function paginate(Request $request, Paginator $paginator, $limit)
     {
-        return $this->createQueryBuilder('p')->setMaxResults($limit)->orderBy('p.datetime', 'DESC')->getQuery()->getResult();
-
-        // SELECT p FROM Post AS p INNER JOIN User u ON p.user = u.user WHERE u.user = $user ORDER BY p.date DESC
+        $query = $this->createQueryBuilder('p')->orderBy('p.datetime', 'DESC')->getQuery();
+    
+        $pagination = $paginator->paginate(
+            $query, /* query NOT result */
+            $request->query->getInt('page', 1)/*page number*/,
+            $limit/*limit per page*/
+        );
+    
+        // parameters to template
+        return $pagination;
     }
+
+    public function paginateWall(Request $request, Paginator $paginator, $limit, User $user)
+    {
+        $query = $this->createQueryBuilder('p')
+            ->orderBy('p.datetime', 'DESC')
+            ->where('p.user = :user')
+            ->setParameter('user', $user)
+            ->getQuery();
+    
+        $pagination = $paginator->paginate(
+            $query, /* query NOT result */
+            $request->query->getInt('page', 1)/*page number*/,
+            $limit/*limit per page*/
+        );
+    
+        // parameters to template
+        return $pagination;
+    }
+
 
 //    /**
 //     * @return Post[] Returns an array of Post objects
