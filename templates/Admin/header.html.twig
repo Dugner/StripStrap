@@ -36,6 +36,11 @@
                                     <li class="nav-item"><a href="{{ path ("admin_game") }}" class="nav-link"><i class="fas fa-plus-circle"></i> Add a game</a></li>
                                 </ul>
                             </li>
+                            <li class="nav-item dropdown"><a class="nav-link"><i class="fas fa-folder"></i> Category management</a>
+                                <ul class="nav-container hidden">
+                                    <li class="nav-item"><a href="{{ path ("admin_category_list") }}" class="nav-link"><i class="fas fa-list-ul"></i> List all games</a></li>
+                                </ul>
+                            </li>
                         </ul>
         
                     </section>
@@ -59,6 +64,11 @@
                                 <ul class="m-nav-container hidden">
                                     <li class="m-nav-item"><a href="{{ path ("admin_game_list") }}" class="m-nav-link"><i class="fas fa-list-ul"></i></a></li>
                                     <li class="m-nav-item"><a href="{{ path ("admin_game") }}" class="m-nav-link"><i class="fas fa-plus-circle"></i></a></li>
+                                </ul>
+                            </li>
+                            <li class="m-nav-item dropdown"><a class="m-nav-link"><i class="fas fa-folder"></i></a>
+                                <ul class="m-nav-container hidden">
+                                    <li class="m-nav-item"><a href="{{ path ("admin_category_list") }}" class="m-nav-link"><i class="fas fa-plus-circle"></i></a></li>
                                 </ul>
                             </li>
                         </ul>

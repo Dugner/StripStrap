@@ -22,12 +22,16 @@ logout:
     path: /logout
 
 login:
-    path:   /login
+    path: /login
     controller: App\Controller\DefaultController::login
 
 wall_list:
     path: /wall
     controller: App\Controller\PostController::wallPosts
+
+wall_comment:
+    path: /comment
+    controller: App\Controller\CommentController::commentPosts
 
 user_card:
     path: /usercard
@@ -40,7 +44,7 @@ user_info:
 # ADMIN PANEL BELOW
 admin_home:
     path: /admin
-    controller: App\Controller\AdminController::home
+    controller: App\Controller\AdminController::userList
 
 admin_game:
     path: /admin/game
@@ -82,3 +86,11 @@ admin_post_delete:
 admin_post_list:
     path: /admin/post
     controller: App\Controller\AdminController::displayPostList
+
+admin_category_list:
+    path: /admin/category
+    controller: App\Controller\AdminController::categoryForm
+
+admin_category_delete:
+    path: /admin/category/{categoryDel}
+    controller: App\Controller\AdminController::categoryDelete
