@@ -5,16 +5,41 @@
 {% block body %}
 
     <div>
-    <img class="card-img-top" src="{{ path('download_document', {'document': app.user.getPicture().getId()})  }}" alt="Card image cap" width="100px">
-    <h5> {{ app.user.getUsername() }} <h5>
-    <h6> {{ app.user.getFirstname() }}{{ app.user.getLastname() }} <h6>
-    <p> {{ app.user.getEmail() }} </p>
-    <p> {{ app.user.getCountry() }} </p>
-    <p> {{ app.user.getDateOfBirth()| date('Y m d') }} </p>
+        <h1> My details </h1>
+        <img class="card-img-top" width="100"src="{{ path('download_document', {'document': app.user.getPicture().getId()})  }}" alt="Card image cap" >
+        <h5> {{ app.user.getUsername() }} <h5>
+        <h6> {{ app.user.getFirstname() }}{{ app.user.getLastname() }} <h6>
+        <p> {{ app.user.getEmail() }} </p>
+        <p> {{ app.user.getCountry() }} </p>
+        <p> {{ app.user.getDateOfBirth()| date('Y m d') }} </p>
+    </div>
+    <div>
+        <h1> My character details </h1>
+        <h2>
+        {{ app.user.getUserCharacters()[0].getName()}}</h2><h4>, {{ app.user.getUserCharacters()[0].getLevel()}}</h4>
+        
+        <p>{{ app.user.getUserCharacters()[0].getDetail()}}</p>
+    </div>
 
+
+    <div>
+
+    <h1> My games </h1>
+
+    <ul>
+     <li> {{ app.user.getUserCharacters()[0].getGame().getTitle()}} </li>
+    </ul>
     
-    
-    
+    </div>
+
+
+    <div>
+
+    <h1> My Dudes </h1>
+
+    <ul>
+     <li>{# {{ app.user.getFriends}} #}</li>
+    </ul>
     
     </div>
 
