@@ -82,7 +82,6 @@ class DefaultController extends Controller
         );
     }
 
-
     
     public function downloadDocumentAdmin(Document $document) {
         $fileName = sprintf('%s/%s', $document->getPath(), $document->getName());

@@ -7,7 +7,7 @@
     <p> Afficher les jeux</p>
     <h7>Level {#{{ app.user.getCharacters().getLevel() }}#}</h7>
     <br>
-    <a href="#" class="btn btn-primary">Go to my profile</a>
+    <a href="{{ path('user_info') }}" class="btn btn-primary">Go to my profile</a>
   </div>
 </div>
 {% else %}
@@ -16,7 +16,7 @@
   <div class="card-body">
     <h5 class="username">StripStraper Original©</h5>
     <p class="card-text">Mega gamer livin during the night, killing every games, coding in the same time, doesn't take shower, eating sushis.</p>
-    <a href="#" class="btn btn-primary">Discover more!</a>
+    <a href="{{ path('sign_in') }}" class="btn btn-primary">Discover more!</a>
   </div>
 </div>
 {% endif %}
