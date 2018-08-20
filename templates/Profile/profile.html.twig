@@ -15,13 +15,33 @@
     </div>
     <div>
         <h1> My character details </h1>
-
-
-
-
+        <h2>
+        {{ app.user.getUserCharacters()[0].getName()}}</h2><h4>, {{ app.user.getUserCharacters()[0].getLevel()}}</h4>
+        
+        <p>{{ app.user.getUserCharacters()[0].getDetail()}}</p>
     </div>
 
 
+    <div>
+
+    <h1> My games </h1>
+
+    <ul>
+     <li>{# {{ app.user.getUserCharacters()[0].getGame().getTitle()}} #}</li>
+    </ul>
+    
+    </div>
+
+
+    <div>
+
+    <h1> My Dudes </h1>
+
+    <ul>
+     <li>{# {{ app.user.getFriends}} #}</li>
+    </ul>
+    
+    </div>
 
 
 
