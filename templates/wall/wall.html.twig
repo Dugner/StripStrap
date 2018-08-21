@@ -27,7 +27,14 @@
                     {% for post in pagination %}   
                         <div class="card">
                             <div class="card-body">
-                                <h5 class="card-title"> {{post.getUser().getUsername()}}</h5>
+                                <div class="card-title">
+                                    {% if post.getUser().getPicture() is not empty %}
+                                        <img src="{{ path('download_document', {'document': post.getUser().getPicture().getId() })  }}" alt="Thumbnail of user avatar" class="thumbnail">
+                                    {% else %}
+                                        <img src="{{ asset('img/default.jpg') }}" alt="Default avatar for user" class="thumbnail">
+                                    {% endif %}
+                                    <h5> {{ post.getUser().getUsername() }} </h5>
+                                </div>
                                 <hr>
                                 <p class="card-text">{{ post.getContent() }}</p>
                                 <p class="blockquote-footer">{{ post.getDatetime()|date('Y-m-d H:i:s') }}</p>
