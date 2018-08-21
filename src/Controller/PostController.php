@@ -12,6 +12,7 @@ use Symfony\Component\Validator\Constraints\DateTime;
 use App\Entity\Comment;
 use App\Form\CommentFormType;
 use App\Entity\Game;
+use App\Entity\Category;
 
 class PostController extends Controller
 {
@@ -35,6 +36,8 @@ class PostController extends Controller
         }
 
         $games= $manager->getRepository(Game::class)->findAll();
+
+        $categories= $manager->getRepository(Category::class)->findAll();
         
         $pagination = $manager
             ->getRepository(Post::class)
@@ -50,7 +53,8 @@ class PostController extends Controller
             [
                 'pagination' => $pagination,
                 'postForm' => $form->createView(),
-                'games' => $games
+                'games' => $games,
+                'categories'=> $categories
             ]
         );
     }
