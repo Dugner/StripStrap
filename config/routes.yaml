@@ -41,9 +41,17 @@ user_info:
     path: /profile
     controller: App\Controller\ProfileController::userInfos
 
-profile:
-    path: /profile/{user}
-    controller: App\Controller\UserController::profile
+add_character:
+    path: /add_character
+    controller: App\Controller\UserCharacterController::addCharacter
+
+delete_character:
+    path: /delete_character/{character_id}
+    controller: App\Controller\UserCharacterController::deleteCharacter
+
+edit_character:
+    path: /edit_character/{character_id}
+    controller: App\Controller\UserCharacterController::editCharacter
 
 # ADMIN PANEL BELOW
 admin_home:

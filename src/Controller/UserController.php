@@ -76,21 +76,5 @@ class UserController extends Controller{
 
         return $this->render('signin.html.twig', 
         ['user_form'=>$form->createView()]);
-
-    }
-
-    public function profile(User $user) {
-        $userCharacter = new UserCharacter();
-        
-        $UserCharacterForm = $this->createForm(
-            UserCharacterFormType::class,
-            $userCharacter,
-            ['standalone' => true]
-        );
-
-        return $this->render(
-            'profile.html.twig',
-            ['UserCharacterForm' => $UserCharacterForm->createView()]
-        );
     }
 }//class test
