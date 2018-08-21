@@ -49,7 +49,8 @@ class UserCharacter
     private $game;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\Document", cascade={"persist", "remove"})
+     * @ORM\OneToOne(targetEntity="App\Entity\Document")
+     * @ORM\JoinColumn(name="picture_id", referencedColumnName="id", nullable=true, onDelete="CASCADE")
      */
     private $picture;
 
@@ -148,8 +149,7 @@ class UserCharacter
         return $this->name;
     }
 
-    public function getReport() : ?boolean
-    {
+    public function getReport(): ?boolean {
         return $this->report;
     }
 

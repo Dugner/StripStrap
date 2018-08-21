@@ -9,6 +9,10 @@ use App\Entity\Post;
 use App\Entity\User;
 use App\Form\PostFormType;
 use Symfony\Component\Validator\Constraints\DateTime;
+use App\Entity\Comment;
+use App\Form\CommentFormType;
+use App\Entity\Game;
+use App\Entity\Category;
 
 class PostController extends Controller
 {
@@ -31,6 +35,10 @@ class PostController extends Controller
             return $this->redirectToRoute('wall_list');
         }
 
+        $games= $manager->getRepository(Game::class)->findAll();
+
+        $categories= $manager->getRepository(Category::class)->findAll();
+        
         $pagination = $manager
             ->getRepository(Post::class)
             ->paginateWall(
@@ -40,13 +48,13 @@ class PostController extends Controller
                 $this->getUser()
             );
 
-        // $posts = $manager->getRepository(Post::class)->findAll();
-
         return $this->render(
             'wall/wall.html.twig',
             [
                 'pagination' => $pagination,
                 'postForm' => $form->createView(),
+                'games' => $games,
+                'categories'=> $categories
             ]
         );
     }

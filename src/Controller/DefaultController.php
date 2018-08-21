@@ -12,6 +12,8 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use App\Entity\Post;
 use App\Form\PostFormType;
+use App\Entity\Game;
+use App\Entity\Category;
 
 
 class DefaultController extends Controller
@@ -35,13 +37,58 @@ class DefaultController extends Controller
             return $this->redirectToRoute('index_list');
         }
 
+        $games= $manager->getRepository(Game::class)->findAll();
+        $categories= $manager->getRepository(Category::class)->findAll();
+
         $pagination = $manager->getRepository(Post::class)->paginate($request, $this->get('knp_paginator'), $this->getParameter('list_limit'));
 
         return $this->render(
-            'default/homepage.html.twig',
+            'Default/homepage.html.twig',
             [
                 'pagination' => $pagination,
                 'homePostForm' => $form->createView(),
+                'games'=> $games,
+                'categories'=> $categories
+            ]
+        );
+    }
+    
+
+
+    public function commentHomePosts(Post $post, Request $request)
+    {
+        $manager = $this->getDoctrine()->getManager();
+        $comment = new Comment();
+        $form = $this->createForm(
+            CommentFormType::class,
+            $comment,
+            ['standalone' => true]
+        );
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $comment->setPost($post);
+            // $comment->setUser($user);
+            $comment->setUser($post->getUser());
+            $manager->persist($comment);
+            $manager->flush();
+
+            return $this->redirectToRoute("wall_comment", ['post' => $post->getId()]);
+        }
+
+        $comments = $manager
+            ->getRepository(Comment::class)
+            ->findBy(
+                ['post' => $post->getId()],
+                ['datetime' => 'DESC']
+            );
+
+        return $this->render(
+            'Comment/comment.html.twig',
+            [
+                'post' => $post,
+                'comments' => $comments,
+                'commentForm' => $form->createView()
             ]
         );
     }
@@ -62,15 +109,19 @@ class DefaultController extends Controller
 
     public function downloadDocument(Document $document){
         $fileName = sprintf('%s/%s',
-        $document->getPath(), $document->getName());
+            $document->getPath(), 
+            $document->getName()
+        );
         return new BinaryFileResponse($fileName);
     }
 
     public function userCard(){
+        $userCard= $this->userCard;
         return $this->render(
            'leftsidebar.html.twig'
         );
     }
+
 
     
     public function downloadDocumentAdmin(Document $document) {
@@ -78,4 +129,5 @@ class DefaultController extends Controller
 
         return new BinaryFileResponse($fileName);
     }
+
 }

@@ -64,6 +64,21 @@ i {
   background: #9be3f0;
 }
 
+.help {
+  position: absolute;
+  font-size: 0.8rem;
+  background: #d1d1d1;
+  border-radius: 5px;
+  border: 2px solid #000;
+  text-decoration: none;
+  padding: 0 10px;
+  color: #000000;
+}
+
+a {
+  text-decoration: none;
+}
+
 /* settings end */
 /* header */
 header {

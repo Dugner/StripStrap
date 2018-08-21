@@ -1,0 +1,27 @@
+{% extends 'Admin/base.html.twig' %}
+
+{% block title %}{{ parent() }}Reported Character delete{% endblock %}
+
+{% block body %}
+        
+        <section id="main-container">
+
+            {{ form_start(deleteCharForm) }}
+                <div class="description">
+                    <p>
+                        Are you sure to delete the reported character: <strong>{{ deleteChar.getName() }} &#40;Was added by: {{ deleteChar.user.getUsername() }}&#41;</strong>
+                    </p>
+                    <p>
+                        Character details: {{ deleteChar.getDetail() }}
+                    </p>
+                </div>
+                
+                <div class="form-group-row">
+                    {{ form_row(deleteCharForm.Cancel) }}
+                    {{ form_row(deleteCharForm.Yes) }}
+                </div>
+            {{ form_end(deleteCharForm) }}
+
+        </section>
+
+{% endblock %}

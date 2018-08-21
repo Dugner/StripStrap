@@ -22,19 +22,23 @@ logout:
     path: /logout
 
 login:
-    path:   /login
+    path: /login
     controller: App\Controller\DefaultController::login
 
 wall_list:
     path: /wall
     controller: App\Controller\PostController::wallPosts
 
+wall_comment:
+    path: /comment/{post}
+    controller: App\Controller\CommentController::commentPosts
+
 user_card:
     path: /usercard
     controller: App\Controller\DefaultController::userCard
 
 user_info:
-    path: /userinfo
+    path: /profile
     controller: App\Controller\ProfileController::userInfos
 
 add_character:
@@ -52,7 +56,7 @@ edit_character:
 # ADMIN PANEL BELOW
 admin_home:
     path: /admin
-    controller: App\Controller\AdminController::home
+    controller: App\Controller\AdminController::userList
 
 admin_game:
     path: /admin/game
@@ -73,14 +77,13 @@ admin_picture:
 admin_gamelist_delete:
     path:     /admin/game/list/delete/{delete} 
     controller: App\Controller\AdminController::deliteGame
-    
 
 admin_user_detail:
     path: /admin/user/details/{user}
     controller: App\Controller\AdminController::userDetails
 
 admin_user_delete:
-    path: /admin/user/delete/{deleteUser}
+    path: /admin/user/delete/{userDelete}
     controller: App\Controller\AdminController::userDelete
 
 admin_post_delete:
@@ -90,3 +93,19 @@ admin_post_delete:
 admin_post_list:
     path: /admin/post
     controller: App\Controller\AdminController::displayPostList
+
+admin_report_character:
+    path: /admin/report/character
+    controller: App\Controller\AdminController::characterList
+
+admin_report_character_delete:
+    path: /admin/report/character/delete/{deleteChar}
+    controller: App\Controller\AdminController::characterDelete
+
+admin_category_list:
+    path: /admin/category
+    controller: App\Controller\AdminController::categoryForm
+
+admin_category_delete:
+    path: /admin/category/{categoryDel}
+    controller: App\Controller\AdminController::categoryDelete
