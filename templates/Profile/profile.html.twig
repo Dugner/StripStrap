@@ -4,6 +4,7 @@
 
 {% block body %}
 
+    {# 
     <div>
         <h1> My details </h1>
         {% if app.user.getPicture is empty %}
@@ -27,9 +28,65 @@
         {{ app.user.getUserCharacters()[0].getName()}}</h2><h4>, {{ app.user.getUserCharacters()[0].getLevel()}}</h4>
         
         <p>{{ app.user.getUserCharacters()[0].getDetail()}}</p>
-        {% endif %}
-    </div>
+    </div> 
+    #}
 
+    <h3>List of characters</h3>
+
+    <div style="font-size: 1.4em;"><a href="{{ path('add_character') }}" style="text-decoration: none;" class="text-success"><i class="fas fa-user-plus"></i></a></div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>NAME</td>
+                <th>LEVEL</th>
+                <th>DETAIL</th>
+                <th>GAME</td>
+                <th>PICTURE</th>
+                <th>ACTION</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for userCharacter in userCharacters %}
+            <tr>
+                <td>{{ userCharacter.getName() }}</td>
+                <td>{{ userCharacter.getLevel() }}</td>
+                <td>{{ userCharacter.getDetail() | slice(0,80) }}</td>
+                <td>{{ userCharacter.getGame().getTitle() }}</td>
+                {% if userCharacter.getPicture() is not empty %}
+                    <td><img src="{{ path('download_document', { 'document': userCharacter.getPicture().getId() }) }}" /></td>
+                {% else %}
+                    <td></td>
+                {% endif %}
+                <td class="text-center">
+                    <a href="{{ path('edit_character', { 'character_id': userCharacter.getId() }) }}" class="text-warning"><i class="fas fa-edit"></i></a>
+                    <a data-toggle="modal" data-target="#deleteModal_{{userCharacter.getName()}}" class="text-danger"><i class="fas fa-trash-alt"></i></a>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="deleteModal_{{ userCharacter.getName() }}" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="deleteModalLabel">Delete character</h5>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            Do you want delete the character {{ userCharacter.getName() }} ? 
+                        </div>
+                        <div class="modal-footer">
+                            <a href="{{ path('delete_character', { 'character_id': userCharacter.getId() }) }}" style="text-decoration: none;" class="btn btn-success">
+                            Yes</a>
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 
     <div>
 

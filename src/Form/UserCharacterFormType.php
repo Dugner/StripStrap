@@ -13,8 +13,6 @@ use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use App\Entity\Game;
-use App\Repository\GameRepository;
-use Doctrine\Common\Collections\ArrayCollection;
 
 class UserCharacterFormType extends AbstractType
 {
@@ -23,26 +21,26 @@ class UserCharacterFormType extends AbstractType
         $builder->add('name', TextType::class)
             ->add('level', IntegerType::class)
             ->add('detail', TextareaType::class)
-            ->add('game', EntityType::class,
+            ->add('game', EntityType::class, 
             [
                 'class' => Game::class,
-                'choice_label' => 'game',
+                'choice_label' => 'title',
                 'expanded' => false,
                 'multiple' => false,
-                'label' => 'The list of game'
+                'label' => 'The list of games'
             ])
-            /*->add('picture', FileType::class, 
+            ->add('picture', FileType::class, 
             [
-                'label' => 'Choose a UserCharacter picture...', 
+                'label' => 'Choose a character picture...', 
                 'required' => false
-            ])*/
+            ])
         ;
 
         if($options['standalone']){
             $builder->add(
-                'Add a new UserCharacter', 
+                'Submit', 
                 SubmitType::class,
-                ['attr'=>['class'=>'btn-success btn-block']]);
+                ['attr'=>['class'=>'btn-success btn-block btn-lg']]);
         }
     }
 

@@ -10,7 +10,6 @@ use App\Entity\User;
 use App\Entity\Document;
 use App\Entity\Role;
 use App\Entity\UserCharacter;
-use App\Form\UserCharacterFormType;
 
 class UserController extends Controller{
 
@@ -76,21 +75,5 @@ class UserController extends Controller{
 
         return $this->render('signup.html.twig', 
         ['user_form'=>$form->createView()]);
-
-    }
-
-    public function profile(User $user) {
-        $userCharacter = new UserCharacter();
-        
-        $UserCharacterForm = $this->createForm(
-            UserCharacterFormType::class,
-            $userCharacter,
-            ['standalone' => true]
-        );
-
-        return $this->render(
-            'profile.html.twig',
-            ['UserCharacterForm' => $UserCharacterForm->createView()]
-        );
     }
 }//class test
