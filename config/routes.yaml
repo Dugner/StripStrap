@@ -22,12 +22,16 @@ logout:
     path: /logout
 
 login:
-    path:   /login
+    path: /login
     controller: App\Controller\DefaultController::login
 
 wall_list:
     path: /wall
     controller: App\Controller\PostController::wallPosts
+
+wall_comment:
+    path: /comment/{post}
+    controller: App\Controller\CommentController::commentPosts
 
 user_card:
     path: /usercard
@@ -89,3 +93,11 @@ admin_report_character:
 admin_report_character_delete:
     path: /admin/report/character/delete/{deleteChar}
     controller: App\Controller\AdminController::characterDelete
+
+admin_category_list:
+    path: /admin/category
+    controller: App\Controller\AdminController::categoryForm
+
+admin_category_delete:
+    path: /admin/category/{categoryDel}
+    controller: App\Controller\AdminController::categoryDelete

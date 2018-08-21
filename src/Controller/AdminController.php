@@ -15,6 +15,8 @@
     use App\Entity\Post;
     use App\Entity\UserCharacter;
     use App\Form\DeleteCharacterFormType;
+    use App\Form\CategoryFormType;
+    use App\Entity\Category;
 
 
     class AdminController extends Controller
@@ -281,6 +283,52 @@
             $post->flush();
 
             return $this->redirectToRoute('admin_post_list');
+        }
+    
+        public function categoryForm(Request $request)
+        {
+            $manager = $this->getDoctrine()->getManager();
+            $category = new Category();
+
+            $form = $this->createForm(
+                CategoryFormType::class,
+                $category,
+                ['standalone'=>true]
+            );
+            $form->handleRequest($request);
+
+            if($form->isSubmitted() && $form->isValid())
+            {
+                
+                $manager->persist($category);
+                $manager->flush();
+
+                return $this->redirectToRoute('admin_category_list');
+            }
+
+            return $this->render(
+                'Admin/Category/category.html.twig',
+                [
+                    'categoryForm'=>$form->createView(),
+                    'categoryLists'=>$manager->getRepository(Category::class)->findAll()
+                ]
+            );
+        }
+
+        public function categoryDelete($categoryDel)
+        {
+            $category = $this->getDoctrine()->getManager();
+            $categoryDel = $category->getRepository(Category::class)->find($categoryDel);
+            if(!$categoryDel)
+            {
+                throw $this->createNotFoundedException(
+                    'No Product found for Id' .$categoryDel
+                );
+            }
+            $category->remove($categoryDel);
+            $category->flush();
+
+            return $this->redirectToRoute('admin_category_list');
         }
 
         public function displayPostList()

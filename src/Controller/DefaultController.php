@@ -67,11 +67,11 @@ class DefaultController extends Controller
     }
 
     public function userCard(){
+        $userCard= $this->userCard;
         return $this->render(
            'leftsidebar.html.twig'
         );
     }
-
 
     
     public function downloadDocumentAdmin(Document $document) {

@@ -9,6 +9,8 @@ use App\Entity\Post;
 use App\Entity\User;
 use App\Form\PostFormType;
 use Symfony\Component\Validator\Constraints\DateTime;
+use App\Entity\Comment;
+use App\Form\CommentFormType;
 
 class PostController extends Controller
 {
@@ -40,13 +42,11 @@ class PostController extends Controller
                 $this->getUser()
             );
 
-        // $posts = $manager->getRepository(Post::class)->findAll();
-
         return $this->render(
             'wall/wall.html.twig',
             [
                 'pagination' => $pagination,
-                'postForm' => $form->createView(),
+                'postForm' => $form->createView()
             ]
         );
     }
