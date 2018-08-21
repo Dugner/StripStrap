@@ -13,6 +13,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use App\Entity\Post;
 use App\Form\PostFormType;
 use App\Entity\Game;
+use App\Entity\Category;
 
 
 class DefaultController extends Controller
@@ -37,6 +38,7 @@ class DefaultController extends Controller
         }
 
         $games= $manager->getRepository(Game::class)->findAll();
+        $categories= $manager->getRepository(Category::class)->findAll();
 
         $pagination = $manager->getRepository(Post::class)->paginate($request, $this->get('knp_paginator'), $this->getParameter('list_limit'));
 
@@ -45,7 +47,8 @@ class DefaultController extends Controller
             [
                 'pagination' => $pagination,
                 'homePostForm' => $form->createView(),
-                'games'=> $games
+                'games'=> $games,
+                'categories'=> $categories
             ]
         );
     }

@@ -1,3 +1,15 @@
+<h2>Categories</h2>
+{% for category in categories %}
+    <ul>
+        <li><a href="#">{{ category.getLabel() }}</a></li>
+    </ul>
+
+    {% else %}
+        No categories ..
+
+{% endfor %}
+<br>
+
 <h2>Games</h2>
 {% for game in games %}
     <ul>
@@ -8,4 +20,4 @@
         No games ..
 
 {% endfor %}
-    <a class="btn btn-secondary" href="#" role="button">View details &raquo;</a>
+    <a class="btn btn-warning" href="#" role="button">See all &raquo;</a>
