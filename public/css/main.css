@@ -8,6 +8,15 @@ h1#posts{
 h1#wallposts{
     text-align: center;
 }
+div.card-title{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+img.thumbnail{
+    width: 64px;
+    height: 64px;
+}
 .navbar.navbar-expand-md.navbar-dark.fixed-top.bg-dark{
     max-width: 1200px;
     margin: auto;

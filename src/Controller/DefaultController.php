@@ -100,7 +100,9 @@ class DefaultController extends Controller
 
     public function downloadDocument(Document $document){
         $fileName = sprintf('%s/%s',
-        $document->getPath(), $document->getName());
+            $document->getPath(), 
+            $document->getName()
+        );
         return new BinaryFileResponse($fileName);
     }
 
