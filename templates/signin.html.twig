@@ -9,7 +9,54 @@
             <div class="col-md-6">
                 {% block mainsection %}
                 <h1> Sign in </h1>
-                    {{ form(user_form) }}
+                    {# {{ form(user_form) }} #}
+                    {{ form_start(user_form) }}
+                        {{ form_row(user_form.username) }}
+                        <div id="usernameHelp" class="help hidden">
+                            <small class="text-danger">
+                                Must at least 3 characters long.
+                            </small> 
+                        </div>
+
+                        {{ form_row(user_form.firstname) }}
+                        <div id="firstnameHelp" class="help hidden">
+                            <small class="text-danger">
+                                Must at least 3 characters long.
+                            </small> 
+                        </div>
+
+                        {{ form_row(user_form.lastname) }}
+                        <div id="lastnameHelp" class="help hidden">
+                            <small class="text-danger">
+                                Must at least 3 characters long.
+                            </small> 
+                        </div>
+
+                        {{ form_row(user_form.password) }}
+                        <div id="passwordHelp" class="help hidden">
+                            <small class="text-danger">
+                                Must at least 3 characters long and must match each other.
+                            </small> 
+                        </div>
+
+                        {{ form_row(user_form.email) }}
+                        <div id="emailHelp" class="help hidden">
+                            <small class="text-danger">
+                                Enter a valid email address.
+                            </small> 
+                        </div>
+
+                        {{ form_row(user_form.dateOfBirth) }}
+                        {{ form_row(user_form.country) }}
+                        <div id="countryHelp" class="help hidden">
+                            <small class="text-danger">
+                                Enter a valid Country:<br>
+                                <ul class="countries"></ul>
+                            </small> 
+                        </div>
+
+                        {{ form_row(user_form.picture) }}
+                    {{ form_end(user_form) }}
                 {% endblock %}
             </div>
 
