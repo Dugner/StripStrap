@@ -6,6 +6,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use App\Entity\User;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\CommentRepository")
@@ -37,7 +38,7 @@ class Comment
     private $post;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Post", inversedBy="comments")
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="comments")
      */
     private $user;
 
@@ -63,7 +64,7 @@ class Comment
         return $this;
     }
 
-    public function getDatetime(): ?string
+    public function getDatetime()
     {
         return $this->datetime;
     }
@@ -78,7 +79,7 @@ class Comment
 
     public function setPost(Post $post)
     {
-        $this->post = $user;
+        $this->post = $post;
 
         return $this;
     }
