@@ -47,7 +47,7 @@ profile:
 
 games:
     path: /games
-    controller: App\Controller\GameController::gameslist
+    controller: App\Controller\GameController::gamesList
 
 # ADMIN PANEL BELOW
 admin_home:
