@@ -25,6 +25,8 @@ class CommentController extends Controller
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
+            $comment->setPost($post);
+            // $comment->setUser($user);
             $comment->setUser($this->getUser());
             $manager->persist($comment);
             $manager->flush();
@@ -32,7 +34,12 @@ class CommentController extends Controller
             return $this->redirectToRoute("wall_comment", ['post' => $post->getId()]);
         }
 
-        $comments = $manager->getRepository(Comment::class)->findAll();
+        $comments = $manager
+            ->getRepository(Comment::class)
+            ->findBy(
+                ['post' => $post->getId()],
+                ['datetime' => 'DESC']
+            );
 
         return $this->render(
             'Comment/comment.html.twig',
