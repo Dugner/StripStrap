@@ -48,7 +48,8 @@ class UserCharacter
     private $game;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\Document", cascade={"persist", "remove"})
+     * @ORM\OneToOne(targetEntity="App\Entity\Document")
+     * @ORM\JoinColumn(name="picture_id", referencedColumnName="id", nullable=true, onDelete="CASCADE")
      */
     private $picture;
 
@@ -62,7 +63,7 @@ class UserCharacter
         $this->game = new ArrayCollection();
     }
 
-    public function getId(): ?int
+    public function getId()
     {
         return $this->id;
     }
@@ -138,6 +139,18 @@ class UserCharacter
     public function setDetail(string $detail): self
     {
         $this->detail = $detail;
+
+        return $this;
+    }
+
+    public function getReport(): ?int
+    {
+        return $this->report;
+    }
+
+    public function setReport(int $report): self
+    {
+        $this->report = $report;
 
         return $this;
     }

@@ -22,12 +22,16 @@ logout:
     path: /logout
 
 login:
-    path:   /login
+    path: /login
     controller: App\Controller\DefaultController::login
 
 wall_list:
     path: /wall
     controller: App\Controller\PostController::wallPosts
+
+wall_comment:
+    path: /comment/{post}
+    controller: App\Controller\CommentController::commentPosts
 
 user_card:
     path: /usercard
@@ -37,14 +41,14 @@ user_info:
     path: /profile
     controller: App\Controller\ProfileController::userInfos
 
-user_delete:
-    path: /profile/{deleteForm}
-    controller: App\Controller\ProfileController::deleteUser
+profile:
+    path: /profile/{user}
+    controller: App\Controller\UserController::profile
 
 # ADMIN PANEL BELOW
 admin_home:
     path: /admin
-    controller: App\Controller\AdminController::home
+    controller: App\Controller\AdminController::userList
 
 admin_game:
     path: /admin/game
@@ -65,7 +69,6 @@ admin_picture:
 admin_gamelist_delete:
     path:     /admin/game/list/delete/{delete} 
     controller: App\Controller\AdminController::deliteGame
-    
 
 admin_user_detail:
     path: /admin/user/details/{user}
@@ -75,10 +78,6 @@ admin_user_delete:
     path: /admin/user/delete/{userDelete}
     controller: App\Controller\AdminController::userDelete
 
-profile:
-    path: /profile/{user}
-    controller: App\Controller\UserController::profile
-
 admin_post_delete:
     path: /admin/post/delete/{deletePost}
     controller: App\Controller\AdminController::deletePosts
@@ -86,3 +85,19 @@ admin_post_delete:
 admin_post_list:
     path: /admin/post
     controller: App\Controller\AdminController::displayPostList
+
+admin_report_character:
+    path: /admin/report/character
+    controller: App\Controller\AdminController::characterList
+
+admin_report_character_delete:
+    path: /admin/report/character/delete/{deleteChar}
+    controller: App\Controller\AdminController::characterDelete
+
+admin_category_list:
+    path: /admin/category
+    controller: App\Controller\AdminController::categoryForm
+
+admin_category_delete:
+    path: /admin/category/{categoryDel}
+    controller: App\Controller\AdminController::categoryDelete

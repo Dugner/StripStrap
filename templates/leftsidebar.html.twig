@@ -23,6 +23,7 @@
     {% else %}
     <h7>Level {{ app.user.getUserCharacters()[0].getLevel()}} </h7>
     {% endif %}
+    
     <br>
     <a href="{{ path('user_info') }}" class="btn btn-primary">Go to my profile</a>
   </div>

@@ -1,0 +1,70 @@
+{% extends 'Admin/base.html.twig' %}
+
+{% block title %}{{ parent() }}Reported Character List{% endblock %}
+
+{% block body %}
+        
+        <section id="main-container">
+
+            {% set break = false %}
+            {% if reportedCharacters is empty %}
+                <p>No reported characters found in the application</p>
+            {% else %}
+
+            {% for character in reportedCharacters %}
+                {% if character.getReport() != 1 %}
+                    {% set break = true %}
+                    <p>No reported characters found in the application</p>
+                {% endif %}
+            {% endfor %}
+
+                {% if not break %}
+
+                    <div class="table-container">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Username</th>
+                                    <th>Name</th>
+                                    <th>Level</th>
+                                    <th>Detail</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for character in reportedCharacters %}
+                                    {% if character.getReport() == 1 %}
+                                        <tr>
+                                            <td>{{ character.user.getUsername() }}</td>
+                                            <td>{{ character.getName() }}</td>
+                                            <td>{{ character.getLevel() }}</td>
+                                            <td>{{ character.getDetail() }}</td>
+                                            <td>
+                                                <a class="helping" href="{{ path('admin_report_character_delete', { deleteChar: character.getId() }) }}">
+                                                    <i class="fas fa-check-square"></i>
+                                                    <div class="help hidden">
+                                                        <p><strong>Help:</strong> Delete the reported character</p>
+                                                    </div>
+                                                </a>
+                                                <a class="helping" href="{{ path('admin_report_character', { reportId: character.getId() }) }}">
+                                                    <i class="fas fa-minus-square"></i>
+                                                    <div class="help hidden">
+                                                        <p><strong>Help:</strong> Delete the report, because the character is right</p>
+                                                    </div>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    {% else %}
+                                        <p>No reported characters found in the application</p>
+                                    {% endif %}
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+
+                {% endif %}
+            {% endif %}
+
+        </section>
+
+{% endblock %}

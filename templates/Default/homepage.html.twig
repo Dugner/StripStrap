@@ -29,13 +29,14 @@
                     {% for post in pagination %}   
                         <div class="card">
                             <div class="card-body">
+                                <img src="{{ path('download_document', {'document': post.getUser().getId() })  }}" alt="">
                                 <h5 class="card-title"> {{ post.getUser().getUsername() }} </h5>
                                 <hr>
                                 <p class="card-text">{{ post.getContent() }}</p>
                                 <p class="blockquote-footer">{{ post.getDatetime()|date('Y-m-d H:i:s') }}</p>
                             </div>
-                            <div class="card-footer">
-                                <p>{# {{ post.getComments() }} #}</p>
+                            <div class="card-footer text-muted">
+                                <a href="{{ path("wall_comment", {post: post.getId()}) }}" class="btn btn-info" role="button">Comment the post</a>
                             </div>
                         </div>    
                         <br>  
@@ -49,10 +50,21 @@
 
         <div class="col-md-3" id="rightbar">
             {% block rightside %}
-                {% include 'rightsidebar.html.twig' %}
-            {% endblock %}
+             <h2>Games</h2>
+                {% for game in games %}
+                    <ul>
+                    <li><a href="#">{{ game.getTitle() }}</a> <p>{{ game.getDescription|slice(0,75) }}..</p></li>
+                    </ul>
+
+                {% else %}
+                No games ..
+
+                {% endfor %}
+                <a class="btn btn-secondary" href="#" role="button">View details &raquo;</a>
+
+             {% endblock %}
+            </div>
         </div>
-    </div>
 
 {% endblock %}
 
