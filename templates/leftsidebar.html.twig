@@ -13,7 +13,7 @@
     <p>YOU DON'T PLAY ANY GAME ?? Impossible..</p>
     <a href="{{ path('user_info') }}">Choose one!</a>
     {% else %}
-    <p class="card-text"> {{ app.user.getUserCharacters()[0].getDetail()|slice(0,140)}} <a href="#" >..suite</a></p>
+    <p class="card-text"> {{ app.user.getUserCharacters()[0].getDetail()|slice(0,140)}} <a href="{{ path('user_info') }}#details" >..suite</a></p>
     <p> {{ app.user.getUserCharacters()[0].getGame().getTitle()}} </p>
     {% endif %}
 

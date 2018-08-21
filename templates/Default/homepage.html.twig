@@ -50,10 +50,21 @@
 
         <div class="col-md-3" id="rightbar">
             {% block rightside %}
-                {% include 'rightsidebar.html.twig' %}
-            {% endblock %}
+             <h2>Games</h2>
+                {% for game in games %}
+                    <ul>
+                    <li><a href="#">{{ game.getTitle() }}</a> <p>{{ game.getDescription|slice(0,75) }}..</p></li>
+                    </ul>
+
+                {% else %}
+                No games ..
+
+                {% endfor %}
+                <a class="btn btn-secondary" href="#" role="button">View details &raquo;</a>
+
+             {% endblock %}
+            </div>
         </div>
-    </div>
 
 {% endblock %}
 

@@ -19,7 +19,7 @@
         <p> {{ app.user.getDateOfBirth()| date('Y m d') }} </p>
     </div>
     <div>
-        <h1> My character details </h1>
+        <h1 id="details"> My character details </h1>
         {% if app.user.getUserCharacters is empty %}
         Create a character.
         {% else %}
@@ -60,6 +60,8 @@
     </div>
 
     {% endif %}
+
+    {# <div> {{ form() }} </div> #}
 
 
 
