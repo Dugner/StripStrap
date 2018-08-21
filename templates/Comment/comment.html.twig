@@ -32,20 +32,22 @@
                 <h1 id="wallposts">Comments</h1>
 
                 {% if comments is empty %}
-                    <p>No stask found in the application</p>
+                    <p>No comments found for this post</p>
                 {% else %}
                     <div class="container">
                         <table class="table table-striped">
                             <thead>
                                 <tr>
                                     <th>Creation date</th>
+                                    <th>Username</th>
                                     <th>Content</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {% for comment in comments %}
                                     <tr>
-                                        <td>{{ comment.getCreationDate()|date('Y-m-d H:i:s') }}</td>
+                                        <td>{{ comment.getDatetime()|date('Y-m-d H:i:s') }}</td>
+                                        <td>{{ comment.getUser().getUsername() }}</td>
                                         <td>{{ comment.getContent() }}</td>
                                     </tr>
                                 {% endfor %}

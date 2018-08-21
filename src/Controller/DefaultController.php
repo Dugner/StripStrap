@@ -38,10 +38,48 @@ class DefaultController extends Controller
         $pagination = $manager->getRepository(Post::class)->paginate($request, $this->get('knp_paginator'), $this->getParameter('list_limit'));
 
         return $this->render(
-            'default/homepage.html.twig',
+            'Default/homepage.html.twig',
             [
                 'pagination' => $pagination,
                 'homePostForm' => $form->createView(),
+            ]
+        );
+    }
+
+    public function commentHomePosts(Post $post, Request $request)
+    {
+        $manager = $this->getDoctrine()->getManager();
+        $comment = new Comment();
+        $form = $this->createForm(
+            CommentFormType::class,
+            $comment,
+            ['standalone' => true]
+        );
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $comment->setPost($post);
+            // $comment->setUser($user);
+            $comment->setUser($post->getUser());
+            $manager->persist($comment);
+            $manager->flush();
+
+            return $this->redirectToRoute("wall_comment", ['post' => $post->getId()]);
+        }
+
+        $comments = $manager
+            ->getRepository(Comment::class)
+            ->findBy(
+                ['post' => $post->getId()],
+                ['datetime' => 'DESC']
+            );
+
+        return $this->render(
+            'Comment/comment.html.twig',
+            [
+                'post' => $post,
+                'comments' => $comments,
+                'commentForm' => $form->createView()
             ]
         );
     }
