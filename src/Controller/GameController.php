@@ -2,8 +2,8 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use App\Entity\Game;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 
 class GameController extends Controller{

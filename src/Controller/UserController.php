@@ -2,15 +2,15 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Security\Core\Encoder\EncoderFactoryInterface;
-use App\Form\UserFormType;
 use App\Entity\User;
-use App\Entity\Document;
 use App\Entity\Role;
+use App\Entity\Document;
+use App\Form\UserFormType;
 use App\Entity\UserCharacter;
 use App\Form\UserCharacterFormType;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Security\Core\Encoder\EncoderFactoryInterface;
 
 class UserController extends Controller{
 
