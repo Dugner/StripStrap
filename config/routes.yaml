@@ -34,8 +34,12 @@ user_card:
     controller: App\Controller\DefaultController::userCard
 
 user_info:
-    path: /userinfo
+    path: /profile
     controller: App\Controller\ProfileController::userInfos
+
+user_delete:
+    path: /profile/{deleteForm}
+    controller: App\Controller\ProfileController::deleteUser
 
 # ADMIN PANEL BELOW
 admin_home:
@@ -68,7 +72,7 @@ admin_user_detail:
     controller: App\Controller\AdminController::userDetails
 
 admin_user_delete:
-    path: /admin/user/delete/{deleteUser}
+    path: /admin/user/delete/{userDelete}
     controller: App\Controller\AdminController::userDelete
 
 profile:

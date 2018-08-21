@@ -12,6 +12,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use App\Entity\Post;
 use App\Form\PostFormType;
+use App\Entity\Game;
 
 
 class DefaultController extends Controller
@@ -35,6 +36,8 @@ class DefaultController extends Controller
             return $this->redirectToRoute('index_list');
         }
 
+        $games= $manager->getRepository(Game::class)->findAll();
+
         $pagination = $manager->getRepository(Post::class)->paginate($request, $this->get('knp_paginator'), $this->getParameter('list_limit'));
 
         return $this->render(
@@ -42,9 +45,12 @@ class DefaultController extends Controller
             [
                 'pagination' => $pagination,
                 'homePostForm' => $form->createView(),
+                'games'=> $games
             ]
         );
     }
+    
+
 
 
     //Login function
@@ -73,10 +79,12 @@ class DefaultController extends Controller
         );
     }
 
+
     
     public function downloadDocumentAdmin(Document $document) {
         $fileName = sprintf('%s/%s', $document->getPath(), $document->getName());
 
         return new BinaryFileResponse($fileName);
     }
+
 }
