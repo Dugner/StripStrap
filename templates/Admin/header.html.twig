@@ -14,52 +14,59 @@
 
             </header>
             <main class="row">
-                    <!-- MAIN NAVIGATION -->
-                    <section id="nav-left">
-        
-                        <a id="toggle-nav-left"><i class="fas fa-chevron-circle-left"></i></a>
-        
-                        <ul class="nav-container column">
-                            <li class="nav-item dropdown"><a href="{{  path("admin_home")  }}" class="nav-link"><i class="fas fa-users"></i> User management</a></li>
+                <!-- MAIN NAVIGATION -->
+                <section id="nav-left">
+    
+                    <a id="toggle-nav-left"><i class="fas fa-chevron-circle-left"></i></a>
+    
+                    <ul class="nav-container column">
+                        <li class="nav-item dropdown"><a href="{{  path("admin_home")  }}" class="nav-link"><i class="fas fa-users"></i> User management</a></li>
 
-                            <li class="nav-item dropdown"><a href="{{ path ("admin_post_list") }}" class="nav-link"><i class="fas fa-newspaper"></i> Post management</a></li>
+                        <li class="nav-item dropdown"><a href="{{ path ("admin_post_list") }}" class="nav-link"><i class="fas fa-newspaper"></i> Post management</a></li>
 
-                            <li class="nav-item dropdown"><a class="nav-link"><i class="fas fa-gamepad"></i> Game management</a>
-                                <ul class="nav-container hidden">
-                                    <li class="nav-item"><a href="{{ path ("admin_game_list") }}" class="nav-link"><i class="fas fa-list-ul"></i> List all games</a></li>
-                                    <li class="nav-item"><a href="{{ path ("admin_game") }}" class="nav-link"><i class="fas fa-plus-circle"></i> Add a game</a></li>
-                                </ul>
-                            </li>
+                        <li class="nav-item dropdown"><a class="nav-link"><i class="fas fa-gamepad"></i> Game management</a>
+                            <ul class="nav-container hidden">
+                                <li class="nav-item"><a href="{{ path ("admin_game_list") }}" class="nav-link"><i class="fas fa-list-ul"></i> List all games</a></li>
+                                <li class="nav-item"><a href="{{ path ("admin_game") }}" class="nav-link"><i class="fas fa-plus-circle"></i> Add a game</a></li>
+                            </ul>
+                        </li>
 
-                            <li class="nav-item dropdown"><a class="nav-link"><i class="fas fa-gamepad"></i> Game management</a>
-                                <ul class="nav-container hidden">
-                                    <li class="nav-item"><a href="{{ path ("admin_game_list") }}" class="nav-link"><i class="fas fa-list-ul"></i> List all games</a></li>
-                                    <li class="nav-item"><a href="{{ path ("admin_game") }}" class="nav-link"><i class="fas fa-plus-circle"></i> Add a game</a></li>
-                                </ul>
-                            </li>
+                        <li class="nav-item dropdown"><a class="nav-link"><i class="fas fa-folder"></i> Category management</a>
+                            <ul class="nav-container hidden">
+                                <li class="nav-item"><a href="" class="nav-link"><i class="fas fa-list-ul"></i> List all categorys</a></li>
+                                <li class="nav-item"><a href="" class="nav-link"><i class="fas fa-plus-circle"></i> Add a category</a></li>
+                            </ul>
+                        </li>
 
-                            <li class="nav-item dropdown"><a href="{{ path ("admin_post_list") }}" class="nav-link"><i class="fas fa-flag"></i> Reported Characters</a></li>
-                        </ul>
-        
-                    </section>
-                    <!-- MOBILE NAVIGATION -->
-                    <section id="m-nav-left">
-        
-                        <a id="m-toggle-nav-left"><i class="fas fa-chevron-circle-right"></i></a>
-        
-                        <ul class="m-nav-container column">
-                            <li class="m-nav-item dropdown"><a href="{{path("admin_home")  }}" class="m-nav-link"><i class="fas fa-users"></i></a></li>
+                        <li class="nav-item dropdown"><a href="{{ path('admin_report_character') }}" class="nav-link"><i class="fas fa-flag"></i> Reported Characters</a></li>
+                    </ul>
+    
+                </section>
+                <!-- MOBILE NAVIGATION -->
+                <section id="m-nav-left">
+    
+                    <a id="m-toggle-nav-left"><i class="fas fa-chevron-circle-right"></i></a>
+    
+                    <ul class="m-nav-container column">
+                        <li class="m-nav-item dropdown"><a href="{{path("admin_home")  }}" class="m-nav-link"><i class="fas fa-users"></i></a></li>
 
-                            <li class="m-nav-item dropdown"><a href="{{ path ("admin_post_list") }}" class="m-nav-link"><i class="fas fa-newspaper"></i></a></li>
+                        <li class="m-nav-item dropdown"><a href="{{ path ("admin_post_list") }}" class="m-nav-link"><i class="fas fa-newspaper"></i></a></li>
 
-                            <li class="m-nav-item dropdown"><a class="m-nav-link"><i class="fas fa-gamepad"></i></a>
-                                <ul class="m-nav-container hidden">
-                                    <li class="m-nav-item"><a href="{{ path ("admin_game_list") }}" class="m-nav-link"><i class="fas fa-list-ul"></i></a></li>
-                                    <li class="m-nav-item"><a href="{{ path ("admin_game") }}" class="m-nav-link"><i class="fas fa-plus-circle"></i></a></li>
-                                </ul>
-                            </li>
+                        <li class="m-nav-item dropdown"><a class="m-nav-link"><i class="fas fa-gamepad"></i></a>
+                            <ul class="m-nav-container hidden">
+                                <li class="m-nav-item"><a href="{{ path ("admin_game_list") }}" class="m-nav-link"><i class="fas fa-list-ul"></i></a></li>
+                                <li class="m-nav-item"><a href="{{ path ("admin_game") }}" class="m-nav-link"><i class="fas fa-plus-circle"></i></a></li>
+                            </ul>
+                        </li>
 
-                            <li class="m-nav-item dropdown"><a href="{{ path ("admin_post_list") }}" class="m-nav-link"><i class="fas fa-flag"></i></a></li>
-                        </ul>
-        
-                    </section>
+                        <li class="m-nav-item dropdown"><a class="m-nav-link"><i class="fas fa-folder"></i></a>
+                            <ul class="m-nav-container hidden">
+                                <li class="m-nav-item"><a href="" class="m-nav-link"><i class="fas fa-list-ul"></i></a></li>
+                                <li class="m-nav-item"><a href="" class="m-nav-link"><i class="fas fa-plus-circle"></i></a></li>
+                            </ul>
+                        </li>
+
+                        <li class="m-nav-item dropdown"><a href="{{ path('admin_report_character') }}" class="m-nav-link"><i class="fas fa-flag"></i></a></li>
+                    </ul>
+    
+                </section>

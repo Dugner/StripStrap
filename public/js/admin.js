@@ -50,4 +50,18 @@ $(function(){
 
     });
 
+    /* show helping text */
+    $('.helping').mouseenter(function ()
+    {
+
+        $(this).find('.help').fadeIn();
+
+    });
+    $('.helping').mouseleave(function ()
+    {
+
+        $(this).find('.help').fadeOut();
+
+    });
+
 });

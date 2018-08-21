@@ -5,7 +5,7 @@
 {% block body %}
     <section id="main-container">
         {% if gamelist is empty %}
-            <p>No Users found in the application</p>
+            <p>No Games found in the application</p>
         {% else %}
             <div class="table-container">
                 <table class="table">
@@ -27,8 +27,21 @@
                                 {% else %}   
                                     <td></td>
                                 {% endif %}
-                                    <td><a href="{{ path('admin_game_edit', {edit: gamelists.getId()}) }}"><i class="fas fa-pen-square"></i></a>
-                                    <a href="{{ path("admin_gamelist_delete", {delete: gamelists.getId()}) }}"><i class="fas fa-minus-square"></i></a></td>
+                                <td>
+                                    <a class="helping" href="{{ path('admin_game_edit', {edit: gamelists.getId()}) }}">
+                                        <i class="fas fa-pen-square"></i>
+                                        <div class="help hidden">
+                                            <p><strong>Help:</strong> Update the details of the game</p>
+                                        </div>
+                                    </a>
+                                    <a class="helping" href="{{ path("admin_gamelist_delete", {delete: gamelists.getId()}) }}">
+                                        <i class="fas fa-minus-square"></i>
+                                        <div class="help hidden">
+                                            <p><strong>Help:</strong> Delete the game, please be carefully</p>
+                                        </div>
+                                    </a>
+                                </td>
+                            </tr>
                         {% endfor %}
                     </tbody>
                 </table>
