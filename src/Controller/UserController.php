@@ -14,9 +14,9 @@ use App\Form\UserCharacterFormType;
 
 class UserController extends Controller{
 
-    public function signin()
+    public function signup()
     {
-        return $this->render('signin.html.twig');
+        return $this->render('signup.html.twig');
     }
 
 
@@ -74,7 +74,7 @@ class UserController extends Controller{
             return $this->redirectToRoute('homepage');
         }
 
-        return $this->render('signin.html.twig', 
+        return $this->render('signup.html.twig', 
         ['user_form'=>$form->createView()]);
 
     }

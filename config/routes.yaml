@@ -10,8 +10,8 @@ index_list:
     path: /
     controller: App\Controller\PostController::homePosts
 
-sign_in:
-    path: /signin
+sign_up:
+    path: /signup
     controller: App\Controller\UserController::userForm
 
 download_document:
@@ -44,6 +44,10 @@ user_info:
 profile:
     path: /profile/{user}
     controller: App\Controller\UserController::profile
+
+games:
+    path: /games
+    controller: App\Controller\GameController::gameslist
 
 # ADMIN PANEL BELOW
 admin_home:

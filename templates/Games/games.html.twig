@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} {{parent()}} Games {% endblock %}
+
+{% block body %}
+    <h1>GAMES</h1>
+
+    {% for games in gamesList %}
+        <h2> {{ games.getTitle }} </h2>
+        <p> {{ games.getDescription }} </p>
+        <hr>
+    {% else %}
+        Nothing to see here.. Sorry. Maybe you should come back later :/.. (or not).
+    {% endfor %}
+
+{% endblock %}

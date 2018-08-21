@@ -61,7 +61,7 @@
             {% endfor %}
             <br>
 
-            <h2>Games</h2>
+            <h2><a href="{{ path('games') }}">Games</a></h2>
             {% for game in games %}
                 <ul>
                     <li><a href="#">{{ game.getTitle() }}</a> <p>{{ game.getDescription|slice(0,75) }}..</p></li>
