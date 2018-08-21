@@ -26,7 +26,7 @@ class Post
     private $datetime;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Comment")
+     * @ORM\OneToMany(targetEntity="App\Entity\Comment", mappedBy="post")
      */
     private $comments;
 
@@ -56,15 +56,27 @@ class Post
         return $this->datetime;
     }
 
-    public function getComments(): ?Comment
+    public function getComments(): ?Collection
     {
         return $this->comments;
     }
-
-    public function setComments(?Comment $comments): self
+    public function addComments(Comment $comment): self
     {
-        $this->comments = $comments;
-
+        if (!$this->comments->contains($comment)) {
+            $this->comments[] = $comment;
+            $post->setUser($this);
+        }
+        return $this;
+    }
+    public function removeComments(Comment $comment): self
+    {
+        if ($this->comments->contains($comment)) {
+            $this->comments->removeElement($comment);
+            // set the owning side to null (unless already changed)
+            if ($comment->getUser() === $this) {
+                $comment->setUser(null);
+            }
+        }
         return $this;
     }
 

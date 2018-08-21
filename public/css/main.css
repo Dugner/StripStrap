@@ -1,6 +1,22 @@
+@import url('https://fonts.googleapis.com/css?family=Arimo|Poppins');
+
+h1, h2, h3, h4, h5, h6, .navbar {
+    font-family: 'Arimo', sans-serif;
+}
+
+* {
+    font-family: 'Poppins', sans-serif;
+}
+
+.navbar {
+    height: 65px;
+}
+
 body {
     width: 1200px;
     margin: auto;
+    min-height: 100vh;
+    background: #e9e9e9;
 }
 h1#posts{
     text-align: center;
@@ -12,9 +28,21 @@ h1#wallposts{
     max-width: 1200px;
     margin: auto;
 }
+
+#banner {
+    background-image: url('../img/banner.jpg');
+    background-size: cover;
+    border-radius: 0 0 5px 5px;
+    height: 184px;
+}
+
 #banner h1{
     text-align: center;
+    color: #fff;
+    margin: 15px 0 0 0;
+    text-shadow: 0 0 7px #000, 0 0 3px #000;
 }
+
 #navbarsExampleDefault{
     margin-left: 10px;
     margin-right: 10px;

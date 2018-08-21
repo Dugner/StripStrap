@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use App\Entity\Post;
 use App\Entity\Comment;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
@@ -18,7 +19,6 @@ class CommentRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Comment::class);
     }
-
 //    /**
 //     * @return Comment[] Returns an array of Comment objects
 //     */

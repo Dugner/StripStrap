@@ -1,0 +1,67 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} {{parent()}} Comments {% endblock %}
+
+{% block body %}
+
+    <div class="row">
+        <div class="col-md-3" id="leftbar">
+            {% block leftside %}
+                {% include 'leftsidebar.html.twig' %}
+            {% endblock %}
+        </div>
+
+        <div class="col-md-6">
+            {% block mainsection %}
+
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title"> {{ post.getUser().getUsername() }}</h5>
+                        <hr>
+                        <p class="card-text">{{ post.getContent() }}</p>
+                        <p class="blockquote-footer">{{ post.getDatetime()|date('Y-m-d H:i:s') }}</p>
+                    </div>
+                </div>    
+                <br>
+
+                <div class="container">
+                    {{ form(commentForm) }}
+                </div>
+                <hr>
+ 
+                <h1 id="wallposts">Comments</h1>
+
+                {% if comments is empty %}
+                    <p>No stask found in the application</p>
+                {% else %}
+                    <div class="container">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Creation date</th>
+                                    <th>Content</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for comment in comments %}
+                                    <tr>
+                                        <td>{{ comment.getCreationDate()|date('Y-m-d H:i:s') }}</td>
+                                        <td>{{ comment.getContent() }}</td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                </div>
+                {% endif %}
+
+            {% endblock %}
+        </div>
+
+        <div class="col-md-3" id="rightbar">
+            {% block rightside %}
+                {% include 'rightsidebar.html.twig' %}
+            {% endblock %}
+        </div>
+    </div>
+
+{% endblock %}
