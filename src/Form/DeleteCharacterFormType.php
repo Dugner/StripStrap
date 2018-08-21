@@ -1,0 +1,31 @@
+<?php
+
+namespace App\Form;
+
+use App\Entity\UserCharacter;
+use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\ButtonType;
+
+class DeleteCharacterFormType extends AbstractType
+{
+    public function buildForm(FormBuilderInterface $builder, array $options)
+    {
+        $builder->add('Cancel', ButtonType::class, ['attr' => ['class' => 'btn-success btn-cancel']]);
+
+        if ($options['standalone'])
+        {
+            $builder->add('Yes', SubmitType::class, ['attr' => ['class' => 'btn-danger']]);
+        }
+    }
+
+    public function configureOptions(OptionsResolver $resolver)
+    {
+        $resolver->setDefaults([
+            'data_class' => UserCharacter::class,
+            'standalone' => false
+        ]);
+    }
+}
