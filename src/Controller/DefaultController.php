@@ -20,6 +20,9 @@ class DefaultController extends Controller
 {
     public function homepage(Request $request)
     {
+        // Get the user ID who is logged in
+        $userId = $this->get('security.token_storage')->getToken()->getUser();
+
         $manager = $this->getDoctrine()->getManager();
         $post = new Post();
         $form = $this->createForm(
@@ -48,6 +51,7 @@ class DefaultController extends Controller
                 'pagination' => $pagination,
                 'homePostForm' => $form->createView(),
                 'games'=> $games,
+                'userId' => $userId,
                 'categories'=> $categories
             ]
         );
