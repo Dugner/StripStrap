@@ -62,28 +62,29 @@
 
         <div class="col-md-3" id="rightbar">
             {% block rightside %}
-            <h2>Categories</h2>
-            {% for category in categories %}
-                 <ul>
-                     <li><a href="#">{{ category.getLabel() }}</a></li>
-                </ul>
 
-            {% else %}
-                 No categories ..
-            {% endfor %}
-            <br>
+                <h2>Categories</h2>
+                {% for category in categories %}
+                    <ul>
+                        <li><a href="#">{{ category.getLabel() }}</a></li>
+                    </ul>
 
-            <h2><a id="gamesButton" href="{{ path('games') }}">Games</a></h2>
-            {% for game in games %}
-                <ul>
-                    <li><a href="#">{{ game.getTitle() }}</a> <p>{{ game.getDescription|slice(0,75) }}..</p></li>
-                </ul>
-            {% else %}
-                No games ..
-            {% endfor %}
+                {% else %}
+                    No categories ..
+                {% endfor %}
+                <br>
+
+                <h2><a id="gamesButton" href="{{ path('games') }}">Games</a></h2>
+                {% for game in games %}
+                    <ul>
+                        <li><a href="#">{{ game.getTitle() }}</a> <p>{{ game.getDescription|slice(0,75) }}..</p></li>
+                    </ul>
+                {% else %}
+                    No games ..
+                {% endfor %}
              {% endblock %}
-            </div>
         </div>
+    </div>
 
 {% endblock %}
 
