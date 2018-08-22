@@ -1,0 +1,43 @@
+
+{% if is_granted('ROLE_USER') %}
+<div class="card" style="width: 18rem;">
+{% for user in users %}
+{% if user.getPicture() is empty %}
+    <img class="card-img-top" width="10" src="../img/default.jpg" alt="Card image cap" >
+{% else %}
+    <img class="card-img-top" src="{{ path('download_document', {'document': user.getPicture().getId()})  }}" alt="Card image cap">
+{% endif %}
+  <div class="card-body">
+
+    <h5 class="card-title">{{ user.getUsername()}} </h5>
+
+    {% if user.getUserCharacters() is empty %}
+    <p>YOU DON'T PLAY ANY GAME ?? Impossible..</p>
+    <a href="{{ path('user_info') }}">Choose one!</a>
+    {% else %}
+    <p class="card-text"> {{ user.getUserCharacters().getDetail()|slice(0,140)}} <a href="{{ path('user_info') }}#details" >..suite</a></p>
+    <p> {{ user.getUserCharacters().getGame().getTitle()}} </p>
+    {% endif %}
+
+    {% if user.getUserCharacters() is empty %}
+    <h7> You don't have any character, NOOB :/ </h7>
+    <a href="{{ path('user_info') }}">Create one!</a>
+    {% else %}
+    <h7>Level {{ user.getUserCharacters().getLevel()}} </h7>
+    {% endif %}
+    
+    <br>
+    <a href="{{ path('user_info') }}" class="btn btn-primary">Add Ninja</a>
+  </div>
+</div>
+{% else %}
+<div class="card" style="width: 18rem;">
+  <img class="card-img-top" src="{{ asset('img/gamer.jpg') }}" alt="Card image cap">
+  <div class="card-body">
+    <h5 class="username">StripStraper Original©</h5>
+    <p class="card-text">Mega gamer livin during the night, killing every games, coding in the same time, doesn't take shower, eating sushis.</p>
+    <a href="{{ path('sign_up') }}" class="btn btn-primary">Discover more!</a>
+  </div>
+</div>
+{% endfor %}
+{% endif %}

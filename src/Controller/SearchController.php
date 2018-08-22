@@ -6,7 +6,8 @@ use App\Form\SearchFormType;
 use App\Entity\User;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use App\DTO\UserSearchBar;
+use App\Entity\Friend;
+//use App\DTO\UserSearchBar;
 
 
 class SearchController extends Controller
@@ -14,7 +15,9 @@ class SearchController extends Controller
     public function userSearchCont(Request $request)
     {
         $manager = $this->getDoctrine()->getManager();
-        $dto = new UserSearchBar();
+
+        $myId = $this->getUser()->getId();
+        /*$dto = new UserSearchBar();
 
         $searchForm = $this->createForm(SearchFormType::class, $dto, ['standalone' => true]);
         
@@ -22,15 +25,19 @@ class SearchController extends Controller
 
         $user = $manager->getRepository(User::class)->findByUserSearchBar($dto);
             
-        
-        
+        */
+        $user = $manager->getRepository(User::class)->findAll();
+
+        $friendId = $manager->getRepository(Friend::class)->findAll();
 
 
         return $this->render(
             'search/search.html.twig',
             [
-                'users'=>$user,
-                'userSearch' => $searchForm->createView()
+                'friendId'=>$friendId,
+                'myId'=>$myId,
+                'users'=>$user
+                /*'userSearch' => $searchForm->createView()*/
             ]
 
         );

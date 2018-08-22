@@ -10,6 +10,8 @@ use App\Entity\User;
 use App\Entity\Document;
 use App\Entity\Role;
 use App\Entity\UserCharacter;
+use App\Entity\Post;
+use App\Entity\Friend;
 
 class UserController extends Controller{
 
@@ -95,6 +97,47 @@ class UserController extends Controller{
 
     }
 
+    public function userWalls($userwall, Request $request)
+    {
+        $userDisplay = $this->getDoctrine()->getManager();
+
+        $userCard = $userDisplay->getRepository(User::class)->findBy(['id'=>$userwall]);
+
+        $userPost = $userDisplay->getRepository(Post::class)->findBy(['user'=>$userCard]);
+
+
+
+        return $this->render(
+            '/userWall/userWall.html.twig',
+            [
+                'users'=>$userCard,
+                'posts'=>$userPost
+            ]
+        );
+    }
+
+    public function addNinja(User $addninja)
+    {
+
+        $friend = new Friend();
+
+        $userId = $this->get('security.token_storage')->getToken()->getUser();
+
+        $manager = $this->getDoctrine()->getManager();
+
+        $friend->setToUser($addninja->getId());
+
+        $friend->setReport(0);
+
+        $friend->setUser($userId);
+
+        $manager->persist($friend);
+
+        $manager->flush($friend);
+
+        return $this->redirectToRoute('search');
+        
+    }
 
 
 }//class test
