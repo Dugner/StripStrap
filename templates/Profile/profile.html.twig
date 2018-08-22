@@ -19,7 +19,7 @@
         <p> {{ app.user.getCountry() }} </p>
         <p> {{ app.user.getDateOfBirth()| date('Y m d') }} </p>
     </div>
-    {#<div>
+    <div>
         <h1 id="details"> My character details </h1>
         {% if app.user.getUserCharacters is empty %}
         Create a character.
