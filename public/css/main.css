@@ -45,6 +45,10 @@ img.thumbnail{
     width: 64px;
     height: 64px;
 }
+img.rounded-circle{
+    width: 75px;
+    height: 75px;
+}
 .navbar.navbar-expand-md.navbar-dark.fixed-top.bg-dark{
     max-width: 1200px;
     margin: auto;
@@ -76,7 +80,10 @@ footer p{
 }
 div.pagination{
     justify-content: center;
+    color: red;
 }
+
+
 
 @media (max-width: 768px){
     #leftbar, #rightbar{

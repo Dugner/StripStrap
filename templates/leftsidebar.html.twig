@@ -1,7 +1,7 @@
 {% if is_granted('ROLE_USER') %}
-<div class="card" style="width: 18rem;">
+<div class="card">
 {% if app.user.getPicture() is empty %}
-    <img class="card-img-top" width="10" src="../img/default.jpg" alt="Card image cap" >
+    <img class="card-img-top" src="../img/default.jpg" alt="Card image cap" >
 {% else %}
     <img class="card-img-top" src="{{ path('download_document', {'document': app.user.getPicture().getId()})  }}" alt="Card image cap">
 {% endif %}
@@ -25,7 +25,7 @@
     {% endif %}
     
     <br>
-    <a href="{{ path('user_info') }}" class="btn btn-primary">Go to my profile</a>
+    <a href="{{ path('user_info') }}" class="btn btn-primary text-center">Go to my profile</a>
   </div>
 </div>
 {% else %}

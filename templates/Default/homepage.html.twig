@@ -31,7 +31,7 @@
                             <div class="card-body">
                                 <div class="card-title">
                                     {% if post.getUser().getPicture() is not empty %}
-                                        <img src="{{ path('download_document', {'document': post.getUser().getPicture().getId() })  }}" alt="Thumbnail of user avatar" class="thumbnail">
+                                        <img src="{{ path('download_document', {'document': post.getUser().getPicture().getId() })  }}" alt="Thumbnail of user avatar" class="rounded-circle">
                                     {% else %}
                                         <img src="{{ asset('img/default.jpg') }}" alt="Default avatar for user" class="thumbnail">
                                     {% endif %}
@@ -42,7 +42,7 @@
                                 <p class="blockquote-footer">{{ post.getDatetime()|date('Y-m-d H:i:s') }}</p>
                             </div>
                             <div class="card-footer">
-                                <a href="{{ path("wall_comment", {post: post.getId()}) }}" class="btn btn-info" role="button">Comment the post</a>
+                                <a href="{{ path("wall_comment", {post: post.getId()}) }}" class="btn btn-info btn-block" role="button">Comment the post</a>
                             </div>
                         </div>    
                         <br>  
