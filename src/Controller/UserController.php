@@ -14,9 +14,9 @@ use Symfony\Component\Security\Core\Encoder\EncoderFactoryInterface;
 
 class UserController extends Controller{
 
-    public function signin()
+    public function signup()
     {
-        return $this->render('signin.html.twig');
+        return $this->render('signup.html.twig');
     }
 
 
@@ -74,7 +74,28 @@ class UserController extends Controller{
             return $this->redirectToRoute('homepage');
         }
 
-        return $this->render('signin.html.twig', 
+        return $this->render('signup.html.twig', 
         ['user_form'=>$form->createView()]);
+
+
     }
+
+    public function profile(User $user) {
+        $userCharacter = new UserCharacter();
+        
+        $UserCharacterForm = $this->createForm(
+            UserCharacterFormType::class,
+            $userCharacter,
+            ['standalone' => true]
+        );
+
+        return $this->render(
+            'profile.html.twig',
+            ['UserCharacterForm' => $UserCharacterForm->createView()]
+        );
+
+    }
+
+
+
 }//class test

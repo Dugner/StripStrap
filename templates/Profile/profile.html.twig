@@ -19,7 +19,18 @@
         <p> {{ app.user.getCountry() }} </p>
         <p> {{ app.user.getDateOfBirth()| date('Y m d') }} </p>
     </div>
-   
+    <div>
+        <h1 id="details"> My character details </h1>
+        {% if app.user.getUserCharacters is empty %}
+        Create a character.
+        {% else %}
+        <h2>
+        {{ app.user.getUserCharacters()[0].getName()}}</h2><h4>, {{ app.user.getUserCharacters()[0].getLevel()}}</h4>
+        
+        <p>{{ app.user.getUserCharacters()[0].getDetail()}}</p>
+    </div> 
+                   {% endif %}
+
     <h3>List of characters</h3>
 
     <div style="font-size: 1.4em;"><a href="{{ path('add_character') }}" style="text-decoration: none;" class="text-success"><i class="fas fa-user-plus"></i></a></div>
@@ -108,11 +119,6 @@
     {% endif %}
 
     {# <div> {{ form() }} </div> #}
-
-
-
-
-
 
 
 {% endblock %}
