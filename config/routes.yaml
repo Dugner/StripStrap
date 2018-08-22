@@ -6,6 +6,10 @@ homepage:
     path: /
     controller: App\Controller\DefaultController::homepage
 
+post_own_delete:
+    path: /{postID}
+    controller: App\Controller\PostController::deleteOwnPost
+
 index_list:
     path: / #chnage the fucking path here
     controller: App\Controller\PostController::homePosts
