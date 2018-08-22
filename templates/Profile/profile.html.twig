@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Profile page{% endblock %}
+{% block title %}{{parent()}} Profile page{% endblock %}
 
 {% block body %}
 
@@ -111,12 +111,12 @@
 
 
     <ul>
-     <li>{# {{ app.user.getFriends}} #}</li>
+     <li>{{ app.user.getFriends}}</li>
     </ul>
     
     </div>
 
-    {% endif %}
+    {% endif %} #}
 
     {# <div> {{ form() }} </div> #}
 
