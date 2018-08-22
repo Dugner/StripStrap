@@ -112,6 +112,8 @@ class UserCharacterController extends AbstractController
                 $file->move($this->getParameter('upload_dir'));
                 $userCharacter->setPicture($picture);
                 $manager->persist($picture);   
+            } else {
+                $userCharacter->setPicture($oldPicture);
             }
 
             $manager->flush();
