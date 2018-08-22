@@ -159,6 +159,16 @@
             $form->handleRequest($request);
 
             
+            $file = $edit->getPicture();
+            $manager = $this->getDoctrine()->getManager();
+            if($file){
+
+                $filename = uniqid().'.'.$file->guessExtension();
+                $document = new Document();
+                $document->setPath($this->getParameter('upload_dir'))
+                    ->setMimeType($file->getMimeType())
+                    ->setName($file->getFilename());
+
             if($form->isSubmitted() && $form->isValid()){
                 
                 $manager = $this->getDoctrine()->getManager();
@@ -172,9 +182,19 @@
                         ->setMimeType($file->getMimeType())
                         ->setName($file->getFilename());
 
+
                     $file->move($this->getParameter('upload_dir'));
 
                     $game->setPicture($document);
+
+
+                $manager->persist($document);
+            
+            }else
+            {
+                $edit->setPicture($picture);
+            }
+            $manager->flush();
 
                     $manager->persist($document);
                 
@@ -183,6 +203,7 @@
                 $manager->flush();
 
                 return $this->redirectToRoute('admin_game');
+
 
             }
             return $this->render(
