@@ -6,6 +6,7 @@ use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 use App\DTO\OneUserCharacterSelect;
+use App\DTO\UserSearchBar;
 
 /**
  * @method User|null find($id, $lockMode = null, $lockVersion = null)
@@ -18,6 +19,20 @@ class UserRepository extends ServiceEntityRepository
     public function __construct(RegistryInterface $registry)
     {
         parent::__construct($registry, User::class);
+    }
+
+
+    public function findByUserSearchBar(UserSearchBar $dto)
+    {
+        $queryBuilder = $this->createQueryBuilder("u");
+
+        if(!empty($dto->search))
+        {
+            $queryBuilder->andWhere('u.username like :search');
+
+            $queryBuilder->setParameter('search', '%' . $dto->search . '%');
+        }
+        return $queryBuilder->getQuery()->execute();
     }
 
 //    /**
