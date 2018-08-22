@@ -28,7 +28,7 @@ class Game
     private $title;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\UserCharacter", mappedBy="game")
+     * @ORM\OneToMany(targetEntity="App\Entity\UserCharacter", mappedBy="game", cascade={"persist", "remove"})
      */
     private $userCharacters;
 

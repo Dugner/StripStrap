@@ -149,7 +149,7 @@ class UserCharacter
         return $this->name;
     }
 
-    public function getReport(): ?boolean {
+    public function getReport() {
         return $this->report;
     }
 

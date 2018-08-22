@@ -59,7 +59,7 @@
             ]);
         }
 
-        public function userDelete(User $deleteUser, Request $request)
+        public function deleteUser(User $deleteUser, Request $request)
         {
             // get the user ID for deleting him
             $deleteForm = $this->createForm(DeleteUserFormType::class, $deleteUser, ['standalone' => true]);

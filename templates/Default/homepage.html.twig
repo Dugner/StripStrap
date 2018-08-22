@@ -31,7 +31,7 @@
                             <div class="card-body">
                                 <div class="card-title">
                                     {% if post.getUser().getPicture() is not empty %}
-                                        <img src="{{ path('download_document', {'document': post.getUser().getPicture().getId() })  }}" alt="Thumbnail of user avatar" class="rounded-circle">
+                                        <img src="{{ path('download_document', {'document': post.getUser().getPicture().getId() })  }}" alt="Thumbnail of user avatar" class="thumbnail">
                                     {% else %}
                                         <img src="{{ asset('img/default.jpg') }}" alt="Default avatar for user" class="thumbnail">
                                     {% endif %}
@@ -41,8 +41,14 @@
                                 <p class="card-text">{{ post.getContent() }}</p>
                                 <p class="blockquote-footer">{{ post.getDatetime()|date('Y-m-d H:i:s') }}</p>
                             </div>
-                            <div class="card-footer">
-                                <a href="{{ path("wall_comment", {post: post.getId()}) }}" class="btn btn-info btn-block" role="button">Comment the post</a>
+
+                            <div class="card-footer text-center">
+                                <a href="{{ path("wall_comment", {post: post.getId()}) }}" class="btn btn-info" role="button">Comment the post</a>
+
+                                {# {% if post.getUser().getId() == userId.getId() %}
+                                    <a href="{{ path("post_own_delete", {postID: post.getID()}) }}" class="btn btn-danger" role="button"><i class="fas fa-trash-alt"></i></a>
+                                {% else %}
+                                {% endif %} #}
                             </div>
                         </div>    
                         <br>  
@@ -67,7 +73,7 @@
             {% endfor %}
             <br>
 
-            <h2><a href="{{ path('games') }}">Games</a></h2>
+            <h2><a id="gamesButton" href="{{ path('games') }}">Games</a></h2>
             {% for game in games %}
                 <ul>
                     <li><a href="#">{{ game.getTitle() }}</a> <p>{{ game.getDescription|slice(0,75) }}..</p></li>
@@ -75,7 +81,6 @@
             {% else %}
                 No games ..
             {% endfor %}
-            <a class="btn btn-secondary" href="#" role="button">View details &raquo;</a>
              {% endblock %}
             </div>
         </div>
