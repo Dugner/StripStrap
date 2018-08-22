@@ -1,5 +1,5 @@
 <header>
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-md">
         <a class="navbar-brand" href="{{ path('homepage') }}">
             <img src="{{ asset('img/LogoStripstrapTest.png') }}" width="150" height="70" alt="Logo of StripStrap">
         </a>
@@ -29,7 +29,7 @@
                 </li>
                 {% else %}
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ path('login') }}">LogIn</a>
+                    <a class="nav-link" href="{{ path('login') }}#log">LogIn</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ path('sign_up') }}">SignUp</a>
@@ -44,4 +44,4 @@
     <div class="jumbotron" id="banner">
         <h1>StripStrap | By gamers for gamers</h1>
     </div>
-    <div class="container-fluid">
+    <div id="main" class="container-fluid">

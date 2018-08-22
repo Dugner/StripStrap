@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{ titleForm }}{% endblock %}
+{% block title %}{{parent()}}{{ titleForm }}{% endblock %}
 
 {% block body %}
     <h2>{{ titleForm }}</h2>
