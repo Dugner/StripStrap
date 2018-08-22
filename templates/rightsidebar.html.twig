@@ -10,7 +10,7 @@
 {% endfor %}
 <br>
 
-<h2> <a href="{{ path('games') }}">Games</a></h2>
+<h2> <a id="gamesButton" href="{{ path('games') }}">Games</a></h2>
 {% for game in games %}
     <ul>
         <li><a href="#">{{ game.getTitle() }}</a> <p>{{ game.getDescription|slice(0,75) }}..</p></li>
@@ -20,4 +20,3 @@
         No games ..
 
 {% endfor %}
-    <a class="btn btn-warning" href="#" role="button">See all &raquo;</a>
