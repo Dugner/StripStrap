@@ -5,3 +5,107 @@
 homepage:
     path: /
     controller: App\Controller\DefaultController::homepage
+
+index_list:
+    path: /
+    controller: App\Controller\PostController::homePosts
+
+sign_in:
+    path: /signin
+    controller: App\Controller\UserController::userForm
+
+download_document:
+    path: /document/{document}
+    controller: App\Controller\DefaultController::downloadDocument
+    
+logout:
+    path: /logout
+
+login:
+    path: /login
+    controller: App\Controller\DefaultController::login
+
+wall_list:
+    path: /wall
+    controller: App\Controller\PostController::wallPosts
+
+wall_comment:
+    path: /comment/{post}
+    controller: App\Controller\CommentController::commentPosts
+
+user_card:
+    path: /usercard
+    controller: App\Controller\DefaultController::userCard
+
+user_info:
+    path: /profile
+    controller: App\Controller\ProfileController::userInfos
+
+add_character:
+    path: /add_character
+    controller: App\Controller\UserCharacterController::addCharacter
+
+delete_character:
+    path: /delete_character/{character_id}
+    controller: App\Controller\UserCharacterController::deleteCharacter
+
+edit_character:
+    path: /edit_character/{character_id}
+    controller: App\Controller\UserCharacterController::editCharacter
+
+# ADMIN PANEL BELOW
+admin_home:
+    path: /admin
+    controller: App\Controller\AdminController::userList
+
+admin_game:
+    path: /admin/game
+    controller: App\Controller\AdminController::gameForm
+
+admin_game_edit:
+    path: /admin/game/list/edit/{edit}
+    controller: App\Controller\AdminController::editGame
+
+admin_game_list:
+    path: /admin/game/list
+    controller: App\Controller\AdminController::gameList
+
+admin_picture:
+    path: /admin/game/list/{document}
+    controller: App\Controller\DefaultController::downloadDocumentAdmin
+
+admin_gamelist_delete:
+    path:     /admin/game/list/delete/{delete} 
+    controller: App\Controller\AdminController::deliteGame
+
+admin_user_detail:
+    path: /admin/user/details/{user}
+    controller: App\Controller\AdminController::userDetails
+
+admin_user_delete:
+    path: /admin/user/delete/{userDelete}
+    controller: App\Controller\AdminController::userDelete
+
+admin_post_delete:
+    path: /admin/post/delete/{deletePost}
+    controller: App\Controller\AdminController::deletePosts
+
+admin_post_list:
+    path: /admin/post
+    controller: App\Controller\AdminController::displayPostList
+
+admin_report_character:
+    path: /admin/report/character
+    controller: App\Controller\AdminController::characterList
+
+admin_report_character_delete:
+    path: /admin/report/character/delete/{deleteChar}
+    controller: App\Controller\AdminController::characterDelete
+
+admin_category_list:
+    path: /admin/category
+    controller: App\Controller\AdminController::categoryForm
+
+admin_category_delete:
+    path: /admin/category/{categoryDel}
+    controller: App\Controller\AdminController::categoryDelete

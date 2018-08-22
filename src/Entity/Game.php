@@ -6,9 +6,11 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\GameRepository")
+ * @UniqueEntity("title")
  */
 class Game
 {
@@ -26,9 +28,9 @@ class Game
     private $title;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Character", inversedBy="game")
+     * @ORM\OneToMany(targetEntity="App\Entity\UserCharacter", mappedBy="game")
      */
-    private $characters;
+    private $userCharacters;
 
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Category")
@@ -38,7 +40,7 @@ class Game
     /**
      * @ORM\OneToOne(targetEntity="App\Entity\Document", cascade={"persist", "remove"})
      */
-    private $picure;
+    private $picture;
 
     /**
      * @ORM\Column(type="text")
@@ -47,10 +49,11 @@ class Game
 
     public function __construct()
     {
+        $this->UserCharacters = new ArrayCollection();
         $this->categories = new ArrayCollection();
     }
 
-    public function getId(): ?int
+    public function getId()
     {
         return $this->id;
     }
@@ -67,15 +70,29 @@ class Game
         return $this;
     }
 
-    public function getCharacters(): ?Character
+    public function getUserCharacters(): ?Collection
     {
-        return $this->characters;
+        return $this->userCharacters;
     }
 
-    public function setCharacters(?Character $characters): self
+    public function addUserCharacters(UserCharacter $userCharacter): self
     {
-        $this->characters = $characters;
+        if (!$this->userCharacters->contains($userCharacter)) {
+            $this->userCharacters[] = $userCharacter;
+            $userCharacter->setUser($this);
+        }
+        return $this;
+    }
 
+    public function removeUserCharacters(UserCharacter $userCharacter): self
+    {
+        if ($this->userCharacters->contains($userCharacter)) {
+            $this->userCharacters->removeElement($userCharacter);
+            // set the owning side to null (unless already changed)
+            if ($userCharacter->getUser() === $this) {
+                $userCharacter->setUser(null);
+            }
+        }
         return $this;
     }
 
@@ -105,14 +122,14 @@ class Game
         return $this;
     }
 
-    public function getPicure(): ?Document
+    public function getPicture()
     {
-        return $this->picure;
+        return $this->picture;
     }
 
-    public function setPicure(?Document $picure): self
+    public function setPicture($picture): self
     {
-        $this->picure = $picure;
+        $this->picture = $picture;
 
         return $this;
     }

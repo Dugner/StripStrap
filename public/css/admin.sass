@@ -1,0 +1,497 @@
+/* ADMINPANEL STYLESHEET */
+@import url('https://fonts.googleapis.com/css?family=Montserrat'); 
+/* variable */
+
+// header
+$header_bg: #535353
+// main nav
+$mainNav_linkBg: #8d8d8d
+$mainNav_linkHoverBg: #ff8c8c
+
+// nav left
+$navLeft_bg: #6c6c6c
+$navLeft_dropdownBg: #d1d1d1
+$navLeft_dropdownHoverBg: #9f9f9f
+// nav left - dropdown
+$navLeftDropdown_bg: #9f9f9f
+
+// main container
+$mainContainer_bg: #c0c0c0
+
+// footer
+$footer_bg: #535353
+$footer_color: white
+
+// main nav
+$mainNav_linkColor: black
+$mainNav_linkHoverColor: white
+
+// nav left
+$navLeft_toggleColor: #c4c4c4
+$navLeft_toggleHoverColor: #9a9a9a
+$navLeft_dropdownColor: black
+$navLeft_dropdownHoverColor: #ddd
+// nav left - dropdown
+$navLeftDropdown_color: black
+$navLeftDropdown_hoverColor: #ddd
+
+// table
+$table_borderSize: 2px
+$table_borderStyle: solid
+$table_borderColor: black
+// table - th
+$tableTh_borderBottomSize: 2px
+$tableTh_borderBottomStyle: solid
+$tableTh_borderBottomColor: black
+$tableTh_borderLeftSize: 2px
+$tableTh_borderLeftStyle: solid
+$tableTh_borderLeftColor: black
+$tableTh_bg: #535353
+$tableTh_color: white
+// table - td
+$tableTd_borderBottomSize: 1px
+$tableTd_borderBottomStyle: solid
+$tableTd_borderBottomColor: black
+$tableTd_borderLeftSize: 1px
+$tableTd_borderLeftStyle: solid
+$tableTd_borderLeftColor: black
+$tableTdFirst_bg: #6c6c6c
+$tableTdSecond_bg: #d1d1d1
+
+// form
+$form_borderSize: 2px
+$form_borderStyle: solid
+$form_borderColor: #535353
+$form_bg: #d1d1d1
+// form - input
+$formInput_borderSize: 2px
+$formInput_borderStyle: solid
+$formInput_borderColor: $form_borderColor
+$formInput_bg: #ddd
+$formInput_borderRadius: 5px
+$formInputFocus_borderSize: 2px
+$formInputFocus_borderStyle: solid
+$formInputFocus_borderColor: $form_borderColor
+$formInputFocus_bg: #9f9f9f
+$formInputFocus_color: #fff
+$formInputHover_borderColor: $formInputFocus_borderColor
+$formInputHover_bg: $formInputFocus_bg
+// form - button
+$formButton_borderSize: 2px
+$formButton_borderStyle: solid
+$formButton_borderColor: $form_borderColor
+$formButton_borderRadius: 5px
+$formButtonSuccess_bg: #9bf09f
+$fromButtonDanger_bg: #ff8c8c
+$fromButtonPrimary_bg: #9be3f0
+
+/* variable end */
+/* settings */
+
+*
+    box-sizing: border-box
+    font-family: 'Montserrat'
+
+.row 
+    display: flex
+    flex-direction: row
+.column
+    display: flex
+    flex-direction: column
+
+.hidden
+    display: none
+
+i
+    margin-left: 7px
+#nav-left
+    i
+        margin-right: 7px
+        margin-left: 0
+#m-nav-left
+    i
+        margin-right: 0
+        margin-left: 0
+    #m-toggle-nav-left
+        i
+            margin-right: 7px
+
+// buttons
+.btn
+    padding: 10px 15px
+    border: none
+    cursor: pointer
+    border-radius: $formButton_borderRadius
+    &:hover
+        transition-duration: 0.5s
+        box-shadow: inset 0px 3px 7px 0px rgba(0,0,0,0.5)
+.btn-success
+    background: $formButtonSuccess_bg
+.btn-danger
+    background: $fromButtonDanger_bg
+.btn-primary
+    background: $fromButtonPrimary_bg
+
+// help
+.help
+    position: absolute
+    font-size: 0.8rem
+    background: #d1d1d1
+    border-radius: 5px
+    border: 2px solid #000
+    text-decoration: none
+    padding: 0 10px
+    color: #000000
+
+a
+    text-decoration: none
+/* settings end */
+/* header */
+
+header
+    height: 50px
+    width: 100%
+    background: $header_bg
+
+    #main-nav
+        width: 100%
+        justify-content: space-between
+        align-items: center
+
+        // logo
+        .logo-container
+            margin: 0
+            padding: 0
+            width: 150px
+
+            .logo
+                display: block
+                margin: 0 auto
+                height: 50px
+
+        .nav-container
+            width: 100px
+            text-align: center
+            display: flex
+            justify-content: center
+            align-items: center
+            padding: 0
+            margin: 0
+
+            .nav-item
+                display: block
+                list-style: none
+                flex: 1
+
+                .nav-link
+                    display: block
+                    text-decoration: none
+                    padding: 15px 0
+                    background: $mainNav_linkBg
+                    color: $mainNav_linkColor
+                    &:hover
+                        transition-duration: 0.5s
+                        background: $mainNav_linkHoverBg
+                        color: $mainNav_linkHoverColor
+
+/* header end */
+/* main */
+
+body
+    margin: 0
+
+#wrapper
+    min-height: 100vh
+    position: relative
+
+main
+    flex: 1
+
+    // nav left
+    #nav-left
+        background: $navLeft_bg
+        width: 350px
+        display: block
+
+        #toggle-nav-left
+            font-size: 1.3rem
+            color: $navLeft_toggleColor
+            width: 100%
+            display: block
+            text-align: right
+            padding: 3px 0
+            i:hover
+                color: $navLeft_toggleHoverColor
+
+        .nav-container
+            justify-content: center
+            align-items: center
+            padding: 0
+            margin: 0
+
+            .nav-item
+                list-style: none
+                flex: 1
+                width: 100%
+                text-align: center
+
+                .nav-link
+                    text-decoration: none
+                    display: block
+                    padding: 16px 0
+
+            .dropdown
+                background: $navLeft_dropdownBg
+                text-align: left
+                cursor: pointer
+                &:hover
+                    transition-duration: 0.5s
+                    background: $navLeft_dropdownHoverBg
+                    box-shadow: inset 0px 3px 7px 0px rgba(0,0,0,0.5)
+
+                .dd-active
+                    font-weight: bold
+                    background: $navLeft_dropdownHoverBg
+
+                >.nav-link
+                    padding-left: 15px
+                    color: $navLeft_dropdownColor
+                    &:hover
+                        transition-duration: 0.5s
+                        color: $navLeft_dropdownHoverColor
+                
+                .nav-container
+                    box-shadow: inset 0px 3px 7px 0px rgba(0,0,0,0.5)
+                    background: $navLeftDropdown_bg
+
+                    .nav-item
+
+                        .nav-link
+                            color: $navLeftDropdown_color
+                            &:hover
+                                transition-duration: 0.5s
+                                color: #navLeftDropdown_hoverColor
+                                font-weight: bold
+
+    // main container
+    #main-container
+        width: 100%
+        min-width: 300px
+        background: $mainContainer_bg
+        padding: 15px
+
+        // table
+        .table-container
+            overflow-x: auto
+
+            .table
+                width: 100%
+                min-width: 900px
+                border-collapse: collapse
+                border: $table_borderSize $table_borderStyle $table_borderColor
+
+                td, th
+                    padding: 7px 5px
+                    text-align: center
+                
+                td
+                    border-bottom: $tableTd_borderBottomSize $tableTd_borderBottomStyle $tableTd_borderBottomColor
+                    border-left: $tableTd_borderLeftSize $tableTd_borderLeftStyle $tableTd_borderLeftColor
+                    &:first-child
+                        border-left: none
+
+                    i
+                        font-size: 1.3rem
+                    a:first-child 
+                        &:hover i
+                            transition-duration: 0.5s
+                            color: #4ea6e7
+                        i
+                            color: #1d88d8
+                    a:last-child 
+                        &:hover i
+                            transition-duration: 0.5s
+                            color: #e7474b
+                        i
+                            color: #e22529
+
+                th
+                    border-bottom: $tableTh_borderBottomSize $tableTh_borderBottomStyle $tableTh_borderBottomColor
+                    border-left: $tableTh_borderLeftSize $tableTh_borderLeftStyle $tableTh_borderLeftColor
+                    background: $tableTh_bg
+                    color: $tableTh_color
+                    &:first-child
+                        border-left: none
+
+                tbody
+                    tr    
+                        &:nth-child(even)
+                            backgorund: $tableTdFirst_bg
+                        &:nth-child(odd)
+                            background: $tableTdSecond_bg
+                        &:last-child td
+                            border-bottom: none
+
+        // form
+        form
+            max-width: 750px
+            margin: 0 auto 50px auto
+            border: $form_borderSize $form_borderStyle $form_borderColor
+            border-radius: 5px
+            padding: 7px
+            background: $form_bg
+            box-shadow: 0px 4px 5px 1px rgba(0,0,0,0.5)
+
+            >div
+                padding: 5px
+
+                .form-group
+                    display: flex
+                    width: 100%
+
+                    label
+                        flex: 1
+                        padding: 7px 0
+                        text-align: right
+                        margin: 0 10px 0 0
+                    input, select, textarea
+                        flex: 2
+                        padding: 7px 10px
+                        border-radius: $formInput_borderRadius
+                        outline: none
+                        background: $formInput_bg
+                        border: $formInput_borderSize $formInput_borderStyle $formInput_borderColor
+                        margin: 0 0 7px 0
+                        &:focus
+                            border: $formInputFocus_borderSize $formInputFocus_borderStyle $formInputFocus_borderColor
+                            background: $formInputFocus_bg
+                            color: $formInputFocus_color
+                            box-shadow: inset 0px 3px 7px 0px rgba(0,0,0,0.5)
+                        &:hover
+                            transition-duration: 0.5s
+                            border-color: $formInputHover_borderColor
+                            background: $formInputHover_bg
+                            box-shadow: inset 0px 3px 7px 0px rgba(0,0,0,0.5)
+
+
+                    select
+                        margin: 0 7px 7px 0
+
+                fieldset
+                    padding: 15px
+                    margin: 15px 10px 25px 0
+                    display: flex-block
+
+                    >div
+                        display: flex
+                        justify-content: center
+                
+                .custom-file
+                    width: 100%
+
+                .form-group > .form-group
+                    flex: 2
+
+            .form-group-row
+                display: flex
+                flex-direction: row
+                justify-content: flex-end
+                .form-group
+                    flex: 0
+                    margin: 0 10px 0 0
+
+/* main end */
+/* footer */
+
+footer
+    position: absolute
+    bottom: 0
+    background: $footer_bg
+    height: 50px
+    width: 100%
+    color: $footer_color
+    text-align: center
+
+/* footer end */
+//
+// MOBILE VERSION BELOW
+//
+/* main */
+main
+    display: flex
+    flex-direction: row
+
+    // mobile nav left
+    #m-nav-left
+        background: $navLeft_bg
+        width: 50px    
+        display: none        
+
+        #m-toggle-nav-left
+            font-size: 1.3rem
+            color: $navLeft_toggleColor
+            width: 100%
+            display: block
+            text-align: right
+            padding: 3px 0
+            i:hover
+                transition-duration: 0.5s
+                color: $navLeft_toggleHoverColor
+
+        .m-nav-container
+            justify-content: center
+            align-items: center
+            padding: 0
+            margin: 0
+
+            .m-nav-item
+                list-style: none
+                flex: 1
+                width: 100%
+                text-align: center
+
+                .m-nav-link
+                    text-decoration: none
+                    display: block
+                    padding: 15px 0
+
+            .dropdown
+                background: $navLeft_dropdownBg
+                text-align: center
+                cursor: pointer
+                &:hover
+                    transition-duration: 0.5s
+                    background: $navLeft_dropdownHoverBg
+                    box-shadow: inset 0px 3px 7px 0px rgba(0,0,0,0.5)
+
+                .m-dd-active
+                    background: $navLeft_dropdownHoverBg
+                    box-shadow: inset 0px 3px 7px 0px rgba(0,0,0,0.5)
+                    i
+                        color: $navLeft_dropdownHoverColor
+
+                >.m-nav-link
+                    color: $navLeft_dropdownColor
+                    &:hover
+                        color: $navLeft_dropdownHoverColor
+                
+                .m-nav-container
+                    box-shadow: inset 0px 3px 7px 0px rgba(0,0,0,0.5)
+                    background: $navLeftDropdown_bg
+
+                    .m-nav-item
+
+                        .m-nav-link
+                            color: $navLeftDropdown_color
+                            &:hover
+                                transition-duration: 0.5s
+                                color: $navLeftDropdown_hoverColor
+
+@media only screen and (max-width: 1200px)
+
+    main
+        #nav-left
+            display: none
+
+        #m-nav-left
+            display: block

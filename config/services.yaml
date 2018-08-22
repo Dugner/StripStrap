@@ -5,6 +5,8 @@
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     locale: 'en'
+    upload_dir: "%kernel.root_dir%/../var/upload"
+    list_limit: 10
 
 services:
     # default configuration for services in *this* file

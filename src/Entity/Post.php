@@ -26,12 +26,12 @@ class Post
     private $datetime;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Comment")
+     * @ORM\OneToMany(targetEntity="App\Entity\Comment", mappedBy="post")
      */
     private $comments;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\User", mappedBy="posts")
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="posts")
      */
     private $user;
 
@@ -43,65 +43,55 @@ class Post
 
     public function __construct()
     {
-        $this->user = new ArrayCollection();
+        $this->datetime = new \DateTime();
     }
 
-    public function getId(): ?int
+    public function getId()
     {
         return $this->id;
     }
 
-    public function getDatetime(): ?string
+    public function getDatetime()
     {
         return $this->datetime;
     }
 
-    public function setDatetime(string $datetime): self
-    {
-        $this->datetime = $datetime;
-
-        return $this;
-    }
-
-    public function getComments(): ?Comment
+    public function getComments(): ?Collection
     {
         return $this->comments;
     }
-
-    public function setComments(?Comment $comments): self
+    
+    public function addComments(Comment $comment): self
     {
-        $this->comments = $comments;
-
+        if (!$this->comments->contains($comment)) {
+            $this->comments[] = $comment;
+            $comment->setUser($this);
+        }
+        return $this;
+    }
+    public function removeComments(Comment $comment): self
+    {
+        if ($this->comments->contains($comment)) {
+            $this->comments->removeElement($comment);
+            // set the owning side to null (unless already changed)
+            if ($comment->getUser() === $this) {
+                $comment->setUser(null);
+            }
+        }
         return $this;
     }
 
     /**
-     * @return Collection|User[]
+     * @return User
      */
-    public function getUser(): Collection
+    public function getUser(): User
     {
         return $this->user;
     }
 
-    public function addUser(User $user): self
+    public function setUser(User $user)
     {
-        if (!$this->user->contains($user)) {
-            $this->user[] = $user;
-            $user->setPosts($this);
-        }
-
-        return $this;
-    }
-
-    public function removeUser(User $user): self
-    {
-        if ($this->user->contains($user)) {
-            $this->user->removeElement($user);
-            // set the owning side to null (unless already changed)
-            if ($user->getPosts() === $this) {
-                $user->setPosts(null);
-            }
-        }
+        $this->user = $user;
 
         return $this;
     }

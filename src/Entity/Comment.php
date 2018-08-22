@@ -6,6 +6,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use App\Entity\User;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\CommentRepository")
@@ -32,16 +33,21 @@ class Comment
     private $datetime;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\User", mappedBy="comments")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Post", inversedBy="comments")
+     */
+    private $post;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="comments")
      */
     private $user;
 
     public function __construct()
     {
-        $this->user = new ArrayCollection();
+        $this->datetime = new \DateTime();
     }
 
-    public function getId(): ?int
+    public function getId()
     {
         return $this->id;
     }
@@ -58,45 +64,37 @@ class Comment
         return $this;
     }
 
-    public function getDatetime(): ?string
+    public function getDatetime()
     {
         return $this->datetime;
     }
 
-    public function setDatetime(string $datetime): self
+    /**
+     * @return Post
+     */
+    public function getPost(): Post
     {
-        $this->datetime = $datetime;
+        return $this->post;
+    }
+
+    public function setPost(Post $post)
+    {
+        $this->post = $post;
 
         return $this;
     }
 
     /**
-     * @return Collection|User[]
+     * @return User
      */
-    public function getUser(): Collection
+    public function getUser(): User
     {
         return $this->user;
     }
 
-    public function addUser(User $user): self
+    public function setUser(User $user)
     {
-        if (!$this->user->contains($user)) {
-            $this->user[] = $user;
-            $user->setComments($this);
-        }
-
-        return $this;
-    }
-
-    public function removeUser(User $user): self
-    {
-        if ($this->user->contains($user)) {
-            $this->user->removeElement($user);
-            // set the owning side to null (unless already changed)
-            if ($user->getComments() === $this) {
-                $user->setComments(null);
-            }
-        }
+        $this->user = $user;
 
         return $this;
     }
