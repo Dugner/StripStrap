@@ -60,11 +60,12 @@ class Post
     {
         return $this->comments;
     }
+    
     public function addComments(Comment $comment): self
     {
         if (!$this->comments->contains($comment)) {
             $this->comments[] = $comment;
-            $post->setUser($this);
+            $comment->setUser($this);
         }
         return $this;
     }

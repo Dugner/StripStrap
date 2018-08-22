@@ -22,24 +22,42 @@ logout:
     path: /logout
 
 login:
-    path:   /login
+    path: /login
     controller: App\Controller\DefaultController::login
 
 wall_list:
     path: /wall
     controller: App\Controller\PostController::wallPosts
 
+wall_comment:
+    path: /comment/{post}
+    controller: App\Controller\CommentController::commentPosts
+
 user_card:
     path: /usercard
     controller: App\Controller\DefaultController::userCard
 
 user_info:
-    path: /userinfo
+    path: /profile
     controller: App\Controller\ProfileController::userInfos
+
 
 search:
     path: /search
     controller: App\Controller\SearchController::userSearchCont
+
+
+add_character:
+    path: /add_character
+    controller: App\Controller\UserCharacterController::addCharacter
+
+delete_character:
+    path: /delete_character/{character_id}
+    controller: App\Controller\UserCharacterController::deleteCharacter
+
+edit_character:
+    path: /edit_character/{character_id}
+    controller: App\Controller\UserCharacterController::editCharacter
 
 
 # ADMIN PANEL BELOW
@@ -66,19 +84,14 @@ admin_picture:
 admin_gamelist_delete:
     path:     /admin/game/list/delete/{delete} 
     controller: App\Controller\AdminController::deliteGame
-    
 
 admin_user_detail:
     path: /admin/user/details/{user}
     controller: App\Controller\AdminController::userDetails
 
 admin_user_delete:
-    path: /admin/user/delete/{deleteUser}
+    path: /admin/user/delete/{userDelete}
     controller: App\Controller\AdminController::userDelete
-
-profile:
-    path: /profile/{user}
-    controller: App\Controller\UserController::profile
 
 admin_post_delete:
     path: /admin/post/delete/{deletePost}
@@ -87,6 +100,14 @@ admin_post_delete:
 admin_post_list:
     path: /admin/post
     controller: App\Controller\AdminController::displayPostList
+
+admin_report_character:
+    path: /admin/report/character
+    controller: App\Controller\AdminController::characterList
+
+admin_report_character_delete:
+    path: /admin/report/character/delete/{deleteChar}
+    controller: App\Controller\AdminController::characterDelete
 
 admin_category_list:
     path: /admin/category

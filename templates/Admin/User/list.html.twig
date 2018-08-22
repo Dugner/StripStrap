@@ -20,7 +20,6 @@
                                 <th>Email</th>
                                 <th>Birthday</th>
                                 <th>Country</th>
-                                <th>UserCharacter</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -34,8 +33,18 @@
                                     <td>{{ user.getDateOfBirth()|date('d/m/Y') }}</td>
                                     <td>{{ user.getCountry() }}</td>
                                     <td>
-                                    <a href="{{ path('admin_user_detail', { user: user.getId() }) }}"><i class="fas fa-pen-square"></i></a>
-                                    <a href="{{ path('admin_user_delete', { deleteUser: user.getId() })}}"><i class="fas fa-minus-square"></i></a>
+                                        <a class="helping" href="{{ path('admin_user_detail', { user: user.getId() }) }}">
+                                            <i class="fas fa-pen-square"></i>
+                                            <div class="help hidden">
+                                                <p><strong>Help:</strong> Update the details of the user</p>
+                                            </div>
+                                        </a>
+                                        <a class="helping" href="{{ path('admin_user_delete', { deleteUser: user.getId() })}}">
+                                            <i class="fas fa-minus-square"></i>
+                                            <div class="help hidden">
+                                                <p><strong>Help:</strong> Delete the user, please be carefully</p>
+                                            </div>
+                                        </a>
                                     </td>
                                 </tr>
                             {% endfor %}

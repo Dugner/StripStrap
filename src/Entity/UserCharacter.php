@@ -6,6 +6,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserCharacterRepository")
@@ -48,7 +49,8 @@ class UserCharacter
     private $game;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\Document", cascade={"persist", "remove"})
+     * @ORM\OneToOne(targetEntity="App\Entity\Document")
+     * @ORM\JoinColumn(name="picture_id", referencedColumnName="id", nullable=true, onDelete="CASCADE")
      */
     private $picture;
 
@@ -62,7 +64,7 @@ class UserCharacter
         $this->game = new ArrayCollection();
     }
 
-    public function getId(): ?int
+    public function getId()
     {
         return $this->id;
     }
@@ -91,12 +93,12 @@ class UserCharacter
         return $this;
     }
 
-    public function getGame(): ?Game
+    public function getGame()
     {
         return $this->game;
     }
 
-    public function setUserCharacters(?Game $game): self
+    public function setGame(?Game $game): self
     {
         $this->game = $game;
 
@@ -118,12 +120,12 @@ class UserCharacter
         return $this;
     }
 
-    public function getPicture(): ?Document
+    public function getPicture()
     {
         return $this->picture;
     }
 
-    public function setPicture(?Document $picture): self
+    public function setPicture($picture): self
     {
         $this->picture = $picture;
 
@@ -145,5 +147,15 @@ class UserCharacter
     public function __toString()
     {
         return $this->name;
+    }
+
+    public function getReport(): ?boolean {
+        return $this->report;
+    }
+
+    public function setReport($report): self {
+        $this->report = $report;
+
+        return $this;
     }
 }

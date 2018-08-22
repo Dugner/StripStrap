@@ -10,7 +10,6 @@ use App\Entity\User;
 use App\Entity\Document;
 use App\Entity\Role;
 use App\Entity\UserCharacter;
-use App\Form\UserCharacterFormType;
 
 class UserController extends Controller{
 
@@ -55,6 +54,15 @@ class UserController extends Controller{
                 $file->move($this->getParameter('upload_dir'));
                 $user->setPicture($document);
                 $manager->persist($document);
+            }else{
+                $filename= 'default.jpg';
+
+                $document = new Document();
+                $document->setPath('public/assets/img')
+                ->setName($file->getFilename());
+
+                $user->setPicture($document);
+                $manager->persist($document);
             }
 
             $user->addRole($manager->getRepository(Role::class)->findOneBy(['label' => 'ROLE_USER']));
@@ -67,6 +75,7 @@ class UserController extends Controller{
 
         return $this->render('signin.html.twig', 
         ['user_form'=>$form->createView()]);
+
 
     }
 
