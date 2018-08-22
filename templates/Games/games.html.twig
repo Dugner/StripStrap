@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} {{parent()}} Games {% endblock %}
+
+{% block body %}
+
+    <div class="row">
+        <div class="col-md-3" id="leftbar">
+            {% block leftside %}
+                {% for games in gamesList %}
+                <ul>
+                    <li>{{ games.getTitle }}</li>
+                </ul>
+                    {% else %}
+                        Nothing to see here.. Sorry. Maybe you should come back later :/.. (or not).
+                {% endfor %}
+
+            {% endblock %}
+        </div>
+
+        <div class="col-md-6">
+            {% block mainsection %}
+                <h1>GAMES</h1>
+
+    {% for games in gamesList %}
+        <h2> {{ games.getTitle }} </h2>
+        <p> {{ games.getDescription }} </p>
+        <hr>
+    {% else %}
+        Nothing to see here.. Sorry. Maybe you should come back later :/.. (or not).
+    {% endfor %}
+
+            </div>
+        </div>
+
+            {% endblock %}
+        </div>
+
+        <div class="col-md-3" id="rightbar">
+            {% block rightside %}
+            <h2>Categories</h2>
+            {% for category in categories %}
+                 <ul>
+                     <li><a href="#">{{ category.getLabel() }}</a></li>
+                </ul>
+
+            {% else %}
+                 No categories ..
+            {% endfor %}
+            <br>
+
+{% endblock %}
+{% endblock %}

@@ -4,7 +4,7 @@
 
 {% block body %}
 
-    {# 
+    
     <div>
         <h1> My details </h1>
         {% if app.user.getPicture is empty %}
@@ -29,7 +29,7 @@
         
         <p>{{ app.user.getUserCharacters()[0].getDetail()}}</p>
     </div> 
-    #}
+                   {% endif %}
 
     <h3>List of characters</h3>
 
@@ -119,11 +119,6 @@
     {% endif %}
 
     {# <div> {{ form() }} </div> #}
-
-
-
-
-
 
 
 {% endblock %}

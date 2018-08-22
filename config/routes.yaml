@@ -10,8 +10,8 @@ index_list:
     path: / #chnage the fucking path here
     controller: App\Controller\PostController::homePosts
 
-sign_in:
-    path: /signin
+sign_up:
+    path: /signup
     controller: App\Controller\UserController::userForm
 
 download_document:
@@ -58,6 +58,11 @@ delete_character:
 edit_character:
     path: /edit_character/{character_id}
     controller: App\Controller\UserCharacterController::editCharacter
+
+
+games:
+    path: /games
+    controller: App\Controller\GameController::gamesList
 
 
 # ADMIN PANEL BELOW
