@@ -83,5 +83,9 @@ class UserController extends Controller{
             'profile.html.twig',
             ['UserCharacterForm' => $UserCharacterForm->createView()]
         );
+
     }
+
+
+
 }//class test

@@ -7,7 +7,7 @@ homepage:
     controller: App\Controller\DefaultController::homepage
 
 index_list:
-    path: /
+    path: / #chnage the fucking path here
     controller: App\Controller\PostController::homePosts
 
 sign_in:
@@ -36,6 +36,11 @@ user_card:
 user_info:
     path: /userinfo
     controller: App\Controller\ProfileController::userInfos
+
+search:
+    path: /search
+    controller: App\Controller\SearchController::userSearchCont
+
 
 # ADMIN PANEL BELOW
 admin_home:
