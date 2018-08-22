@@ -58,4 +58,14 @@ class PostController extends Controller
             ]
         );
     }
+
+    public function deleteOwnPost(Post $postID, Request $request)
+    {
+        $manager = $this->getDoctrine()->getManager();
+
+        $manager->remove($postID);
+        $manager->flush();
+
+        return $this->redirectToRoute('homepage');
+    }
 }
