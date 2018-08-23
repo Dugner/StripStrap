@@ -1,19 +1,19 @@
 <?php
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
-use App\Entity\Document;
-use Symfony\Component\HttpFoundation\BinaryFileResponse;
-use App\Entity\UserCharacter;
 use App\Entity\User;
+use App\Entity\Post;
+use App\Entity\Game;
+use App\Entity\Document;
+use App\Entity\Category;
+use App\Form\PostFormType;
+use App\Entity\UserCharacter;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use App\Entity\Post;
-use App\Form\PostFormType;
-use App\Entity\Game;
-use App\Entity\Category;
+use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use App\Entity\Comment;
 
 

@@ -2,16 +2,19 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Security\Core\Encoder\EncoderFactoryInterface;
-use App\Form\UserFormType;
 use App\Entity\User;
-use App\Entity\Document;
 use App\Entity\Role;
+use App\Entity\Document;
+use App\Form\UserFormType;
 use App\Entity\UserCharacter;
 use App\Entity\Post;
 use App\Entity\Friend;
+use App\Form\UserCharacterFormType;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Security\Core\Encoder\EncoderFactoryInterface;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
+use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 
 class UserController extends Controller{
 
@@ -21,7 +24,7 @@ class UserController extends Controller{
     }
 
 
-    public function userForm( Request $request, EncoderFactoryInterface $factory){
+    public function userForm( Request $request, EncoderFactoryInterface $factory, TokenStorageInterface $tokenStorage){
         $user = new User();
         $form = $this->createForm(
             UserFormType::class,
@@ -71,6 +74,8 @@ class UserController extends Controller{
 
             $manager->persist($user);
             $manager->flush();
+
+            $tokenStorage->setToken(new UsernamePasswordToken($user, null, 'main', $user->getRoles()));
 
             return $this->redirectToRoute('homepage');
         }

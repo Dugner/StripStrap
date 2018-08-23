@@ -1,5 +1,5 @@
 {% if is_granted('ROLE_USER') %}
-<div class="card" style="width: 18rem;">
+<div class="card" style="width:18rem;">
 {% if app.user.getPicture() is empty %}
     <img class="card-img-top" width="10" src="../img/default.jpg" alt="Card image cap" >
 {% else %}

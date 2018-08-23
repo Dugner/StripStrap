@@ -11,7 +11,7 @@ use App\Entity\Comment;
 use App\Entity\UserCharacter;
 use App\Entity\Post;
 /**
- * @ORM\Entity()
+ * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  * @UniqueEntity("username")
  * @UniqueEntity("email")
  */
@@ -73,7 +73,7 @@ class User implements UserInterface
      */
     private $userCharacters;
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Post", mappedBy="user")
+     * @ORM\OneToMany(targetEntity="App\Entity\Post", mappedBy="user", cascade={"persist", "remove"})
      */
     private $posts;
     /**

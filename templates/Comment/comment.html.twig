@@ -14,19 +14,23 @@
         <div class="col-md-6">
             {% block mainsection %}
 
-                <div class="card">
+                <div class="card element border-success">
                     <div class="card-body">
                         <h5 class="card-title"> {{ post.getUser().getUsername() }}</h5>
                         <hr>
                         <p class="card-text">{{ post.getContent() }}</p>
-                        <p class="blockquote-footer">{{ post.getDatetime()|date('Y-m-d H:i:s') }}</p>
+                        <p class="blockquote-footer">{{ post.getDatetime()|date('Y-m-d / H:i') }}</p>
                     </div>
                 </div>    
                 <br>
 
-                <div class="container">
-                    {{ form(commentForm) }}
-                </div>
+                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                    <div class="container">
+                        {{ form(commentForm) }}
+                    </div>
+                    <hr>
+                {% endif %}
+
                 <hr>
  
                 <h1 id="wallposts">Comments</h1>
@@ -46,7 +50,7 @@
                             <tbody>
                                 {% for comment in comments %}
                                     <tr>
-                                        <td>{{ comment.getDatetime()|date('Y-m-d H:i:s') }}</td>
+                                        <td>{{ comment.getDatetime()|date('Y-m-d H:i') }}</td>
                                         <td>{{ comment.getUser().getUsername() }}</td>
                                         <td>{{ comment.getContent() }}</td>
                                     </tr>

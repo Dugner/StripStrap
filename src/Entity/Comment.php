@@ -33,7 +33,7 @@ class Comment
     private $datetime;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Post", inversedBy="comments")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Post", inversedBy="comments", cascade={"persist", "remove"})
      */
     private $post;
 

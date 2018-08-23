@@ -3,10 +3,10 @@
 namespace App\Repository;
 
 use App\Entity\User;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 use App\DTO\OneUserCharacterSelect;
 use App\DTO\UserSearchBar;
+use Doctrine\ORM\EntityRepository;
 
 /**
  * @method User|null find($id, $lockMode = null, $lockVersion = null)
@@ -14,14 +14,8 @@ use App\DTO\UserSearchBar;
  * @method User[]    findAll()
  * @method User[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class UserRepository extends ServiceEntityRepository
+class UserRepository extends EntityRepository
 {
-    public function __construct(RegistryInterface $registry)
-    {
-        parent::__construct($registry, User::class);
-    }
-
-
     public function findByUserSearchBar(UserSearchBar $dto)
     {
         $queryBuilder = $this->createQueryBuilder("u");

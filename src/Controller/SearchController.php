@@ -7,7 +7,7 @@ use App\Entity\User;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use App\Entity\Friend;
-//use App\DTO\UserSearchBar;
+use App\DTO\UserSearchBar;
 
 
 class SearchController extends Controller
@@ -24,9 +24,6 @@ class SearchController extends Controller
         $searchForm -> handleRequest($request);
 
         $user = $manager->getRepository(User::class)->findByUserSearchBar($dto);
-            
-        
-        $user = $manager->getRepository(User::class)->findAll();
 
         $friendId = $manager->getRepository(Friend::class)->findAll();
 
@@ -36,8 +33,8 @@ class SearchController extends Controller
             [
                 'friendId'=>$friendId,
                 'myId'=>$myId,
-                'users'=>$user
-                /*'userSearch' => $searchForm->createView()*/
+                'users'=>$user,
+                'userSearch' => $searchForm->createView()
             ]
 
         );
