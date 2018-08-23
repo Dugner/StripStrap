@@ -18,6 +18,9 @@ body {
     background-size: cover;
     background-position: center;
 }
+hr{
+    background-color: lightgray;
+}
 
 /* NAVBAR */
 
@@ -135,7 +138,6 @@ img.thumbnail{
 
 div.pagination{
     justify-content: center;
-    color: red;
 }
 
 .page-link{
@@ -287,6 +289,11 @@ i.fas.fa-trash-alt{
     flex-direction: row;    
     justify-content: space-around;
 }
-h4{
+h4.username{
     color: rgb(7, 114, 27);
+}
+td.text-center{
+    display: flex;  
+    flex-direction: row;
+    justify-content: space-evenly;
 }

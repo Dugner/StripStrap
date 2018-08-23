@@ -18,26 +18,28 @@
                         {% endif %}
                     </div>
                     <div>
-                        <h4> {{ app.user.getUsername() }} <h4>
-                        <h6> {{ app.user.getFirstname() }}{{ app.user.getLastname() }} <h6>
+                        <h4 class="username"> {{ app.user.getUsername() }} <h4>
+                        <h6> {{ app.user.getFirstname() }} {{ app.user.getLastname() }} <h6>
                         <p> {{ app.user.getEmail() }} </p>
                         <p> {{ app.user.getCountry() }} </p>
                         <p> {{ app.user.getDateOfBirth()| date('Y m d') }} </p>
                     </div>
                 </div>
             </div>
+
+            <br>
+
             <div>
                 <h1 id="details"> My character details </h1>
                 {% if app.user.getUserCharacters is empty %}
                 Create a character.
                 {% else %}
-                <h2>
-                {{ app.user.getUserCharacters()[0].getName()}}</h2>
-                <h4>, {{ app.user.getUserCharacters()[0].getLevel()}}</h4>
-                
+                <h3>{{ app.user.getUserCharacters()[0].getName()}}, {{ app.user.getUserCharacters()[0].getLevel()}}</h3>
                 <p>{{ app.user.getUserCharacters()[0].getDetail()}}</p>
                 {% endif %}
             </div> 
+
+            <br>
 
             <div>
                 <h1> My Dudes </h1>
@@ -49,6 +51,8 @@
                 {# <li>{{ app.user.getFriends}}</li> #}
                 </ul>
             </div>
+
+            <br>
 
             <div>
                 <h1> My games </h1>
@@ -71,6 +75,8 @@
                     <i class="fas fa-user-plus"></i>
                 </a>
             </div>
+
+            <br>
 
             <table class="table">
                 <thead>
@@ -140,6 +146,5 @@
     {% endif %}
 
     {# <div> {{ form() }} </div> #}
-
 
 {% endblock %}
