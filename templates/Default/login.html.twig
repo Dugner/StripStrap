@@ -11,7 +11,7 @@
             <div> {{ error.messageKey|trans(error.messageData, 'security') }} </div>
         {% endif %}
 
-        <h1> Log in</h1>
+        <h1 id="log"> Log in</h1>
         <form action=" {{ path('login') }}" method="post">
             <div class="form-group">
                 <label for="username">Username :</label>
@@ -20,7 +20,6 @@
             <div class="form-group">
                 <label for="password">Password : </label>
                 <input type="password" class="form-control" id="password" name="_password">
-                <small id="passwordHelp" class="form-text text-muted">  <a href="" >forget password ?</a></small>
             </div>
             <button type="submit" class="btn btn-block">Login</button>
         </form>

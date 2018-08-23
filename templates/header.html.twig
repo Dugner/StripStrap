@@ -17,10 +17,10 @@
                     <a class="nav-link" href="{{ path('search') }}">Search</a>
                 </form>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ path('wall_list') }}">Wall</a>
+                    <a class="nav-link" href="{{ path('wall_list') }}#wall">Wall</a>
                 </li>
                  <li class="nav-item">
-                    <a class="nav-link" href="{{ path('user_info') }}">Profile</a>
+                    <a class="nav-link" href="{{ path('user_info') }}#profile">Profile</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ path('logout') }}">Logout</a>
@@ -30,7 +30,7 @@
                     <a class="nav-link" href="{{ path('login') }}#log">LogIn</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ path('sign_up') }}">SignUp</a>
+                    <a class="nav-link" href="{{ path('sign_up') }}#sign">SignUp</a>
                 </li>
                 {% endif %}
                 {% if is_granted('ROLE_ADMIN') %}

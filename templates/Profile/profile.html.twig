@@ -3,7 +3,7 @@
 {% block title %}{{parent()}} Profile page{% endblock %}
 
 {% block body %}
-<div class="profileSection"> 
+<div id="profile" class="profileSection"> 
     <div class="row">
         <div class="col-md-4">
             <div>
@@ -27,21 +27,35 @@
                 </div>
             </div>
 
-            <br>
+    
+    <div class="row">
+        <div class="col-md-5">
+            <h1 id="details"> My details </h1>
+            {% if app.user.getPicture is empty %}
+            <img id="profileImg" class="card-img-top" width="100" src="../img/default.jpg" alt="Card image cap" >
 
-            <div>
-                <h1 id="details"> My character details </h1>
+            {% else %}
+            <img class="card-img-top" width="100"src="{{ path('download_document', {'document': app.user.getPicture().getId()})  }}" alt="Card image cap" >
+            {% endif %}
+            <h5> {{ app.user.getUsername() }} <h5>
+            <h6> {{ app.user.getFirstname() }}{{ app.user.getLastname() }} <h6>
+            <p> {{ app.user.getEmail() }} </p>
+            <p> Country you're living :{{ app.user.getCountry() }} </p>
+            <p> Date of birth :{{ app.user.getDateOfBirth()| date('Y m d') }} </p>
+            <div class="myGames">
+
+                <h1> My games </h1>
                 {% if app.user.getUserCharacters is empty %}
-                Create a character.
+                    Choose some games.
                 {% else %}
-                <h3>{{ app.user.getUserCharacters()[0].getName()}}, {{ app.user.getUserCharacters()[0].getLevel()}}</h3>
-                <p>{{ app.user.getUserCharacters()[0].getDetail()}}</p>
+
+                <ul>
+                <li> {{ app.user.getUserCharacters()[0].getGame().getTitle()}} </li>
+                </ul>
                 {% endif %}
-            </div> 
+            </div>
+            <div class="myDudes">
 
-            <br>
-
-            <div>
                 <h1> My Dudes </h1>
                 {% if app.user.getUserCharacters is empty %}
                     You don't have any friend. Become mine <a href="https://giphy.com/gifs/fuck-you-middle-finger-mrs-doubtfire-w1XrYq5PsCbyE">here</a>.
@@ -138,11 +152,7 @@
             </table>
         </div>
     </div>
-<<<<<<< HEAD
-
-=======
 </div>   
->>>>>>> 0e54f897c565cb6bce53326933c181e83417396e
     {% endif %}
 
     {# <div> {{ form() }} </div> #}

@@ -6,17 +6,17 @@
         <div class="col-md-3" id="leftbar">
         </div>
 
-        <div class="col-md-6">
-            {% block mainsection %}
-            <h1> Sign in </h1>
-                {# {{ form(user_form) }} #}
-                {{ form_start(user_form) }}
-                    {{ form_row(user_form.username) }}
-                    <div id="usernameHelp" class="help hidden">
-                        <small class="text-danger">
-                            Must at least 3 characters long.
-                        </small> 
-                    </div>
+            <div class="col-md-6">
+                {% block mainsection %}
+                <h1 id="sign"> Sign in </h1>
+                    {# {{ form(user_form) }} #}
+                    {{ form_start(user_form) }}
+                        {{ form_row(user_form.username) }}
+                        <div id="usernameHelp" class="help hidden">
+                            <small class="text-danger">
+                                Must at least 3 characters long.
+                            </small> 
+                        </div>
 
                     {{ form_row(user_form.firstname) }}
                     <div id="firstnameHelp" class="help hidden">
@@ -59,10 +59,12 @@
                         </small> 
                     </div>
 
-                    {{ form_row(user_form.picture) }}
-                {{ form_end(user_form) }}
-            {% endblock %}
-        </div>
+                        {{ form_row(user_form.picture) }}
+                        {# CAPCHAT #}
+                        <div class="g-recaptcha" data-sitekey="6LfBqmsUAAAAAE4TIva8H_ZB6FCqcI3RSvxIdL96"></div>
+                    {{ form_end(user_form) }}
+                {% endblock %}
+            </div>
 
         <div class="col-md-3" id="rightbar">
 
