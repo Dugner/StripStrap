@@ -97,7 +97,7 @@ class UserController extends Controller{
 
     }
 
-    public function userWalls($userwall, Request $request)
+    public function userWalls($userwall)
     {
         $userDisplay = $this->getDoctrine()->getManager();
 

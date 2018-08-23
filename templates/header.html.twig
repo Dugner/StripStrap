@@ -9,7 +9,7 @@
 
         <div class="collapse navbar-collapse" id="navbarsExampleDefault">
             <form class="form-inline mr-auto" id="searchbar">
-                <a class="nav-link" href="{{ path('search') }}">Search</a>
+               
             </form>
             <ul class="navbar-nav my-2 my-lg-0">
                 {% if is_granted('ROLE_ADMIN') %}
@@ -27,6 +27,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{ path('logout') }}">Logout</a>
                 </li>
+                <form class="form-inline mr-auto" id="searchbar">
+                    <a class="nav-link" href="{{ path('search') }}">Search</a>
+                </form>
                 {% else %}
                 <li class="nav-item">
                     <a class="nav-link" href="{{ path('login') }}#log">LogIn</a>
