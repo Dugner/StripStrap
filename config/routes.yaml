@@ -95,8 +95,8 @@ admin_user_detail:
     controller: App\Controller\AdminController::userDetails
 
 admin_user_delete:
-    path: /admin/user/delete/{userDelete}
-    controller: App\Controller\AdminController::userDelete
+    path: /admin/user/delete/{deleteUser}
+    controller: App\Controller\AdminController::deleteUser
 
 admin_post_delete:
     path: /admin/post/delete/{deletePost}

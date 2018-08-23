@@ -19,7 +19,7 @@ class CategoryFormType extends AbstractType
 
         if($options['standalone']){
             $builder->add('submit', SubmitType::class,
-            ['attr'=>['class'=>'btn btn-info btn-block']]);
+            ['attr'=>['class'=>'btn btn-success btn-block']]);
         }
     }
 
