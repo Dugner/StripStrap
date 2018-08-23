@@ -22,11 +22,10 @@
                         <tbody>
                             {% for user in users %}
                                 <tr>
-                                    <td>{{ user.getUsername() }}</td>
-                                    <td><img class="card-img-top" src="{{ path('download_document', {'document': app.user.getPicture().getId()})  }}" alt="Card image cap"></td>
+                                    <td><a href="{{ path('wall_users', {userwall: user.getId()}) }}">{{ user.getUsername() }}</a></td>
+                                    <td><a href=""><img style="width: 40px; height: 40px;" class="card-img-top" src="{{ path('download_document', {'document': user.getPicture().getId()})  }}" alt="Card image cap"></a></td>
                                     <td>
-                                    <a href="{{ path('admin_user_detail', { user: user.getId() }) }}"><i class="fas fa-pen-square"></i></a>
-                                    <a href="{{ path('admin_user_delete', { deleteUser: user.getId() })}}"><i class="fas fa-minus-square"></i></a>
+                                    <a href="{{ path('add_ninja', { addninja: user.getId() }) }}"><i style="font-size: 2.4em" class="fas fa-user-ninja"></i></a>
                                     </td>
                                 </tr>
                             {% endfor %}

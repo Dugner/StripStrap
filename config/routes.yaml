@@ -37,6 +37,14 @@ wall_comment:
     path: /comment/{post}
     controller: App\Controller\CommentController::commentPosts
 
+wall_users:
+    path: /userwall/{userwall}
+    controller: App\Controller\UserController::userWalls
+
+add_ninja:
+    path: /userwall/addninja/{addninja}
+    controller: App\Controller\UserController::addNinja
+
 user_card:
     path: /usercard
     controller: App\Controller\DefaultController::userCard

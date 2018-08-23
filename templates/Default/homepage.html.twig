@@ -3,7 +3,6 @@
 {% block title %} {{parent()}} Homepage {% endblock %}
 
 {% block body %}
-
     <div class="row">
         <div class="col-md-3" id="leftbar">
             {% block leftside %}
@@ -41,14 +40,13 @@
                                 <p class="card-text">{{ post.getContent() }}</p>
                                 <p class="blockquote-footer">{{ post.getDatetime()|date('Y-m-d H:i:s') }}</p>
                             </div>
-
                             <div class="card-footer text-center">
                                 <a href="{{ path("wall_comment", {post: post.getId()}) }}" class="btn btn-info" role="button">Comment the post</a>
 
                                 {% if is_granted('IS_AUTHENTICATED_FULLY') and post.getUser().getId() == userId.getId() %}
                                     <a href="{{ path("post_own_delete", {postID: post.getID()}) }}" class="btn btn-danger" role="button"><i class="fas fa-trash-alt"></i></a>
                                 {% else %}
-                                {% endif %} #}
+                                {% endif %}
                             </div>
                         </div>    
                         <br>  

@@ -45,6 +45,7 @@ class DefaultController extends Controller
         $categories= $manager->getRepository(Category::class)->findAll();
 
         $pagination = $manager->getRepository(Post::class)->paginate($request, $this->get('knp_paginator'), $this->getParameter('list_limit'));
+        
 
         return $this->render(
             'Default/homepage.html.twig',
@@ -53,7 +54,7 @@ class DefaultController extends Controller
                 'homePostForm' => $form->createView(),
                 'games'=> $games,
                 'userId' => $userId,
-                'categories'=> $categories
+                'categories'=> $categories,
             ]
         );
     }

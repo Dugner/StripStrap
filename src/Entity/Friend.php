@@ -38,6 +38,12 @@ class Friend
         return $this->id;
     }
 
+    public function setId($id)
+    {
+        $this->id=$id;
+        return $this;
+    }
+
     public function getReport(): ?bool
     {
         return $this->report;
