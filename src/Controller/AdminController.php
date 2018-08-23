@@ -159,7 +159,7 @@
             $form->handleRequest($request);
 
             
-            $file = $edit->getPicture();
+            $file = $game->getPicture();
             $manager = $this->getDoctrine()->getManager();
             if($file){
 
@@ -188,12 +188,9 @@
                     $game->setPicture($document);
 
 
-                $manager->persist($document);
+                    $manager->persist($document);
             
-            }else
-            {
-                $edit->setPicture($picture);
-            }
+                }
             $manager->flush();
 
                     $manager->persist($document);
@@ -242,10 +239,11 @@
             if($formEdit->isSubmitted() && $formEdit->isValid())    {
                 
                 $file = $edit->getPicture();
-                $filename = uniqid().'.'.$file->guessExtension();
+                
                 $manager = $this->getDoctrine()->getManager();
                 if($file){
 
+                    $filename = uniqid().'.'.$file->guessExtension();
                     $document = new Document();
                     $document->setPath($this->getParameter('upload_dir'))
                         ->setMimeType($file->getMimeType())
@@ -257,6 +255,9 @@
 
                     $manager->persist($document);
                 
+                }else
+                {
+                    $edit->setPicture($picture);
                 }
                 $manager->flush();
 

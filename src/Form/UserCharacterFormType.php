@@ -40,7 +40,7 @@ class UserCharacterFormType extends AbstractType
             $builder->add(
                 'Submit', 
                 SubmitType::class,
-                ['attr'=>['class'=>'btn-success btn-block btn-lg']]);
+                ['attr'=>['class'=>'btn btn-block btn-lg']]);
         }
     }
 

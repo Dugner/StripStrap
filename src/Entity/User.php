@@ -15,7 +15,7 @@ use App\Entity\Post;
  * @UniqueEntity("username")
  * @UniqueEntity("email")
  */
-class User implements UserInterface
+class User implements UserInterface, \Serializable
 {
     /**
      * @ORM\Id()
@@ -44,7 +44,7 @@ class User implements UserInterface
      * @Assert\NotBlank()
      * Assert\Length(min=8, max=255)
      * @Assert\Regex(
-     *      pattern="/^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9!?@#$%^&*()_]+){8,20}$/i",
+     *      pattern="/^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9!?@#$%^&*()_.,]+){8,20}$/i",
      *      match=true
      * )
      */
@@ -305,5 +305,39 @@ class User implements UserInterface
     public function getSalt()
     {
       return null;
+    }
+
+    public function serialize() {
+        return serialize([
+            $this->getId(),
+            $this->getUsername(),
+            $this->getFirstname(),
+            $this->getLastname(),
+            $this->getPassword(),
+            $this->getEmail(),
+            $this->getCountry(),
+            $this->getDateOfBirth(),
+            $this->getFriends(),
+            $this->getRoles(),
+            $this->getUserCharacters(),
+            $this->getPosts(),
+            $this->getComments()
+        ]);
+    }
+    
+    public function unserialize($serialized) {
+        list($this->id,
+        $this->username,
+        $this->firstname,
+        $this->lastname,
+        $this->password,
+        $this->email,
+        $this->country,
+        $this->dateOfBirth,
+        $this->friends,
+        $this->roles,
+        $this->userCharacters,
+        $this->posts,
+        $this->comments) = unserialize($serialized);
     }
 }

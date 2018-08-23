@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ titleForm }}{% endblock %}
+
+{% block body %}
+    <h2>{{ titleForm }}</h2>
+    
+    {{ form(profileForm) }}
+{% endblock %}
