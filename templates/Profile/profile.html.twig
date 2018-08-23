@@ -22,22 +22,10 @@
                         <h6> {{ app.user.getFirstname() }} {{ app.user.getLastname() }} <h6>
                         <p> {{ app.user.getEmail() }} </p>
                         <p> {{ app.user.getCountry() }} </p>
-                        <p> {{ app.user.getDateOfBirth()| date('Y m d') }} </p>
+                        <p> {{ app.user.getDateOfBirth()| date('Y-m-d') }} </p>
                     </div>
                 </div>
             </div>
-
-            <br>
-
-            <div>
-                <h1 id="details"> My character details </h1>
-                {% if app.user.getUserCharacters is empty %}
-                Create a character.
-                {% else %}
-                <h3>{{ app.user.getUserCharacters()[0].getName()}}, {{ app.user.getUserCharacters()[0].getLevel()}}</h3>
-                <p>{{ app.user.getUserCharacters()[0].getDetail()}}</p>
-                {% endif %}
-            </div> 
 
             <br>
 
@@ -138,11 +126,7 @@
             </table>
         </div>
     </div>
-<<<<<<< HEAD
-
-=======
 </div>   
->>>>>>> 0e54f897c565cb6bce53326933c181e83417396e
     {% endif %}
 
     {# <div> {{ form() }} </div> #}
