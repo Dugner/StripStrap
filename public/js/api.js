@@ -10,3 +10,14 @@ $.ajax({
         console.log(events);
     }
 });
+
+$.ajax({
+    method: 'GET',
+    url: '/game/articles',
+    dataType: "json"
+}).done(function(articles){
+    for(let article of articles){
+        $('#articles').append("<h5>"+article.title+"</h5>");
+        console.log(articles);
+    }
+});

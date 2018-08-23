@@ -159,4 +159,19 @@ class DefaultController extends Controller
 
     }
 
+    public function getGameArticles(Request $request){
+
+        $client = new \GuzzleHttp\Client(['base_uri' => 'http://www.gamespot.com']);
+        $url= '/api/articles/?api_key=501115dce72ea28ea903e0150924102c489f0810&format=json&limit=10';
+        $response = $client->request('GET', $url);
+
+        if ($response->getStatusCode() != 200) {
+            return $this->json(json_decode($response->getBody()->getContents()), 500);
+        }
+
+        return new JsonResponse(json_decode($response->getBody()->getContents())->results);
+
+
+    }
+
 }
