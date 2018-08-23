@@ -238,6 +238,10 @@ footer p{
     height: 100px;
     overflow-x: auto;
 }
+.countries li
+{
+    color: #000;
+}
 
 /* Login Page */
 
@@ -248,6 +252,21 @@ footer p{
 .btn:hover{
     background-color: rgb(7, 114, 27);
 }
+
+/*
+    SignUp Page
+*/
+
+.custom-file-input
+{
+    opacity: 1;
+}
+
+option 
+{
+    color: black;
+}
+
 
 /* PROFILE PAGE */
 

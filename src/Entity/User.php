@@ -43,6 +43,10 @@ class User implements UserInterface
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank()
      * Assert\Length(min=8, max=255)
+     * @Assert\Regex(
+     *      pattern="/^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9!?@#$%^&*()_]+){8,20}$/i",
+     *      match=true
+     * )
      */
     private $password;
     /**
