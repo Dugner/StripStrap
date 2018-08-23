@@ -110,8 +110,6 @@ class UserController extends Controller{
 
         $userPost = $userDisplay->getRepository(Post::class)->findBy(['user'=>$userCard]);
 
-
-
         return $this->render(
             '/userWall/userWall.html.twig',
             [

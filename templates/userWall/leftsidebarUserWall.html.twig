@@ -13,17 +13,12 @@
 
     {% if user.getUserCharacters() is empty %}
     <p>YOU DON'T PLAY ANY GAME ?? Impossible..</p>
-    <a href="{{ path('user_info') }}">Choose one!</a>
     {% else %}
-    <p class="card-text"> {{ user.getUserCharacters().getDetail()|slice(0,140)}} <a href="{{ path('user_info') }}#details" >..suite</a></p>
-    <p> {{ user.getUserCharacters().getGame().getTitle()}} </p>
-    {% endif %}
-
-    {% if user.getUserCharacters() is empty %}
-    <h7> You don't have any character, NOOB :/ </h7>
-    <a href="{{ path('user_info') }}">Create one!</a>
-    {% else %}
-    <h7>Level {{ user.getUserCharacters().getLevel()}} </h7>
+    {% for caracters in user.getUserCharacters() %}
+    <h6> {{ caracters.getName() }} </h6>
+    <p class="card-text"> {{ caracters.getDetail()|slice(0,140)}}</p>
+    <p> {{ caracters.getGame().getTitle()}} </p>
+    {% endfor %}
     {% endif %}
     
     <br>
