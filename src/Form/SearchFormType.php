@@ -20,7 +20,7 @@ class SearchFormType extends AbstractType
         if($options['standalone']){
             $builder->add('submit', SubmitType::class, [
                 'label' => 'search',
-                'attr'=>['class'=>'btn-warning btn-block']]);
+                'attr'=>['class'=>'btn-block']]);
         }
     }
 

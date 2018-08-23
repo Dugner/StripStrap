@@ -27,7 +27,7 @@
     {% endif %}
     
     <br>
-    <a href="{{ path('user_info') }}" class="btn btn-primary">Add Ninja</a>
+    <a href="{{ path('user_info') }}#details" class="btn btn-block">Add Ninja</a>
   </div>
 </div>
 {% else %}
@@ -36,7 +36,7 @@
   <div class="card-body">
     <h5 class="username">StripStraper Original©</h5>
     <p class="card-text">Mega gamer livin during the night, killing every games, coding in the same time, doesn't take shower, eating sushis.</p>
-    <a href="{{ path('sign_up') }}" class="btn btn-primary">Discover more!</a>
+    <a href="{{ path('sign_up') }}#sign" class="btn btn-block">Discover more!</a>
   </div>
 </div>
 {% endfor %}
