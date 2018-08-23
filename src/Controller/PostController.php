@@ -63,8 +63,18 @@ class PostController extends Controller
     {
         $manager = $this->getDoctrine()->getManager();
 
-        $manager->remove($postID);
-        $manager->flush();
+        $post = $manager->getRepository(Post::class)->find($postID);
+
+        $checkAnon = $this->get('security.token_storage')->getToken()->getUser();
+        $checkOwner = $this->get('security.token_storage')->getToken()->getUser()->getId();
+
+        if ($checkAnon != 'anon.' && $checkOwner == $post->getUser()->getId())
+        {
+            $manager->remove($postID);
+            $manager->flush();
+
+            return $this->redirectToRoute('homepage');
+        }
 
         return $this->redirectToRoute('homepage');
     }
