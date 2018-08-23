@@ -11,7 +11,7 @@ use App\Entity\Comment;
 use App\Entity\UserCharacter;
 use App\Entity\Post;
 /**
- * @ORM\Entity()
+ * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  * @UniqueEntity("username")
  * @UniqueEntity("email")
  */
@@ -43,6 +43,10 @@ class User implements UserInterface
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank()
      * Assert\Length(min=8, max=255)
+     * @Assert\Regex(
+     *      pattern="/^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9!?@#$%^&*()_.,]+){8,20}$/i",
+     *      match=true
+     * )
      */
     private $password;
     /**
@@ -73,7 +77,7 @@ class User implements UserInterface
      */
     private $userCharacters;
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Post", mappedBy="user")
+     * @ORM\OneToMany(targetEntity="App\Entity\Post", mappedBy="user", cascade={"persist", "remove"})
      */
     private $posts;
     /**

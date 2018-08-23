@@ -3,7 +3,6 @@
 {% block title %} {{parent()}} Homepage {% endblock %}
 
 {% block body %}
-
     <div class="row">
         <div class="col-md-3" id="leftbar">
             {% block leftside %}
@@ -41,8 +40,37 @@
                                 <p class="card-text">{{ post.getContent() }}</p>
                                 <p class="blockquote-footer">{{ post.getDatetime()|date('Y-m-d H:i:s') }}</p>
                             </div>
-                            <div class="card-footer">
-                                <a href="{{ path("wall_comment", {post: post.getId()}) }}" class="btn btn-info" role="button">Comment the post</a>
+                            {% if post.getComments is empty %}
+                                <div></div>
+                            {% else %}
+                                <div class="container">
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>Creation date</th>
+                                                <th>Username</th>
+                                                <th>Content</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for comment in post.getComments() %}
+                                                <tr>
+                                                    <td>{{ comment.getDatetime()|date('Y-m-d H:i') }}</td>
+                                                    <td>{{ comment.getUser().getUsername() }}</td>
+                                                    <td>{{ comment.getContent() }}</td>
+                                                </tr>  
+                                            {% endfor %}
+                                        </tbody>
+                                    </table> 
+                                </div> 
+                            {% endif %}
+                            <div class="card-footer text-center">
+                                <a href="{{ path("wall_comment", {post: post.getId()}) }}" class="btn" role="button">Comment the post</a>
+
+                                {% if is_granted('IS_AUTHENTICATED_FULLY') and post.getUser().getId() == userId.getId() %}
+                                    <a href="{{ path("post_own_delete", {postID: post.getID()}) }}" class="btn" role="button"><i class="fas fa-trash-alt"></i></a>
+                                {% else %}
+                                {% endif %}
                             </div>
                         </div>    
                         <br>  
@@ -56,29 +84,29 @@
 
         <div class="col-md-3" id="rightbar">
             {% block rightside %}
-            <h2>Categories</h2>
-            {% for category in categories %}
-                 <ul>
-                     <li><a href="#">{{ category.getLabel() }}</a></li>
-                </ul>
 
-            {% else %}
-                 No categories ..
-            {% endfor %}
-            <br>
+                <h2>Categories</h2>
+                {% for category in categories %}
+                    <ul>
+                        <li><a href="#">{{ category.getLabel() }}</a></li>
+                    </ul>
 
-            <h2>Games</h2>
-            {% for game in games %}
-                <ul>
-                    <li><a href="#">{{ game.getTitle() }}</a> <p>{{ game.getDescription|slice(0,75) }}..</p></li>
-                </ul>
-            {% else %}
-                No games ..
-            {% endfor %}
-            <a class="btn btn-secondary" href="#" role="button">View details &raquo;</a>
+                {% else %}
+                    No categories ..
+                {% endfor %}
+                <br>
+
+                <h2><a id="gamesButton" href="{{ path('games') }}">Games</a></h2>
+                {% for game in games %}
+                    <ul>
+                        <li><a href="#">{{ game.getTitle() }}</a> <p>{{ game.getDescription|slice(0,75) }}..</p></li>
+                    </ul>
+                {% else %}
+                    No games ..
+                {% endfor %}
              {% endblock %}
-            </div>
         </div>
+    </div>
 
 {% endblock %}
 

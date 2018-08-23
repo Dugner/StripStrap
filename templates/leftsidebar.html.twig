@@ -1,7 +1,7 @@
 {% if is_granted('ROLE_USER') %}
-<div class="card" style="width: 18rem;">
+<div class="card" style="width:18rem;">
 {% if app.user.getPicture() is empty %}
-    <img class="card-img-top" width="100" src="../img/default.jpg" alt="Card image cap" >
+    <img class="card-img-top" width="10" src="../img/default.jpg" alt="Card image cap" >
 {% else %}
     <img class="card-img-top" src="{{ path('download_document', {'document': app.user.getPicture().getId()})  }}" alt="Card image cap">
 {% endif %}
@@ -25,7 +25,8 @@
     {% endif %}
     
     <br>
-    <a href="{{ path('user_info') }}" class="btn btn-primary">Go to my profile</a>
+    <br>
+    <a href="{{ path('user_info') }}#details" class="btn btn-block">Go to my profile</a>
   </div>
 </div>
 {% else %}
@@ -34,7 +35,10 @@
   <div class="card-body">
     <h5 class="username">StripStraper Original©</h5>
     <p class="card-text">Mega gamer livin during the night, killing every games, coding in the same time, doesn't take shower, eating sushis.</p>
-    <a href="{{ path('sign_in') }}" class="btn btn-primary">Discover more!</a>
+    <a href="{{ path('sign_up') }}#sign" class="btn btn-block">Discover more!</a>
   </div>
 </div>
 {% endif %}
+
+<div id="games">
+</div>

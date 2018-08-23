@@ -6,12 +6,16 @@ homepage:
     path: /
     controller: App\Controller\DefaultController::homepage
 
+post_own_delete:
+    path: /delete/{postID}
+    controller: App\Controller\PostController::deleteOwnPost
+
 index_list:
-    path: /
+    path: / #change the fucking path here
     controller: App\Controller\PostController::homePosts
 
-sign_in:
-    path: /signin
+sign_up:
+    path: /signup
     controller: App\Controller\UserController::userForm
 
 download_document:
@@ -33,6 +37,14 @@ wall_comment:
     path: /comment/{post}
     controller: App\Controller\CommentController::commentPosts
 
+wall_users:
+    path: /userwall/{userwall}
+    controller: App\Controller\UserController::userWalls
+
+add_ninja:
+    path: /userwall/addninja/{addninja}
+    controller: App\Controller\UserController::addNinja
+
 user_card:
     path: /usercard
     controller: App\Controller\DefaultController::userCard
@@ -40,6 +52,12 @@ user_card:
 user_info:
     path: /profile
     controller: App\Controller\ProfileController::userInfos
+
+
+search:
+    path: /search
+    controller: App\Controller\SearchController::userSearchCont
+
 
 add_character:
     path: /add_character
@@ -52,6 +70,12 @@ delete_character:
 edit_character:
     path: /edit_character/{character_id}
     controller: App\Controller\UserCharacterController::editCharacter
+
+
+games:
+    path: /games
+    controller: App\Controller\GameController::gamesList
+
 
 # ADMIN PANEL BELOW
 admin_home:
@@ -83,8 +107,8 @@ admin_user_detail:
     controller: App\Controller\AdminController::userDetails
 
 admin_user_delete:
-    path: /admin/user/delete/{userDelete}
-    controller: App\Controller\AdminController::userDelete
+    path: /admin/user/delete/{deleteUser}
+    controller: App\Controller\AdminController::deleteUser
 
 admin_post_delete:
     path: /admin/post/delete/{deletePost}

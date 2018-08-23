@@ -1,5 +1,5 @@
 <header>
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-md">
         <a class="navbar-brand" href="{{ path('homepage') }}">
             <img src="{{ asset('img/LogoStripstrapTest.png') }}" width="150" height="70" alt="Logo of StripStrap">
         </a>
@@ -9,31 +9,33 @@
 
         <div class="collapse navbar-collapse" id="navbarsExampleDefault">
             <form class="form-inline mr-auto" id="searchbar">
-                <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+               
             </form>
             <ul class="navbar-nav my-2 my-lg-0">
-                {% if is_granted('ROLE_ADMIN') %}
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ path('admin_home') }}">Admin</a>
-                </li>
-                {% endif %}
                 {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                <form class="form-inline mr-auto" id="searchbar">
+                    <a class="nav-link" href="{{ path('search') }}">Search</a>
+                </form>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ path('wall_list') }}">Wall</a>
+                    <a class="nav-link" href="{{ path('wall_list') }}#wall">Wall</a>
                 </li>
                  <li class="nav-item">
-                    <a class="nav-link" href="{{ path('user_info') }}">Profile</a>
+                    <a class="nav-link" href="{{ path('user_info') }}#profile">Profile</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ path('logout') }}">Logout</a>
                 </li>
                 {% else %}
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ path('login') }}">LogIn</a>
+                    <a class="nav-link" href="{{ path('login') }}#log">LogIn</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ path('sign_in') }}">SignIn</a>
+                    <a class="nav-link" href="{{ path('sign_up') }}#sign">SignUp</a>
+                </li>
+                {% endif %}
+                {% if is_granted('ROLE_ADMIN') %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('admin_home') }}">Admin</a>
                 </li>
                 {% endif %}
             </ul>
@@ -45,4 +47,4 @@
     <div class="jumbotron" id="banner">
         <h1>StripStrap | By gamers for gamers</h1>
     </div>
-    <div class="container-fluid">
+    <div id="main" class="container-fluid">

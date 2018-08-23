@@ -1,15 +1,17 @@
 <?php
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use App\Entity\User;
+use App\Entity\Post;
+use App\Entity\Game;
+use App\Entity\Comment;
+use App\Entity\Category;
+use App\Form\CommentFormType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use App\Entity\Post;
-use App\Entity\User;
-use App\Entity\Comment;
-use App\Form\CommentFormType;
 use Symfony\Component\Validator\Constraints\DateTime;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class CommentController extends Controller
 {
@@ -34,6 +36,9 @@ class CommentController extends Controller
             return $this->redirectToRoute("wall_comment", ['post' => $post->getId()]);
         }
 
+        $games= $manager->getRepository(Game::class)->findAll();
+        $categories= $manager->getRepository(Category::class)->findAll();
+
         $comments = $manager
             ->getRepository(Comment::class)
             ->findBy(
@@ -46,7 +51,9 @@ class CommentController extends Controller
             [
                 'post' => $post,
                 'comments' => $comments,
-                'commentForm' => $form->createView()
+                'commentForm' => $form->createView(),
+                'games'=> $games,
+                'categories'=> $categories
             ]
         );
     }
