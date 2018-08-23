@@ -45,7 +45,7 @@
                             <div class="card-footer text-center">
                                 <a href="{{ path("wall_comment", {post: post.getId()}) }}" class="btn btn-info" role="button">Comment the post</a>
 
-                                {% if post.getUser().getId() == userId.getId() %}
+                                {% if is_granted('IS_AUTHENTICATED_FULLY') and post.getUser().getId() == userId.getId() %}
                                     <a href="{{ path("post_own_delete", {postID: post.getID()}) }}" class="btn btn-danger" role="button"><i class="fas fa-trash-alt"></i></a>
                                 {% else %}
                                 {% endif %}
