@@ -6,7 +6,31 @@
 
     
     <div>
-        <h1> My details </h1>
+        <h1> 
+            My details  
+            <a href="{{ path('update_profile', { 'currentUser' : app.user.getId() }) }}" class="text-warning"><i class="fas fa-edit"></i></a>
+             <a href="{{ path('update_password', { 'currentUser' : app.user.getId() }) }}" class="text-primary"><i class="fas fa-key"></i></a>
+            <a data-toggle="modal" data-target="#deleteUserModal" class="text-danger"><i class="fas fa-trash-alt"></i></a>
+        </h1>
+
+        <!-- Modal -->
+        <div class="modal fade" id="deleteUserModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteModalLabel">Delete this profile</h5>
+            </div>
+            <div class="modal-body">
+                Do you want delete your profile ?
+            </div>
+            <div class="modal-footer">
+                <a href="{{ path('delete_profile', { 'currentUser' : app.user.getId() }) }}" style="text-decoration: none;" class="btn btn-success">
+                Yes</a>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
+            </div>
+            </div>
+        </div>
+        </div>
         {% if app.user.getPicture is empty %}
          <img class="card-img-top" width="100" src="../img/default.jpg" alt="Card image cap" >
 
@@ -69,7 +93,6 @@
                         <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title" id="deleteModalLabel">Delete character</h5>
-                            </button>
                         </div>
                         <div class="modal-body">
                             Do you want delete the character {{ userCharacter.getName() }} ? 

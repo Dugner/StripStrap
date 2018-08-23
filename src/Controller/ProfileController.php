@@ -9,8 +9,8 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use App\Form\DeleteUserFormType;
 use App\Entity\User;
 
-class ProfileController extends Controller{
-    public function userInfos(){        
+class ProfileController extends Controller {
+    public function userInfos() {        
         return $this->render(
             'Profile/profile.html.twig',
             [
