@@ -159,7 +159,7 @@
             $form->handleRequest($request);
 
             
-            $file = $edit->getPicture();
+            $file = $game->getPicture();
             $manager = $this->getDoctrine()->getManager();
             if($file){
 
