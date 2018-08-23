@@ -35,7 +35,11 @@
                         {{ form_row(user_form.password) }}
                         <div id="passwordHelp" class="help hidden">
                             <small class="text-danger">
-                                Must at least 3 characters long and must match each other.
+                                <span class="pw-check-1 text-danger">- Both passwords must match</span><br>
+                                <span class="pw-check-2 text-danger">- Need at least 8 characters</span><br>
+                                <span class="pw-check-3 text-danger">- Need at least 1 uppercase character</span><br>
+                                <span class="pw-check-4 text-danger">- Need at least 1 number</span><br>
+                                Allowed symbols: !?@#$%^&*()_]+
                             </small> 
                         </div>
 

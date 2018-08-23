@@ -134,9 +134,60 @@ $(function()
     });
 
     // password
+    regex = new RegExp('^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9!?@#$%^&*()_]+){8,20}$');
+    regex1 = new RegExp('([A-Z]+)');
+    regex2 = new RegExp('([0-9]+)');
+
     password.keyup(function ()
     {
-        if (password.val().length <= 3)
+        // green up first check
+        if (password.val() == password2.val() && password.val().length != 0 && password2.val().length != 0)
+        {
+            $('.pw-check-1').addClass('text-success');
+            $('.pw-check-1').removeClass('text-danger');
+        }
+        else
+        {
+            $('.pw-check-1').removeClass('text-success');
+            $('.pw-check-1').addClass('text-danger');
+        }
+        // green up second check
+        if (password.val().length >= 8)
+        {
+            $('.pw-check-2').addClass('text-success');
+            $('.pw-check-2').removeClass('text-danger');
+        }
+        else
+        {
+            $('.pw-check-2').removeClass('text-success');
+            $('.pw-check-2').addClass('text-danger');
+        }
+        // green up third check
+        if (regex1.test(password.val()))
+        {
+            $('.pw-check-3').addClass('text-success');
+            $('.pw-check-3').removeClass('text-danger');
+        }
+        else
+        {
+            $('.pw-check-3').removeClass('text-success');
+            $('.pw-check-3').addClass('text-danger');
+        }
+        // green up forth check
+        if (regex2.test(password.val()))
+        {
+            $('.pw-check-4').addClass('text-success');
+            $('.pw-check-4').removeClass('text-danger');
+        }
+        else
+        {
+            $('.pw-check-4').removeClass('text-success');
+            $('.pw-check-4').addClass('text-danger');
+        }
+
+        // checking if password length is minimum 8
+        // or if password contains the required regex
+        if (password.val().length < 8 || !regex.test(password.val()))
         {
             password.addClass('is-invalid');
             password.prev().addClass('text-danger');
@@ -166,7 +217,7 @@ $(function()
         }
 
         // check if password matches
-        if (password.val() != password2.val() || password.val().length == 0 || password2.val().length == 0)
+        if (password.val() != password2.val() || password2.val().length < 8 || password.val().length < 8 || password.val().length == 0 || password2.val().length == 0 || !regex.test(password.val()) || !regex.test(password2.val()))
         {
             password.addClass('is-invalid');
             password.prev().addClass('text-danger');
@@ -195,9 +246,54 @@ $(function()
             passwordHelp.hide();
         }
     });
-    password.on('focus', function() {
+    password.on('focus', function() 
+    {
+        // green up first check
+        if (password2.val() == password.val() && password.val().length != 0 && password2.val().length != 0)
+        {
+            $('.pw-check-1').addClass('text-success');
+            $('.pw-check-1').removeClass('text-danger');
+        }
+        else
+        {
+            $('.pw-check-1').removeClass('text-success');
+            $('.pw-check-1').addClass('text-danger');
+        }
+        // green up second check
+        if (password.val().length >= 8)
+        {
+            $('.pw-check-2').addClass('text-success');
+            $('.pw-check-2').removeClass('text-danger');
+        }
+        else
+        {
+            $('.pw-check-2').removeClass('text-success');
+            $('.pw-check-2').addClass('text-danger');
+        }
+        // green up third check
+        if (regex1.test(password.val()))
+        {
+            $('.pw-check-3').addClass('text-success');
+            $('.pw-check-3').removeClass('text-danger');
+        }
+        else
+        {
+            $('.pw-check-3').removeClass('text-success');
+            $('.pw-check-3').addClass('text-danger');
+        }
+        // green up forth check
+        if (regex2.test(password.val()))
+        {
+            $('.pw-check-4').addClass('text-success');
+            $('.pw-check-4').removeClass('text-danger');
+        }
+        else
+        {
+            $('.pw-check-4').removeClass('text-success');
+            $('.pw-check-4').addClass('text-danger');
+        }
 
-        if (password.val().length <= 3)
+        if (password.val().length < 8 || !regex.test(password.val()))
         {
             password.addClass('is-invalid');
             password.prev().addClass('text-danger');
@@ -212,7 +308,52 @@ $(function()
     // password 2
     password2.keyup(function ()
     {
-        if (password2.val().length <= 3)
+        // green up first check
+        if (password2.val() == password.val() && password.val().length != 0 && password2.val().length != 0)
+        {
+            $('.pw-check-1').addClass('text-success');
+            $('.pw-check-1').removeClass('text-danger');
+        }
+        else
+        {
+            $('.pw-check-1').removeClass('text-success');
+            $('.pw-check-1').addClass('text-danger');
+        }
+        // green up second check
+        if (password2.val().length >= 8)
+        {
+            $('.pw-check-2').addClass('text-success');
+            $('.pw-check-2').removeClass('text-danger');
+        }
+        else
+        {
+            $('.pw-check-2').removeClass('text-success');
+            $('.pw-check-2').addClass('text-danger');
+        }
+        // green up third check
+        if (regex1.test(password2.val()))
+        {
+            $('.pw-check-3').addClass('text-success');
+            $('.pw-check-3').removeClass('text-danger');
+        }
+        else
+        {
+            $('.pw-check-3').removeClass('text-success');
+            $('.pw-check-3').addClass('text-danger');
+        }
+        // green up forth check
+        if (regex2.test(password2.val()))
+        {
+            $('.pw-check-4').addClass('text-success');
+            $('.pw-check-4').removeClass('text-danger');
+        }
+        else
+        {
+            $('.pw-check-4').removeClass('text-success');
+            $('.pw-check-4').addClass('text-danger');
+        }
+
+        if (password2.val().length < 8 || !regex.test(password2.val()))
         {
             password2.addClass('is-invalid');
             password2.prev().addClass('text-danger');
@@ -242,7 +383,7 @@ $(function()
         }
 
         // check if password matches
-        if (password2.val() != password.val() || password.val().length == 0 || password2.val().length == 0)
+        if (password2.val() != password.val() || password2.val().length < 8 || password.val().length < 8 || password.val().length == 0 || password2.val().length == 0 || !regex.test(password.val()) || !regex.test(password2.val()))
         {
             password2.addClass('is-invalid');
             password2.prev().addClass('text-danger');
@@ -271,9 +412,54 @@ $(function()
             passwordHelp.hide();
         }
     });
-    password2.on('focus', function() {
+    password2.on('focus', function() 
+    {
+        // green up first check
+        if (password.val() == password2.val() && password1.val().length != 0 && password2.val().length != 0)
+        {
+            $('.pw-check-1').addClass('text-success');
+            $('.pw-check-1').removeClass('text-danger');
+        }
+        else
+        {
+            $('.pw-check-1').removeClass('text-success');
+            $('.pw-check-1').addClass('text-danger');
+        }
+        // green up second check
+        if (password2.val().length >= 8)
+        {
+            $('.pw-check-2').addClass('text-success');
+            $('.pw-check-2').removeClass('text-danger');
+        }
+        else
+        {
+            $('.pw-check-2').removeClass('text-success');
+            $('.pw-check-2').addClass('text-danger');
+        }
+        // green up third check
+        if (regex1.test(password2.val()))
+        {
+            $('.pw-check-3').addClass('text-success');
+            $('.pw-check-3').removeClass('text-danger');
+        }
+        else
+        {
+            $('.pw-check-3').removeClass('text-success');
+            $('.pw-check-3').addClass('text-danger');
+        }
+        // green up forth check
+        if (regex2.test(password2.val()))
+        {
+            $('.pw-check-4').addClass('text-success');
+            $('.pw-check-4').removeClass('text-danger');
+        }
+        else
+        {
+            $('.pw-check-4').removeClass('text-success');
+            $('.pw-check-4').addClass('text-danger');
+        }
 
-        if (password2.val().length <= 3)
+        if (password2.val().length < 8 || !regex.test(password2.val()))
         {
             password2.addClass('is-invalid');
             password2.prev().addClass('text-danger');
