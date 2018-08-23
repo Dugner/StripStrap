@@ -6,8 +6,12 @@ homepage:
     path: /
     controller: App\Controller\DefaultController::homepage
 
+post_own_delete:
+    path: /delete/{postID}
+    controller: App\Controller\PostController::deleteOwnPost
+
 index_list:
-    path: / #chnage the fucking path here
+    path: / #change the fucking path here
     controller: App\Controller\PostController::homePosts
 
 sign_up:
@@ -32,6 +36,14 @@ wall_list:
 wall_comment:
     path: /comment/{post}
     controller: App\Controller\CommentController::commentPosts
+
+wall_users:
+    path: /userwall/{userwall}
+    controller: App\Controller\UserController::userWalls
+
+add_ninja:
+    path: /userwall/addninja/{addninja}
+    controller: App\Controller\UserController::addNinja
 
 user_card:
     path: /usercard

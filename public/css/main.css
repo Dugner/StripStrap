@@ -18,6 +18,9 @@ body {
     background-size: cover;
     background-position: center;
 }
+hr{
+    background-color: lightgray;
+}
 
 /* NAVBAR */
 
@@ -237,6 +240,10 @@ footer p{
     height: 100px;
     overflow-x: auto;
 }
+.countries li
+{
+    color: #000;
+}
 
 /* LOGIN PAGE */
 
@@ -248,26 +255,49 @@ footer p{
     background-color: rgb(7, 114, 27);
 }
 
-/* PROFILE PAGE */
-.col-md-5{
-    background-color: rgba(44, 44, 44, 0.568);
-}
-.col-md-5 h5{
-    color:rgb(7, 223, 43);
-    text-align: center;
-    font-size: 2rem;
-    margin: 30px;
-}
-.col-md-5 h6, .col-md-5 p{
-    font-family: 'Arimo', cursive;
-}
-.col-md-5 .card-img-top{
-    width: 50%;
+/*
+    SignUp Page
+*/
+
+.custom-file-input
+{
+    opacity: 1;
 }
 
-/* SIGNUP */
+option 
+{
+    color: black;
+}
 .g-recaptcha{
     margin-top: 10px;
     margin-bottom: 15px;
 
+}
+
+/* PROFILE PAGE */
+
+i.fas.fa-user-plus{
+    color: rgb(7, 223, 43);
+}
+i.fas.fa-edit{
+    color: #ffc107;
+}
+i.fas.fa-trash-alt{
+    color: #dc3545;
+}
+.profileSection {
+    margin: auto 50px;
+}
+.userPart{
+    display: flex;
+    flex-direction: row;    
+    justify-content: space-around;
+}
+h4.username{
+    color: rgb(7, 114, 27);
+}
+td.text-center{
+    display: flex;  
+    flex-direction: row;
+    justify-content: space-evenly;
 }

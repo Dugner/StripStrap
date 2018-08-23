@@ -3,6 +3,29 @@
 {% block title %}{{parent()}} Profile page{% endblock %}
 
 {% block body %}
+<div id="profile" class="profileSection"> 
+    <div class="row">
+        <div class="col-md-4">
+            <div>
+                <h1> My details </h1>
+                <div class="userPart">
+                    <div>
+                        {% if app.user.getPicture is empty %}
+                        <img width="200" src="../img/default.jpg" alt="Card image cap">
+
+                        {% else %}
+                        <img width="200"src="{{ path('download_document', {'document': app.user.getPicture().getId()})  }}" alt="Card image cap" >
+                        {% endif %}
+                    </div>
+                    <div>
+                        <h4 class="username"> {{ app.user.getUsername() }} <h4>
+                        <h6> {{ app.user.getFirstname() }} {{ app.user.getLastname() }} <h6>
+                        <p> {{ app.user.getEmail() }} </p>
+                        <p> {{ app.user.getCountry() }} </p>
+                        <p> {{ app.user.getDateOfBirth()| date('Y m d') }} </p>
+                    </div>
+                </div>
+            </div>
 
     
     <div class="row">
@@ -37,96 +60,101 @@
                 {% if app.user.getUserCharacters is empty %}
                     You don't have any friend. Become mine <a href="https://giphy.com/gifs/fuck-you-middle-finger-mrs-doubtfire-w1XrYq5PsCbyE">here</a>.
                 {% else %}
+
                 <ul>
-                <li>{# {{ app.user.getFriends}} #}</li>
+                {# <li>{{ app.user.getFriends}}</li> #}
                 </ul>
             </div>
-        </div> <!--col md 5 -->
-        <div class="col-md-7">
-            <div class="characterDetail">
-                <h1 id="details"> My character details </h1>
+
+            <br>
+
+            <div>
+                <h1> My games </h1>
                 {% if app.user.getUserCharacters is empty %}
-                Create a character.<div style="font-size: 1.4em;"><a href="{{ path('add_character') }}" style="text-decoration: none;" class="text-success"><i class="fas fa-user-plus"></i></a></div>
+                    Choose some games.
                 {% else %}
-                <h2>
-                {{ app.user.getUserCharacters()[0].getName()}}</h2><h4>, {{ app.user.getUserCharacters()[0].getLevel()}}</h4>
-                
-                <p>{{ app.user.getUserCharacters()[0].getDetail()}}</p>
-            </div> 
-                    {% endif %}
-            <div class="characterList">
 
-                <h3>List of characters</h3>
-
-                <div style="font-size: 1.4em;"><a href="{{ path('add_character') }}" style="text-decoration: none;" class="text-success"><i class="fas fa-user-plus"></i></a></div>
-
-                <table>
-                    <thead>
-                         <tr>
-                            <th>NAME</td>
-                            <th>LEVEL</th>
-                            <th>DETAIL</th>
-                            <th>GAME</td>
-                            <th>PICTURE</th>
-                            <th>ACTION</th>
-                        </tr>
-                    </thead>
-
-                    <tbody>
-                        {% for userCharacter in userCharacters %}
-                            <tr>
-                                <td>{{ userCharacter.getName() }}</td>
-                                <td>{{ userCharacter.getLevel() }}</td>
-                                <td>{{ userCharacter.getDetail() | slice(0,80) }}</td>
-                                <td>{{ userCharacter.getGame().getTitle() }}</td>
-                                {% if userCharacter.getPicture() is not empty %}
-                                <td><img class="card-img-top" src="{{ path('download_document', { 'document': userCharacter.getPicture().getId() }) }}" /></td>
-                                    {% else %}
-                                        <td></td>
-                                    {% endif %}
-                                    <td class="text-center">
-                                        <a href="{{ path('edit_character', { 'character_id': userCharacter.getId() }) }}" class="text-warning"><i class="fas fa-edit"></i></a>
-                                        <a data-toggle="modal" data-target="#deleteModal_{{userCharacter.getName()}}" class="text-danger"><i class="fas fa-trash-alt"></i></a>
-
-                                                <!-- Modal -->
-                                        <div class="modal fade" id="deleteModal_{{ userCharacter.getName() }}" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="deleteModalLabel">Delete character</h5>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        Do you want delete the character {{ userCharacter.getName() }} ? 
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <a href="{{ path('delete_character', { 'character_id': userCharacter.getId() }) }}" style="text-decoration: none;" class="btn btn-success">
-                                                        Yes</a>
-                                                        <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                </td>
-                             </tr>
-                         {% endfor %}
-                     </tbody>
-                </table>
-
-            <div> 
-
+                <ul>
+                    <li> {{ app.user.getUserCharacters()[0].getGame().getTitle()}} </li>
+                </ul>
+                {% endif %}
+            </div>
         </div>
 
-    {% endif %}
-    </div>
-    <ul>
-     <li>{{ app.user.getFriends}}</li>
-    </ul>
-    
-    </div>
+        <div class="col-md-8">
+            <h1>List of characters</h1>
 
-    {% endif %} #}
+            <div style="font-size: 1.4em;">
+                <a href="{{ path('add_character') }}" style="text-decoration: none;">
+                    <i class="fas fa-user-plus"></i>
+                </a>
+            </div>
+
+            <br>
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>NAME</td>
+                        <th>LEVEL</th>
+                        <th>DETAIL</th>
+                        <th>GAME</td>
+                        <th>PICTURE</th>
+                        <th>ACTION</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {% for userCharacter in userCharacters %}
+                    <tr>
+                        <td>{{ userCharacter.getName() }}</td>
+                        <td>{{ userCharacter.getLevel() }}</td>
+                        <td>{{ userCharacter.getDetail() | slice(0,80) }}</td>
+                        <td>{{ userCharacter.getGame().getTitle() }}</td>
+                        {% if userCharacter.getPicture() is not empty %}
+                            <td>
+                                <img src="{{ path('download_document', { 'document': userCharacter.getPicture().getId() }) }}" width="200" />
+                            </td>
+                        {% else %}
+                            <td></td>
+                        {% endif %}
+                        <td class="text-center">
+                            <a href="{{ path('edit_character', { 'character_id': userCharacter.getId() }) }}">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                            <a data-toggle="modal" data-target="#deleteModal_{{userCharacter.getName()}}">
+                                <i class="fas fa-trash-alt"></i>
+                            </a>
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="deleteModal_{{ userCharacter.getName() }}" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="deleteModalLabel">Delete character</h5>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        Do you want delete the character {{ userCharacter.getName() }} ? 
+                                    </div>
+                                    <div class="modal-footer">
+                                        <a href="{{ path('delete_character', { 'character_id': userCharacter.getId() }) }}" style="text-decoration: none;" class="btn btn-success">
+                                        Yes</a>
+                                        <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
+                                    </div>
+                                </div>
+                            </div>
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>   
+    {% endif %}
 
     {# <div> {{ form() }} </div> #}
-
 
 {% endblock %}

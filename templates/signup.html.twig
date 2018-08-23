@@ -2,9 +2,9 @@
 {% block title %} {{parent()}} Signup {% endblock %}
 {% block body %}
 
-<div class="row">
-            <div class="col-md-3" id="leftbar">
-            </div>
+    <div class="row">
+        <div class="col-md-3" id="leftbar">
+        </div>
 
             <div class="col-md-6">
                 {% block mainsection %}
@@ -18,42 +18,46 @@
                             </small> 
                         </div>
 
-                        {{ form_row(user_form.firstname) }}
-                        <div id="firstnameHelp" class="help hidden">
-                            <small class="text-danger">
-                                Must at least 3 characters long.
-                            </small> 
-                        </div>
+                    {{ form_row(user_form.firstname) }}
+                    <div id="firstnameHelp" class="help hidden">
+                        <small class="text-danger">
+                            Must at least 3 characters long.
+                        </small> 
+                    </div>
 
-                        {{ form_row(user_form.lastname) }}
-                        <div id="lastnameHelp" class="help hidden">
-                            <small class="text-danger">
-                                Must at least 3 characters long.
-                            </small> 
-                        </div>
+                    {{ form_row(user_form.lastname) }}
+                    <div id="lastnameHelp" class="help hidden">
+                        <small class="text-danger">
+                            Must at least 3 characters long.
+                        </small> 
+                    </div>
 
-                        {{ form_row(user_form.password) }}
-                        <div id="passwordHelp" class="help hidden">
-                            <small class="text-danger">
-                                Must at least 3 characters long and must match each other.
-                            </small> 
-                        </div>
+                    {{ form_row(user_form.password) }}
+                    <div id="passwordHelp" class="help hidden">
+                        <small class="text-danger">
+                            <span class="pw-check-1 text-danger">- Both passwords must match</span><br>
+                            <span class="pw-check-2 text-danger">- Need at least 8 characters</span><br>
+                            <span class="pw-check-3 text-danger">- Need at least 1 uppercase character</span><br>
+                            <span class="pw-check-4 text-danger">- Need at least 1 number</span><br>
+                            Allowed symbols: !?@#$%^&*()_]+
+                        </small> 
+                    </div>
 
-                        {{ form_row(user_form.email) }}
-                        <div id="emailHelp" class="help hidden">
-                            <small class="text-danger">
-                                Enter a valid email address.
-                            </small> 
-                        </div>
+                    {{ form_row(user_form.email) }}
+                    <div id="emailHelp" class="help hidden">
+                        <small class="text-danger">
+                            Enter a valid email address.
+                        </small> 
+                    </div>
 
-                        {{ form_row(user_form.dateOfBirth) }}
-                        {{ form_row(user_form.country) }}
-                        <div id="countryHelp" class="help hidden">
-                            <small class="text-danger">
-                                Enter a valid Country:<br>
-                                <ul class="countries"></ul>
-                            </small> 
-                        </div>
+                    {{ form_row(user_form.dateOfBirth) }}
+                    {{ form_row(user_form.country) }}
+                    <div id="countryHelp" class="help hidden">
+                        <small class="text-danger">
+                            Enter a valid Country:<br>
+                            <ul class="countries"></ul>
+                        </small> 
+                    </div>
 
                         {{ form_row(user_form.picture) }}
                         {# CAPCHAT #}
@@ -62,8 +66,8 @@
                 {% endblock %}
             </div>
 
-            <div class="col-md-3" id="rightbar">
+        <div class="col-md-3" id="rightbar">
 
-            </div>
         </div>
+    </div>
 {% endblock %}
