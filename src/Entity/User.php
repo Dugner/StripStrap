@@ -44,7 +44,7 @@ class User implements UserInterface
      * @Assert\NotBlank()
      * Assert\Length(min=8, max=255)
      * @Assert\Regex(
-     *      pattern="/^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9!?@#$%^&*()_]+){8,20}$/i",
+     *      pattern="/^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9!?@#$%^&*()_.,]+){8,20}$/i",
      *      match=true
      * )
      */
