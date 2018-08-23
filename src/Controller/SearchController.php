@@ -17,7 +17,7 @@ class SearchController extends Controller
         $manager = $this->getDoctrine()->getManager();
 
         $myId = $this->getUser()->getId();
-        /*$dto = new UserSearchBar();
+        $dto = new UserSearchBar();
 
         $searchForm = $this->createForm(SearchFormType::class, $dto, ['standalone' => true]);
         
@@ -25,7 +25,7 @@ class SearchController extends Controller
 
         $user = $manager->getRepository(User::class)->findByUserSearchBar($dto);
             
-        */
+        
         $user = $manager->getRepository(User::class)->findAll();
 
         $friendId = $manager->getRepository(Friend::class)->findAll();

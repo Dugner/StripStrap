@@ -14,6 +14,7 @@ use App\Entity\Post;
 use App\Form\PostFormType;
 use App\Entity\Game;
 use App\Entity\Category;
+use App\Entity\Comment;
 
 
 class DefaultController extends Controller
@@ -44,6 +45,7 @@ class DefaultController extends Controller
         $categories= $manager->getRepository(Category::class)->findAll();
 
         $pagination = $manager->getRepository(Post::class)->paginate($request, $this->get('knp_paginator'), $this->getParameter('list_limit'));
+        
 
         return $this->render(
             'Default/homepage.html.twig',
@@ -52,7 +54,7 @@ class DefaultController extends Controller
                 'homePostForm' => $form->createView(),
                 'games'=> $games,
                 'userId' => $userId,
-                'categories'=> $categories
+                'categories'=> $categories,
             ]
         );
     }

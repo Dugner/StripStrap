@@ -11,7 +11,7 @@ post_own_delete:
     controller: App\Controller\PostController::deleteOwnPost
 
 index_list:
-    path: / 
+    path: / #change the fucking path here
     controller: App\Controller\PostController::homePosts
 
 sign_up:
