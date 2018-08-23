@@ -50,7 +50,7 @@
                             <tbody>
                                 {% for comment in comments %}
                                     <tr>
-                                        <td>{{ comment.getDatetime()|date('Y-m-d H:i:s') }}</td>
+                                        <td>{{ comment.getDatetime()|date('Y-m-d H:i') }}</td>
                                         <td>{{ comment.getUser().getUsername() }}</td>
                                         <td>{{ comment.getContent() }}</td>
                                     </tr>
