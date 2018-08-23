@@ -1,12 +1,12 @@
 $.ajax({
     method: 'GET',
-    url: 'http://www.giantbomb.com/api/game/3030-4725/?api_key=7d3e51ce684ca4c6063d50f2646a4cc46fa6ca55&format=json&field_list=genres,nom',
-    crossDomain: true,
+    url: '/gamespot/events',
     dataType: "json"
 
-}).done(function(games){
-    for(let game of games){
-        // $('#games').append("<h2>game.results.genres[name]</h2>")
-        console.log(games);
+}).done(function(events){
+    for(let event of events){
+         $('#games').append("<ul><li><h4 style='color:rgb(7, 223, 43)'>"+ event.title + "</h4><p>"+ event.description +"</p>"+"</li></ul>");
+
+        console.log(events);
     }
 });
