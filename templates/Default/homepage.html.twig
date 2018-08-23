@@ -68,7 +68,9 @@
                                 <a href="{{ path("wall_comment", {post: post.getId()}) }}" class="btn" role="button">Comment the post</a>
 
                                 {% if is_granted('IS_AUTHENTICATED_FULLY') and post.getUser().getId() == userId.getId() %}
-                                    <a href="{{ path("post_own_delete", {postID: post.getID()}) }}" class="btn" role="button"><i class="fas fa-trash-alt"></i></a>
+                                    <a href="{{ path("post_own_delete", {postID: post.getID()}) }}" class="trashposts">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </a>
                                 {% else %}
                                 {% endif %}
                             </div>

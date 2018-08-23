@@ -19,7 +19,7 @@
                     </div>
                     <div>
                         <h4 class="username"> {{ app.user.getUsername() }} <h4>
-                        <h6> {{ app.user.getFirstname() }}{{ app.user.getLastname() }} <h6>
+                        <h6> {{ app.user.getFirstname() }} {{ app.user.getLastname() }} <h6>
                         <p> {{ app.user.getEmail() }} </p>
                         <p> {{ app.user.getCountry() }} </p>
                         <p> {{ app.user.getDateOfBirth()| date('Y-m-d') }} </p>
@@ -31,13 +31,13 @@
 
             <div>
                 <h1> My Dudes </h1>
-                {% if app.user.getUserCharacters is empty %}
+                {% if app.user.getFriends() is empty %}
                     You don't have any friend. Become mine <a href="https://giphy.com/gifs/fuck-you-middle-finger-mrs-doubtfire-w1XrYq5PsCbyE">here</a>.
                 {% else %}
-
-                <ul>
-                {# <li>{{ app.user.getFriends}}</li> #}
-                </ul>
+                    <ul>
+                    <li>{{ app.user.getFriends}}</li>
+                    </ul>
+                {% endif %}
             </div>
 
             <br>
@@ -127,9 +127,5 @@
         </div>
     </div>
 </div>   
-    {% endif %}
-
     {# <div> {{ form() }} </div> #}
-
-
 {% endblock %}
