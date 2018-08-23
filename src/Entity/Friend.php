@@ -29,6 +29,12 @@ class Friend
      */
     private $user;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\User")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $toUser;
+
     public function __construct()
     {
     }
@@ -36,6 +42,12 @@ class Friend
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function setId($id)
+    {
+        $this->id=$id;
+        return $this;
     }
 
     public function getReport(): ?bool
@@ -61,6 +73,18 @@ class Friend
     public function setUser(User $user)
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    public function getToUser(): ?User
+    {
+        return $this->toUser;
+    }
+
+    public function setToUser(?User $toUser): self
+    {
+        $this->toUser = $toUser;
 
         return $this;
     }

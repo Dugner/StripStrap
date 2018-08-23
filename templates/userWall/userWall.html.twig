@@ -4,35 +4,28 @@
 
 {% block body %}
 
-    <div id="wall" class="row">
+    <div class="row">
         <div class="col-md-3" id="leftbar">
             {% block leftside %}
-                {% include 'leftsidebar.html.twig' %}
+                {% include 'userWall/leftsidebarUserWall.html.twig' %}
             {% endblock %}
         </div>
 
         <div class="col-md-6">
             {% block mainsection %}
-                <div class="container">
-                    {{ form(postForm) }}
-                </div>
-                <hr>
  
                 <h1 id="wallposts">Your posts</h1>
-
-                {% set postCount = pagination.getTotalItemCount %}
-                {% if postCount == 0 %}
-                    <p>No post found in the website</p>
-                {% else %}
-                    {% for post in pagination %}   
+                
+                    {% for post in posts %}   
                         <div class="card">
                             <div class="card-body">
                                 <div class="card-title">
-                                    {% if post.getUser().getPicture() is not empty %}
-                                        <img src="{{ path('download_document', {'document': post.getUser().getPicture().getId() })  }}" alt="Thumbnail of user avatar" class="thumbnail">
-                                    {% else %}
-                                        <img src="{{ asset('img/default.jpg') }}" alt="Default avatar for user" class="thumbnail">
-                                    {% endif %}
+                                {% if post.getUser().getPicture() is not empty %}
+                                    <img style="width: 40px; height: 40px;" class="card-img-top" src="{{ path('download_document', {'document': post.getUser().getPicture().getId()})  }}" alt="Thumbnail of user avatar">
+                                {% else %}
+                                    <img style="width: 40px; height: 40px;" class="card-img-top" src="{{ asset('img/default.jpg') }}" alt="Default avatar for user">
+                                {% endif %}
+                                    {# <img src="{{ path('download_document', {'document': post.getUser().getPicture().getId() })  }}" alt="Thumbnail of user avatar" class="thumbnail"> #}
                                     <h5> {{ post.getUser().getUsername() }} </h5>
                                 </div>
                                 <hr>
@@ -63,23 +56,13 @@
                                     </table> 
                                 </div> 
                             {% endif %}
-                            <div class="card-footer text-muted text-center" >
-                                <a href="{{ path("wall_comment", {post: post.getId()}) }}" class="btn" role="button" >Comment the post</a>
+                            <div class="card-footer text-center">
+                                <a href="{{ path("wall_comment", {post: post.getId()}) }}" class="btn">Comment the post</a>
                             </div>
                         </div>    
                         <br>        
                     {% endfor %}
-                    <div class="pagination">
-                        {{ knp_pagination_render(pagination) }}
-                    </div>
-                {% endif %}
                 
-            {% endblock %}
-        </div>
-
-        <div class="col-md-3" id="rightbar">
-            {% block rightside %}
-                {% include 'rightsidebar.html.twig' %}
             {% endblock %}
         </div>
     </div>

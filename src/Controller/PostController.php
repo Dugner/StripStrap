@@ -1,18 +1,18 @@
 <?php
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 use App\Entity\Post;
 use App\Entity\User;
-use App\Form\PostFormType;
-use Symfony\Component\Validator\Constraints\DateTime;
-use App\Entity\Comment;
-use App\Form\CommentFormType;
 use App\Entity\Game;
+use App\Entity\Comment;
 use App\Entity\Category;
+use App\Form\PostFormType;
+use App\Form\CommentFormType;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Validator\Constraints\DateTime;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class PostController extends Controller
 {
@@ -57,5 +57,23 @@ class PostController extends Controller
                 'categories'=> $categories
             ]
         );
+    }
+
+    public function deleteOwnPost(Post $postID, Request $request)
+    {
+        $manager = $this->getDoctrine()->getManager();
+
+        $post = $manager->getRepository(Post::class)->find($postID);
+
+        $checkAnon = $this->get('security.token_storage')->getToken()->getUser();
+        $checkOwner = $this->get('security.token_storage')->getToken()->getUser()->getId();
+
+        if ($checkAnon != 'anon.' && $checkOwner == $post->getUser()->getId())
+        {
+            $manager->remove($postID);
+            $manager->flush();
+        }
+
+        return $this->redirectToRoute('homepage');
     }
 }

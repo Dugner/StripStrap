@@ -2,21 +2,21 @@
 
     namespace App\Controller;
 
-    use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-    use Symfony\Component\HttpFoundation\Request;
-    use App\Form\GameFormType;
     use App\Entity\Game;
-    use App\Entity\Document;
     use App\Entity\User;
-    use Symfony\Component\Security\Core\Encoder\EncoderFactoryInterface;
-    use App\Form\UpdateUserFormType;
-    use Symfony\Component\HttpFoundation\File\File;
-    use App\Form\DeleteUserFormType;
     use App\Entity\Post;
-    use App\Entity\UserCharacter;
-    use App\Form\DeleteCharacterFormType;
-    use App\Form\CategoryFormType;
     use App\Entity\Category;
+    use App\Entity\Document;
+    use App\Form\GameFormType;
+    use App\Entity\UserCharacter;
+    use App\Form\CategoryFormType;
+    use App\Form\DeleteUserFormType;
+    use App\Form\UpdateUserFormType;
+    use App\Form\DeleteCharacterFormType;
+    use Symfony\Component\HttpFoundation\Request;
+    use Symfony\Component\HttpFoundation\File\File;
+    use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+    use Symfony\Component\Security\Core\Encoder\EncoderFactoryInterface;
 
 
     class AdminController extends Controller
@@ -59,7 +59,7 @@
             ]);
         }
 
-        public function userDelete(User $deleteUser, Request $request)
+        public function deleteUser(User $deleteUser, Request $request)
         {
             // get the user ID for deleting him
             $deleteForm = $this->createForm(DeleteUserFormType::class, $deleteUser, ['standalone' => true]);
@@ -159,7 +159,7 @@
             $form->handleRequest($request);
 
             
-            $file = $edit->getPicture();
+            $file = $game->getPicture();
             $manager = $this->getDoctrine()->getManager();
             if($file){
 
@@ -188,12 +188,9 @@
                     $game->setPicture($document);
 
 
-                $manager->persist($document);
+                    $manager->persist($document);
             
-            }else
-            {
-                $edit->setPicture($picture);
-            }
+                }
             $manager->flush();
 
                     $manager->persist($document);
@@ -242,10 +239,11 @@
             if($formEdit->isSubmitted() && $formEdit->isValid())    {
                 
                 $file = $edit->getPicture();
-                $filename = uniqid().'.'.$file->guessExtension();
+                
                 $manager = $this->getDoctrine()->getManager();
                 if($file){
 
+                    $filename = uniqid().'.'.$file->guessExtension();
                     $document = new Document();
                     $document->setPath($this->getParameter('upload_dir'))
                         ->setMimeType($file->getMimeType())
@@ -257,6 +255,9 @@
 
                     $manager->persist($document);
                 
+                }else
+                {
+                    $edit->setPicture($picture);
                 }
                 $manager->flush();
 

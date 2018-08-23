@@ -6,12 +6,16 @@ homepage:
     path: /
     controller: App\Controller\DefaultController::homepage
 
+post_own_delete:
+    path: /delete/{postID}
+    controller: App\Controller\PostController::deleteOwnPost
+
 index_list:
-    path: / #chnage the fucking path here
+    path: / #change the fucking path here
     controller: App\Controller\PostController::homePosts
 
-sign_in:
-    path: /signin
+sign_up:
+    path: /signup
     controller: App\Controller\UserController::userForm
 
 download_document:
@@ -32,6 +36,14 @@ wall_list:
 wall_comment:
     path: /comment/{post}
     controller: App\Controller\CommentController::commentPosts
+
+wall_users:
+    path: /userwall/{userwall}
+    controller: App\Controller\UserController::userWalls
+
+add_ninja:
+    path: /userwall/addninja/{addninja}
+    controller: App\Controller\UserController::addNinja
 
 user_card:
     path: /usercard
@@ -69,6 +81,11 @@ update_password:
     path: /update_password/{currentUser}
     controller: App\Controller\UserController::updateProfilePassword
 
+games:
+    path: /games
+    controller: App\Controller\GameController::gamesList
+
+
 # ADMIN PANEL BELOW
 admin_home:
     path: /admin
@@ -99,8 +116,8 @@ admin_user_detail:
     controller: App\Controller\AdminController::userDetails
 
 admin_user_delete:
-    path: /admin/user/delete/{userDelete}
-    controller: App\Controller\AdminController::userDelete
+    path: /admin/user/delete/{deleteUser}
+    controller: App\Controller\AdminController::deleteUser
 
 admin_post_delete:
     path: /admin/post/delete/{deletePost}

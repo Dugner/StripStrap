@@ -3,39 +3,51 @@
 {% block title %} {{parent()}} Search {% endblock %}
 
 {% block body %}
+<div class="container">
+    {{ form (userSearch) }}
+    {% if users is empty %}
+        <p>No Users found in the application</p>
+    {% else %}
+        <div class="table-container">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Username</th>
+                        <th>Picture</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {{ dump(friendId )}}
+                    {% for user in users %}
+                        <tr>
+                            <td>                            
+                           
+                            <a href="{{ path('add_ninja', { addninja: user.getId() }) }}"><i style="font-size: 2.4em" class="fas fa-user-ninja"></i></a>
 
-{{ form (userSearch) }}
-
-{% if users is empty %}
-                <p>No Users found in the application</p>
-            {% else %}
-
-                <div class="table-container">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>Username</th>
-                                <th>Picture</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {% for user in users %}
-                                <tr>
-                                    <td>{{ user.getUsername() }}</td>
-                                    <td><img class="card-img-top" src="{{ path('download_document', {'document': app.user.getPicture().getId()})  }}" alt="Card image cap"></td>
-                                    <td>
-                                    <a href="{{ path('admin_user_detail', { user: user.getId() }) }}"><i class="fas fa-pen-square"></i></a>
-                                    <a href="{{ path('admin_user_delete', { deleteUser: user.getId() })}}"><i class="fas fa-minus-square"></i></a>
-                                    </td>
-                                </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
-                </div>
-            {% endif %}
-
-
-
+                                <a href="{{ path('wall_users', {userwall: user.getId()}) }}">{{ user.getUsername() }}</a>
+                            </td>
+                            <td>
+                                <a href="{{ path('wall_users', {userwall: user.getId()}) }}">
+                                {% if user.getPicture() is not empty %}
+                                    <img style="width: 40px; height: 40px;" class="card-img-top" src="{{ path('download_document', {'document': user.getPicture().getId()})  }}" alt="Thumbnail of user avatar">
+                                {% else %}
+                                    <img style="width: 40px; height: 40px;" class="card-img-top" src="{{ asset('img/default.jpg') }}" alt="Default avatar for user">
+                                {% endif %}
+                                {# <img style="width: 40px; height: 40px;" class="card-img-top" src="{{ path('download_document', {'document': user.getPicture().getId()})  }}" alt="Card image cap"> #}
+                                </a>
+                            </td>
+                            <td>
+                                <a href="{{ path('add_ninja', { addninja: user.getId() }) }}">
+                                    <i style="font-size: 2.4em" class="fas fa-user-ninja"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% endif %}
+</div>
 {% endblock %}
 
