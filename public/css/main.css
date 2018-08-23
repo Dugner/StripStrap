@@ -238,7 +238,7 @@ footer p{
     overflow-x: auto;
 }
 
-/* Login Page */
+/* LOGIN PAGE */
 
 .btn{
     background-color: rgb(7, 223, 43);
@@ -246,4 +246,21 @@ footer p{
 }
 .btn:hover{
     background-color: rgb(7, 114, 27);
+}
+
+/* PROFILE PAGE */
+.col-md-5{
+    background-color: rgba(44, 44, 44, 0.568);
+}
+.col-md-5 h5{
+    color:rgb(7, 223, 43);
+    text-align: center;
+    font-size: 2rem;
+    margin: 30px;
+}
+.col-md-5 h6, .col-md-5 p{
+    font-family: 'Arimo', cursive;
+}
+.col-md-5 .card-img-top{
+    width: 50%;
 }
