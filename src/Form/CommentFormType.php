@@ -24,7 +24,7 @@ class CommentFormType extends AbstractType
             $builder->add(
                 'submit', 
                 SubmitType::class,
-                ['attr' => ['class' => 'btn-success btn-block']]
+                ['attr' => ['class' => 'btn btn-block']]
             );
         }
     }
