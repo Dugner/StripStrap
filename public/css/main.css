@@ -245,7 +245,7 @@ footer p{
     color: #000;
 }
 
-/* Login Page */
+/* LOGIN PAGE */
 
 .btn{
     background-color: rgb(7, 223, 43);
@@ -268,7 +268,11 @@ option
 {
     color: black;
 }
+.g-recaptcha{
+    margin-top: 10px;
+    margin-bottom: 15px;
 
+}
 
 /* PROFILE PAGE */
 

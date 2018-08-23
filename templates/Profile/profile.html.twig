@@ -3,11 +3,11 @@
 {% block title %}{{parent()}} Profile page{% endblock %}
 
 {% block body %}
-<div class="profileSection"> 
+<div class="profileSection" id="profile"> 
     <div class="row">
         <div class="col-md-4">
             <div>
-                <h1> My details </h1>
+                <h1 id="details"> My details </h1>
                 <div class="userPart">
                     <div>
                         {% if app.user.getPicture is empty %}
@@ -19,7 +19,7 @@
                     </div>
                     <div>
                         <h4 class="username"> {{ app.user.getUsername() }} <h4>
-                        <h6> {{ app.user.getFirstname() }} {{ app.user.getLastname() }} <h6>
+                        <h6> {{ app.user.getFirstname() }}{{ app.user.getLastname() }} <h6>
                         <p> {{ app.user.getEmail() }} </p>
                         <p> {{ app.user.getCountry() }} </p>
                         <p> {{ app.user.getDateOfBirth()| date('Y-m-d') }} </p>
@@ -130,5 +130,6 @@
     {% endif %}
 
     {# <div> {{ form() }} </div> #}
+
 
 {% endblock %}
