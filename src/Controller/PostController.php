@@ -72,8 +72,6 @@ class PostController extends Controller
         {
             $manager->remove($postID);
             $manager->flush();
-
-            return $this->redirectToRoute('homepage');
         }
 
         return $this->redirectToRoute('homepage');

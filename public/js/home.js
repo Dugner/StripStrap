@@ -134,7 +134,7 @@ $(function()
     });
 
     // password
-    regex = new RegExp('^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9!?@#$%^&*()_]+){8,20}$');
+    regex = new RegExp('^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9!?@#$%^&*()_.,]+){8,20}$');
     regex1 = new RegExp('([A-Z]+)');
     regex2 = new RegExp('([0-9]+)');
 
