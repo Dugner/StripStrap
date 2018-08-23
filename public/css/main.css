@@ -135,6 +135,7 @@ img.thumbnail{
 
 div.pagination{
     justify-content: center;
+    color: red;
 }
 
 .page-link{
@@ -264,4 +265,28 @@ footer p{
 option 
 {
     color: black;
+}
+
+
+/* PROFILE PAGE */
+
+i.fas.fa-user-plus{
+    color: rgb(7, 223, 43);
+}
+i.fas.fa-edit{
+    color: #ffc107;
+}
+i.fas.fa-trash-alt{
+    color: #dc3545;
+}
+.profileSection {
+    margin: auto 50px;
+}
+.userPart{
+    display: flex;
+    flex-direction: row;    
+    justify-content: space-around;
+}
+h4{
+    color: rgb(7, 114, 27);
 }
