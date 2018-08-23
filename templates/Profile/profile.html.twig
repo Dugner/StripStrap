@@ -7,7 +7,31 @@
     <div class="row">
         <div class="col-md-4">
             <div>
-                <h1 id="details"> My details </h1>
+                <h1 id="details"> 
+                    My details  
+                    <a href="{{ path('update_profile', { 'currentUser' : app.user.getId() }) }}" class="text-warning"><i class="fas fa-edit"></i></a>
+                    <a href="{{ path('update_password', { 'currentUser' : app.user.getId() }) }}" class="text-primary"><i class="fas fa-key"></i></a>
+                    <a data-toggle="modal" data-target="#deleteUserModal" class="text-danger"><i class="fas fa-trash-alt"></i></a>
+                </h1>
+
+                <!-- Modal -->
+                <div class="modal fade" id="deleteUserModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="deleteModalLabel">Delete this profile</h5>
+                    </div>
+                    <div class="modal-body">
+                        Do you want delete your profile ?
+                    </div>
+                    <div class="modal-footer">
+                        <a href="{{ path('delete_profile', { 'currentUser' : app.user.getId() }) }}" style="text-decoration: none;" class="btn btn-success">
+                        Yes</a>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
+                    </div>
+                    </div>
+                </div>
+                </div>
                 <div class="userPart">
                     <div>
                         {% if app.user.getPicture is empty %}
@@ -49,7 +73,9 @@
                 {% else %}
 
                 <ul>
-                    <li> {{ app.user.getUserCharacters()[0].getGame().getTitle()}} </li>
+                    {% for character in app.user.getUserCharacters() %}
+                        <li> {{ character.getGame().getTitle()}} </li>
+                    {% endfor %}
                 </ul>
                 {% endif %}
             </div>
