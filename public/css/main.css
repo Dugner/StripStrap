@@ -264,3 +264,10 @@ footer p{
 .col-md-5 .card-img-top{
     width: 50%;
 }
+
+/* SIGNUP */
+.g-recaptcha{
+    margin-top: 10px;
+    margin-bottom: 15px;
+
+}
