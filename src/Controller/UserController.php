@@ -130,7 +130,7 @@ class UserController extends Controller{
 
         $manager = $this->getDoctrine()->getManager();
 
-        $friend->setToUser($addninja->getId());
+        $friend->setToUser($addninja);
 
         $friend->setReport(0);
 
@@ -142,7 +142,8 @@ class UserController extends Controller{
 
         return $this->redirectToRoute('search');
         
+        
     }
 
-
+    
 }
