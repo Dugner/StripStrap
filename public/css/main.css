@@ -10,7 +10,6 @@ h1, h2, h3, h4, h5, h6, .navbar {
     color: lightgrey;
 }
 body {
-    /* width: 1200px; */
     margin: auto;
     min-height: 100vh;
     background-image: url(../img/fond.jpg);
@@ -51,7 +50,6 @@ a:hover{
 }
 .navbar.navbar-expand-md.fixed-top{
     background-color: rgb(14, 2, 29);
-    max-width: 1200px;
     margin: auto;
 }
 #navbarsExampleDefault{
@@ -126,6 +124,7 @@ img.thumbnail{
 
 
 #banner {
+    background-color: #000;
     background-image: url('../img/banniere.png');
     background-size: cover;
     border-radius: 0 0 5px 5px;
@@ -140,6 +139,9 @@ img.thumbnail{
     color: rgb(7, 223, 43);
     margin: 540px 0 0 0;
     text-shadow: 0 0 7px #000, 0 0 3px #000;
+}
+.fa.fa-gamepad{
+    color: rgb(7, 223, 43);
 }
 
 div.pagination{
@@ -162,11 +164,6 @@ a.page-link:hover{
 }
 .page-link:hover{
     background-color:white;
-}
-@media (max-width: 768px){
-    #leftbar, #rightbar{
-        display: none;
-    }
 }
 .col-md-6 p{
     color: black;
@@ -306,4 +303,56 @@ td.text-center{
     display: flex;  
     flex-direction: row;
     justify-content: space-evenly;
+}
+i.fas.fa-trash-alt.profile, i.fas.fa-key.profile, i.fas.fa-edit.profile{
+    font-size: 1.5rem;
+}
+div.modal-footer .btn-danger{
+    background-color: #dc3545;
+}
+div.modal-footer .btn-danger:hover{
+    background-color: #ad1f2d;
+}
+
+/* MEDIA QUERIES */
+
+@media (max-width: 1200px){
+    #banner{
+        background-position: center;
+        height: 500px;
+    }
+    #banner h1{
+        margin: 17rem 2rem 0 2rem;
+    }
+    #rightbar{
+        display: none;
+        margin: auto;
+    }
+    .row{
+        position: relative;
+    }
+    .col-md-3{
+        position: relative;
+        left: 3rem;
+    }
+    .col-md-6{
+        position: relative;
+        right: -10rem;
+    }
+}
+
+@media (max-width: 768px){
+    body{
+        max-width: 100%;
+    }
+    #banner{
+        background-image: none;
+        height: 300px;
+    }
+    #banner h1{
+        margin: auto;
+    }
+    #leftbar, #rightbar{
+        display: none;
+    }
 }
