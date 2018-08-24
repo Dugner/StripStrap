@@ -3,10 +3,10 @@
 {% block title %}{{parent()}}{{ titleForm }}{% endblock %}
 
 {% block body %}
-    <div class="row">
+    <div class="row" id="addChar">
         <div class="col-md-3"></div>
 
-        <div class="col-md-6">
+        <div class="col-md-6 alone">
             <h2>{{ titleForm }}</h2>
             
             {{ form(characterForm) }}

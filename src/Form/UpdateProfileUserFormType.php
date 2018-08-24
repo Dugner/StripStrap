@@ -46,7 +46,8 @@ class UpdateProfileUserFormType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => User::class,
-            'standalone' => false
+            'standalone' => false,
+            'validation_groups' => ['update']
         ]);
     }
 }

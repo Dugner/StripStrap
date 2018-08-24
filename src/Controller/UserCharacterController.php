@@ -129,4 +129,16 @@ class UserCharacterController extends AbstractController
             ]
         );
     }
+    
+    public function reportCharacter($character_id) {
+        $manager = $this->getDoctrine()->getManager();
+        $userCharacter = $manager->getRepository(UserCharacter::class)->find($character_id);
+
+        if(!empty($userCharacter)) {
+            $userCharacter->setReport(true);
+            $manager->flush();
+        }
+
+        return $this->redirectToRoute('wall_users', ['userwall' => $userCharacter->getUser()->getId()]);
+    }
 }

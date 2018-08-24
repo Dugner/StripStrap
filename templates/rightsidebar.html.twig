@@ -14,7 +14,10 @@
 <h2> <a id="gamesButton" href="{{ path('games') }}#gameGames">Games</a></h2>
 {% for game in games %}
     <ul>
-        <li><a href="#">{{ game.getTitle() }}</a> <p>{{ game.getDescription|slice(0,75) }}..</p></li>
+        <li>
+            <a href="#">{{ game.getTitle() }}</a> 
+            <p>{{ game.getDescription|slice(0,75) }}..</p>
+        </li>
     </ul>
 
     {% else %}

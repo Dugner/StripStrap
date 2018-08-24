@@ -4,9 +4,9 @@
 
 {% block body %}
 <div class="profileSection" id="profile"> 
-    <div class="row">
+    <div class="row" id="columnProfile">
         <div class="col-md-4">
-            <div>
+            <div class="profileResponsive">
                 <h1 id="details"> 
                     My details  
                     <a href="{{ path('update_profile', { 'currentUser' : app.user.getId() }) }}" class="text-warning">
@@ -38,13 +38,13 @@
                         </div>
                     </div>
                 </div>
-                <div class="userPart">
+                <div class="userPartResponsive">
                     <div>
                         {% if app.user.getPicture is empty %}
-                        <img width="200" src="../img/default.jpg" alt="Card image cap">
+                        <img class="profileImage" width="200" src="../img/default.jpg" alt="Card image cap">
 
                         {% else %}
-                        <img width="200"src="{{ path('download_document', {'document': app.user.getPicture().getId()})  }}" alt="Card image cap" >
+                        <img class="profileImage" width="200"src="{{ path('download_document', {'document': app.user.getPicture().getId()})  }}" alt="Card image cap" >
                         {% endif %}
                     </div>
                     <div>
@@ -60,12 +60,14 @@
             <br>
 
             <div>
-                <h1> My Dudes </h1>
+                <h1> My Ninjas </h1>
                 {% if app.user.getFriends() is empty %}
                     You don't have any friend. Become mine <a href="https://giphy.com/gifs/fuck-you-middle-finger-mrs-doubtfire-w1XrYq5PsCbyE">here</a>.
                 {% else %}
                     <ul>
-                        {# <li>{{ app.user.getFriends() }}</li>#}
+                        {% for friend in app.user.getFriends() %}
+                        <li>{{ friend.getToUser().getUsername() }}</li>
+                        {% endfor %}
                     </ul>
                 {% endif %}
             </div>
@@ -91,7 +93,7 @@
             <h1>List of characters</h1>
 
             <div style="font-size: 1.4em;">
-                <a href="{{ path('add_character') }}" style="text-decoration: none;">
+                <a href="{{ path('add_character') }}#addChar" style="text-decoration: none;">
                     <i class="fas fa-user-plus"></i>
                 </a>
             </div>
@@ -112,6 +114,7 @@
 
                 <tbody>
                     {% for userCharacter in userCharacters %}
+                    {% if userCharacter.getReport() == false %}
                     <tr>
                         <td>{{ userCharacter.getName() }}</td>
                         <td>{{ userCharacter.getLevel() }}</td>
@@ -119,7 +122,7 @@
                         <td>{{ userCharacter.getGame().getTitle() }}</td>
                         {% if userCharacter.getPicture() is not empty %}
                             <td>
-                                <img src="{{ path('download_document', { 'document': userCharacter.getPicture().getId() }) }}" width="200" />
+                                <img src="{{ path('download_document', { 'document': userCharacter.getPicture().getId() }) }}" width="120" />
                             </td>
                         {% else %}
                             <td></td>
@@ -153,6 +156,7 @@
                             </div>
                         </td>
                     </tr>
+                    {% endif %}
                     {% endfor %}
                 </tbody>
             </table>
