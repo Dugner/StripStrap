@@ -25,6 +25,19 @@ $.ajax({
         $('#articleTitlePage').append('<a href="#'+article.title+'">'+article.title+'</a><br><br>');
         $('#homepageArticles').append("<p>"+article.title+"</p>");
 
-        console.log(articles);
+        // console.log(articles);
+    }
+});
+
+$.ajax({
+    method: 'GET',
+    url: '/game/videos',
+    data: {page: appConfig.api_limit},
+    dataType: "json"
+}).done(function(videos){
+    for(video of videos){
+        $('#videosTitlePage').append('<a href="#'+video.title+'">'+video.title+'</a><br><br>');
+        $('#videos').append('<h2 id="'+video.title+'">'+video.title+'</h2>');
+        $('#videos').append('<video width="600" height="400" controls><source src="'+video.low_url+'" type="video/mp4" preload="auto|metadata|none">Your browser does not support the video tag.</video><br><hr>')
     }
 });
