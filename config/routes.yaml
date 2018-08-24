@@ -91,7 +91,11 @@ get_gamespot_events:
 
 get_game_articles:
     path: /game/articles
-    controller: App\Controller\DefaultController::getGameArticles
+    controller: App\Controller\ArticlesController::getGameArticles
+
+articles_page:
+    path: /articles
+    controller: App\Controller\ArticlesController:articlesPage
 
 # ADMIN PANEL BELOW
 admin_home:
