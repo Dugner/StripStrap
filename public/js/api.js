@@ -17,7 +17,13 @@ $.ajax({
     dataType: "json"
 }).done(function(articles){
     for(let article of articles){
-        $('#articles').append("<h5>"+article.title+"</h5>");
+        $('#articles').append('<h2 id="'+article.title+'">'+article.title+'</h2>');
+        $('#articles').append("<p>"+article.body+"</p>");
+        $('#articles').append("<small>"+article.authors+","+article.publish_date+"</small><hr>");
+        // $('#articleTitle').append(article.title+"<br>");
+        $('#articleTitle').append('<a href="#'+article.title+'">'+article.title+'</a><br><br>');
+        $('#homepageArticles').append("<p>"+article.title+"</p>");
+
         console.log(articles);
     }
 });
