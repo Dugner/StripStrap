@@ -192,7 +192,6 @@ class UserController extends Controller{
         $userDisplay = $this->getDoctrine()->getManager();
 
         $userCard = $userDisplay->getRepository(User::class)->findBy(['id'=>$userwall]);
-
         $userPost = $userDisplay->getRepository(Post::class)->findBy(['user'=>$userCard]);
 
         return $this->render(
@@ -206,27 +205,18 @@ class UserController extends Controller{
 
     public function addNinja(User $addninja)
     {
-
         $friend = new Friend();
-
         $userId = $this->get('security.token_storage')->getToken()->getUser();
 
         $manager = $this->getDoctrine()->getManager();
 
         $friend->setToUser($addninja);
-
         $friend->setReport(0);
-
         $friend->setUser($userId);
 
         $manager->persist($friend);
-
         $manager->flush($friend);
 
-        return $this->redirectToRoute('search');
-        
-        
-    }
-
-    
+        return $this->redirectToRoute('search');   
+    }  
 }

@@ -21,8 +21,10 @@
     {% endfor %}
     {% endif %}
     
+    {% if app.user.isFriend(user) == false %}
     <br>
     <a href="{{ path('user_info') }}#details" class="btn btn-block">Add Ninja</a>
+    {% endif %}
   </div>
 </div>
 {% else %}

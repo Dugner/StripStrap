@@ -219,7 +219,7 @@
             
             return $this->render(
                 'Admin/Game/gamelist.html.twig',
-                ['gamelist' => $manager->getRepository(Game::class)->findAll()]
+                ['gamelists' => $manager->getRepository(Game::class)->findAll()]
             );
         }
 
