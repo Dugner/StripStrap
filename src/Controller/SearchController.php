@@ -15,25 +15,19 @@ class SearchController extends Controller
     public function userSearchCont(Request $request)
     {
         $manager = $this->getDoctrine()->getManager();
-
-        $myId = $this->getUser()->getId();
         $dto = new UserSearchBar();
 
         $searchForm = $this->createForm(SearchFormType::class, $dto, ['standalone' => true]);
         
         $searchForm -> handleRequest($request);
 
-        $user = $manager->getRepository(User::class)->findByUserSearchBar($dto);
-
-        $friendId = $manager->getRepository(Friend::class)->findAll();
-
+        $users = $manager->getRepository(User::class)->findByUserSearchBar($dto);
 
         return $this->render(
             'search/search.html.twig',
             [
-                'friendId'=>$friendId,
-                'myId'=>$myId,
-                'users'=>$user,
+                'users' => $users,
+                'friends' => $this->getUser()->getFriends(),
                 'userSearch' => $searchForm->createView()
             ]
 

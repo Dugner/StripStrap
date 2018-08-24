@@ -18,23 +18,23 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {% for gamelists in gamelist %}
+                        {% for gamelist in gamelists %}
                             <tr>
-                                <td>{{ gamelists.getTitle() }}</td>
-                                <td>{{ gamelists.getDescription() }}</td>
-                                {% if gamelists.getPicture() is not empty %}
-                                    <td><img src="{{ path('admin_picture', {'document': gamelists.getPicture().getId()}) }}" width='40px'></td>
+                                <td>{{ gamelist.getTitle() }}</td>
+                                <td>{{ gamelist.getDescription() }}</td>
+                                {% if gamelist.getPicture() is not empty %}
+                                    <td><img src="{{ path('admin_picture', {'document': gamelist.getPicture().getId()}) }}" width='40px'></td>
                                 {% else %}   
                                     <td></td>
                                 {% endif %}
                                 <td>
-                                    <a class="helping" href="{{ path('admin_game_edit', {edit: gamelists.getId()}) }}">
+                                    <a class="helping" href="{{ path('admin_game_edit', {edit: gamelist.getId()}) }}">
                                         <i class="fas fa-pen-square"></i>
                                         <div class="help hidden">
                                             <p><strong>Help:</strong> Update the details of the game</p>
                                         </div>
                                     </a>
-                                    <a class="helping" href="{{ path("admin_gamelist_delete", {delete: gamelists.getId()}) }}">
+                                    <a class="helping" href="{{ path("admin_gamelist_delete", {delete: gamelist.getId()}) }}">
                                         <i class="fas fa-minus-square"></i>
                                         <div class="help hidden">
                                             <p><strong>Help:</strong> Delete the game, please be carefully</p>

@@ -340,4 +340,13 @@ class User implements UserInterface, \Serializable
         $this->posts,
         $this->comments) = unserialize($serialized);
     }
+
+    public function isFriend(User $user) {
+        foreach($this->getFriends() as $friend) {
+            if($friend->getToUser()->getId() == $user->getId())
+                return true;
+        }
+
+        return false;
+    }
 }

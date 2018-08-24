@@ -61,16 +61,21 @@ class UserController extends Controller{
                 $file->move($this->getParameter('upload_dir'));
                 $user->setPicture($document);
                 $manager->persist($document);
-            }//else{
-            //     $filename= 'default.jpg';
+            }else{
 
-            //     $document = new Document();
-            //     $document->setPath('public/assets/img')
-            //     ->setName($filename);
+                $fileneme = 'Default.png';
 
-            //     $user->setPicture($document);
-            //     $manager->persist($document);
-            // }
+                $document = new Document();
+                $document->setPath($this->getParameter('upload_dir'))
+                    ->setName($fileneme)
+                    ->setMimeType('image/png');
+                //$document->setPath($this->getParameter('upload_dir'))
+                //->setMimeType($file->getMimeType())
+                //->setName($file->getFilename());
+
+                $user->setPicture($document);
+                $manager->persist($user);
+            }
 
             $user->addRole($manager->getRepository(Role::class)->findOneBy(['label' => 'ROLE_USER']));
 
@@ -192,7 +197,6 @@ class UserController extends Controller{
         $userDisplay = $this->getDoctrine()->getManager();
 
         $userCard = $userDisplay->getRepository(User::class)->findBy(['id'=>$userwall]);
-
         $userPost = $userDisplay->getRepository(Post::class)->findBy(['user'=>$userCard]);
 
         return $this->render(
@@ -206,27 +210,18 @@ class UserController extends Controller{
 
     public function addNinja(User $addninja)
     {
-
         $friend = new Friend();
-
         $userId = $this->get('security.token_storage')->getToken()->getUser();
 
         $manager = $this->getDoctrine()->getManager();
 
         $friend->setToUser($addninja);
-
         $friend->setReport(0);
-
         $friend->setUser($userId);
 
         $manager->persist($friend);
-
         $manager->flush($friend);
 
-        return $this->redirectToRoute('search');
-        
-        
-    }
-
-    
+        return $this->redirectToRoute('search');   
+    }  
 }
