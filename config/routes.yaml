@@ -97,6 +97,13 @@ articles_page:
     path: /articles
     controller: App\Controller\ArticlesController:articlesPage
 
+videos_page:
+    path: /videos
+    controller: App\Controller\VideosController:videosPage
+
+get_game_videos:
+    path: /game/videos
+    controller: App\Controller\VideosController:getGameVideos
 # ADMIN PANEL BELOW
 admin_home:
     path: /admin

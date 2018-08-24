@@ -1,6 +1,20 @@
 {% extends 'base.html.twig' %}
 
 {% block title %} {{parent()}} Videos {% endblock %}
-
+{% block apiLimit %}30{% endblock %}
 {% block body %}
+
+<div class="row">
+<div class="col-md-3">
+<h2>Title</h2>
+<ul><li><h4 id="videosTitlePage"><h4></li></ul>
+</div>
+<div id="videos" class="col-md-8">
+<h1 id="gameVideos" class="text-center">Games Videos</h1>
+</div>
+<div class="col-md-1"></div>
+
+
+
+</div>
 {% endblock %}
