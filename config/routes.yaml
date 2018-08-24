@@ -69,7 +69,6 @@ edit_character:
     path: /edit_character/{character_id}
     controller: App\Controller\UserCharacterController::editCharacter
 
-
 update_profile:
     path: /update_profile/{currentUser}
     controller: App\Controller\UserController::updateProfileUser
@@ -104,6 +103,10 @@ videos_page:
 get_game_videos:
     path: /game/videos
     controller: App\Controller\VideosController:getGameVideos
+report_character:
+    path: /report_character/{character_id}
+    controller: App\Controller\UserCharacterController::reportCharacter
+
 # ADMIN PANEL BELOW
 admin_home:
     path: /admin

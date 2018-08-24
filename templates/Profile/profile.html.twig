@@ -112,6 +112,7 @@
 
                 <tbody>
                     {% for userCharacter in userCharacters %}
+                    {% if userCharacter.getReport() == false %}
                     <tr>
                         <td>{{ userCharacter.getName() }}</td>
                         <td>{{ userCharacter.getLevel() }}</td>
@@ -125,6 +126,9 @@
                             <td></td>
                         {% endif %}
                         <td class="text-center">
+                            <a href="{{ path('report_character', { 'character_id': userCharacter.getId() }) }}" class="text-primary">
+                                <i class="fab fa-font-awesome-flag"></i>
+                            </a>
                             <a href="{{ path('edit_character', { 'character_id': userCharacter.getId() }) }}">
                                 <i class="fas fa-edit"></i>
                             </a>
@@ -153,6 +157,7 @@
                             </div>
                         </td>
                     </tr>
+                    {% endif %}
                     {% endfor %}
                 </tbody>
             </table>
