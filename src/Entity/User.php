@@ -29,39 +29,40 @@ class User implements UserInterface, \Serializable
     private $username;
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\NotBlank()
-     * Assert\Length(min=3, max=255)
+     * @Assert\NotBlank(groups={"default", "update"})
+     * @Assert\Length(min=3, max=255, groups={"default", "update"})
      */
     private $firstname;
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\NotBlank()
-     * Assert\Length(min=3, max=255)
+     * @Assert\NotBlank(groups={"default", "update"})
+     * @Assert\Length(min=3, max=255, groups={"default", "update"})
      */
     private $lastname;
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\NotBlank()
-     * Assert\Length(min=8, max=255)
+     * @Assert\NotBlank(groups={"default"})
+     * @Assert\Length(min=8, max=255, groups={"default"})
      * @Assert\Regex(
      *      pattern="/^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9!?@#$%^&*()_.,]+){8,20}$/i",
-     *      match=true
+     *      match=true,
+     *      groups={"default"}
      * )
      */
     private $password;
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\NotBlank()
+     * @Assert\NotBlank(groups={"default", "update"})
      */
     private $email;
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\NotBlank()
+     * @Assert\NotBlank(groups={"default", "update"})
      */
     private $country;
     /**
      * @ORM\Column(type="date")
-     * @Assert\NotBlank()
+     * @Assert\NotBlank(groups={"default", "update"})
      */
     private $dateOfBirth;
     /**
