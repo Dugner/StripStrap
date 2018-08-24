@@ -14,6 +14,7 @@ $.ajax({
 $.ajax({
     method: 'GET',
     url: '/game/articles',
+    data: {page: appConfig.api_limit},
     dataType: "json"
 }).done(function(articles){
     for(let article of articles){
@@ -21,7 +22,7 @@ $.ajax({
         $('#articles').append("<p>"+article.body+"</p>");
         $('#articles').append("<small>"+article.authors+","+article.publish_date+"</small><hr>");
         // $('#articleTitle').append(article.title+"<br>");
-        $('#articleTitle').append('<a href="#'+article.title+'">'+article.title+'</a><br><br>');
+        $('#articleTitle').append(article.title+"<br><br>");
         $('#homepageArticles').append("<p>"+article.title+"</p>");
 
         console.log(articles);
