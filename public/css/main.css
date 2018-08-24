@@ -363,6 +363,14 @@ div.modal-footer .btn-danger:hover{
     .col-md-8{
         margin: auto;
     }
+    .col-md-8.videos{
+        position: relative;
+        right: -7rem;
+    }
+    .col-md-8.articles{
+        position: relative;
+        right: -5rem;
+    }
     .userPartResponsive{
         display: flex;
         flex-direction: row;

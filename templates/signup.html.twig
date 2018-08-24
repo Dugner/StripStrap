@@ -3,10 +3,9 @@
 {% block body %}
 
     <div class="row">
-        <div class="col-md-3" id="leftbar">
-        </div>
+        <div class="col-md-3" id="leftbar"></div>
 
-            <div class="col-md-6">
+            <div class="col-md-6 alone">
                 {% block mainsection %}
                 <h1 id="sign"> Sign in </h1>
                     {# {{ form(user_form) }} #}
@@ -66,8 +65,6 @@
                 {% endblock %}
             </div>
 
-        <div class="col-md-3" id="rightbar">
-
-        </div>
+        <div class="col-md-3" id="rightbar"></div>
     </div>
 {% endblock %}
