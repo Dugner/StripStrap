@@ -18,13 +18,11 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {% for user in users %}
+                    {% for user in users %}             
                         <tr>
+                            {% if user.getId() != app.user.getId() %}
                             <td>                            
-                           
-                            {# <a href="{{ path('add_ninja', { addninja: user.getId() }) }}"><i style="font-size: 2.4em" class="fas fa-user-ninja"></i></a> #}
-
-                                <a href="{{ path('wall_users', {userwall: user.getId()}) }}">{{ user.getUsername() }}</a>
+                            <a href="{{ path('wall_users', {userwall: user.getId()}) }}">{{ user.getUsername() }}</a>
                             </td>
                             <td>
                                 <a href="{{ path('wall_users', {userwall: user.getId()}) }}">
@@ -35,12 +33,15 @@
                                 {% endif %}
                                 {# <img style="width: 40px; height: 40px;" class="card-img-top" src="{{ path('download_document', {'document': user.getPicture().getId()})  }}" alt="Card image cap"> #}
                                 </a>
-                            </td>
+                            </td>                               
                             <td>
+                                {% if app.user.isFriend(user) == false %}
                                 <a href="{{ path('add_ninja', { addninja: user.getId() }) }}">
                                     <i style="font-size: 2.4em" class="fas fa-user-ninja"></i>
                                 </a>
-                            </td>
+                                {% endif %}
+                            </td>                           
+                            {% endif %}
                         </tr>
                     {% endfor %}
                 </tbody>
