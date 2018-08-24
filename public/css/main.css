@@ -20,6 +20,9 @@ body {
 hr{
     background-color: lightgray;
 }
+table.table.table-striped.homepage td, table.table.table-striped.homepage th{
+    color: black;
+}
 
 /* NAVBAR */
 
@@ -258,6 +261,14 @@ footer p{
     background-color: rgb(7, 114, 27);
 }
 
+#games{
+    margin-top: 3rem;
+}
+
+#games h3{
+    text-align: center;
+}
+
 /*
     SignUp Page
 */
@@ -338,6 +349,27 @@ div.modal-footer .btn-danger:hover{
     .col-md-6{
         position: relative;
         right: -10rem;
+    }
+    .col-md-6.alone{
+        position: relative;
+        left: 0rem;
+    }
+    #columnProfile{
+        flex-direction: column;
+    }
+    .col-md-4{
+        margin: auto;
+    }
+    .col-md-8{
+        margin: auto;
+    }
+    .userPartResponsive{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+    }
+    .profileImage{
+        width: 100px;
     }
 }
 
