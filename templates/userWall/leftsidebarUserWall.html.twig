@@ -12,7 +12,7 @@
     <h5 class="card-title">{{ user.getUsername()}} </h5>
 
     {% if user.getUserCharacters() is empty %}
-    <p>YOU DON'T PLAY ANY GAME ?? Impossible..</p>
+    <p>Doesn't play any game.. Probably a noob.. You should go away from his wall, <a href="{{ path('homepage') }}">here.</a></p>
     {% else %}
     {% for caracters in user.getUserCharacters() %}
     <h6> {{ caracters.getName() }} </h6>
