@@ -138,25 +138,25 @@ class DefaultController extends Controller
         return new BinaryFileResponse($fileName);
     }
 
-    // public function getGamespotEvents(Request $request){
+    public function getGamespotEvents(Request $request){
 
-    //         // Create a client with a base URI
-    //         $client = new \GuzzleHttp\Client(['base_uri' => 'http://www.gamespot.com']);
+            // Create a client with a base URI
+            $client = new \GuzzleHttp\Client(['base_uri' => 'http://www.gamespot.com']);
             
-    //         $url = '/api/events/?api_key=501115dce72ea28ea903e0150924102c489f0810&format=json&limit=8';
+            $url = '/api/events/?api_key=501115dce72ea28ea903e0150924102c489f0810&format=json&limit=8';
 
-    //         if ($request->query->has('page')) {
-    //             $url .= '?page='.$request->query->get('page');
-    //         }
+            if ($request->query->has('page')) {
+                $url .= '?page='.$request->query->get('page');
+            }
 
-    //         $response = $client->request('GET', $url);
+            $response = $client->request('GET', $url);
             
-    //         if ($response->getStatusCode() != 200) {
-    //             return $this->json(json_decode($response->getBody()->getContents()), 500);
-    //         }
+            if ($response->getStatusCode() != 200) {
+                return $this->json(json_decode($response->getBody()->getContents()), 500);
+            }
 
-    //         return new JsonResponse(json_decode($response->getBody()->getContents())->results);
+            return new JsonResponse(json_decode($response->getBody()->getContents())->results);
 
-    // }
+    }
 
 }
