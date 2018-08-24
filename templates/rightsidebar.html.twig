@@ -11,7 +11,7 @@
 <br>
 <h2><a href="{{ path('videos_page') }}#videosPage">Videos</h2>
 <p>See more in the page <i class="fas fa-angle-double-up"></i></p>
-<h2> <a id="gamesButton" href="{{ path('games') }}">Games</a></h2>
+<h2> <a id="gamesButton" href="{{ path('games') }}#gameGames">Games</a></h2>
 {% for game in games %}
     <ul>
         <li><a href="#">{{ game.getTitle() }}</a> <p>{{ game.getDescription|slice(0,75) }}..</p></li>

@@ -84,10 +84,9 @@ update_password:
 games:
     path: /games
     controller: App\Controller\GameController::gamesList
-
-get_gamespot_events:
-    path: /gamespot/events
-    controller: App\Controller\DefaultController::getGamespotEvents
+get_games:
+    path: /game/games
+    controller: App\Controller\GameController:getGames
 
 get_game_articles:
     path: /game/articles
@@ -104,6 +103,12 @@ videos_page:
 get_game_videos:
     path: /game/videos
     controller: App\Controller\VideosController:getGameVideos
+events_page:
+    path: /events
+    controller: App\Controller\EventsController:eventsPage
+events_game_page:
+    path: /game/events
+    controller: App\Controller\EventsController:getGameEvents
 # ADMIN PANEL BELOW
 admin_home:
     path: /admin
