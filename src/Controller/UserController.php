@@ -69,9 +69,6 @@ class UserController extends Controller{
                 $document->setPath($this->getParameter('upload_dir'))
                     ->setName($fileneme)
                     ->setMimeType('image/png');
-                //$document->setPath($this->getParameter('upload_dir'))
-                //->setMimeType($file->getMimeType())
-                //->setName($file->getFilename());
 
                 $user->setPicture($document);
                 $manager->persist($user);
