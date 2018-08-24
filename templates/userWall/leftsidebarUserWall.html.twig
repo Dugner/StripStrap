@@ -15,9 +15,15 @@
     <p>Doesn't play any game.. Probably a noob.. You should go away from his wall, <a href="{{ path('homepage') }}">here.</a></p>
     {% else %}
     {% for caracters in user.getUserCharacters() %}
-    <h6> {{ caracters.getName() }} </h6>
+    {% if caracters.getReport() == false %}
+    <h6> {{ caracters.getName() }} 
+      <a href="{{ path('report_character', { 'character_id': caracters.getId() }) }}" class="text-warning">
+        <i class="fab fa-font-awesome-flag"></i>
+      </a>
+    </h6>
     <p class="card-text"> {{ caracters.getDetail()|slice(0,140)}}</p>
     <p> {{ caracters.getGame().getTitle()}} </p>
+    {% endif %}
     {% endfor %}
     {% endif %}
     

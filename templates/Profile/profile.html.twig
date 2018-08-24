@@ -60,12 +60,14 @@
             <br>
 
             <div>
-                <h1> My Dudes </h1>
+                <h1> My Ninjas </h1>
                 {% if app.user.getFriends() is empty %}
                     You don't have any friend. Become mine <a href="https://giphy.com/gifs/fuck-you-middle-finger-mrs-doubtfire-w1XrYq5PsCbyE">here</a>.
                 {% else %}
                     <ul>
-                        {# <li>{{ app.user.getFriends() }}</li>#}
+                        {% for friend in app.user.getFriends() %}
+                        <li>{{ friend.getToUser().getUsername() }}</li>
+                        {% endfor %}
                     </ul>
                 {% endif %}
             </div>
@@ -126,9 +128,6 @@
                             <td></td>
                         {% endif %}
                         <td class="text-center">
-                            <a href="{{ path('report_character', { 'character_id': userCharacter.getId() }) }}" class="text-primary">
-                                <i class="fab fa-font-awesome-flag"></i>
-                            </a>
                             <a href="{{ path('edit_character', { 'character_id': userCharacter.getId() }) }}">
                                 <i class="fas fa-edit"></i>
                             </a>
