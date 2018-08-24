@@ -139,6 +139,6 @@ class UserCharacterController extends AbstractController
             $manager->flush();
         }
 
-        return $this->redirectToRoute('user_info');
+        return $this->redirectToRoute('wall_users', ['userwall' => $userCharacter->getUser()->getId()]);
     }
 }

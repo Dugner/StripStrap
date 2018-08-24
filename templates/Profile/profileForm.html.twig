@@ -3,7 +3,15 @@
 {% block title %}{{ titleForm }}{% endblock %}
 
 {% block body %}
-    <h2>{{ titleForm }}</h2>
-    
-    {{ form(profileForm) }}
+    <div class="row">
+        <div class="col-md-3"></div>
+
+        <div class="col-md-6 alone" id="leftbar">
+            <h2>{{ titleForm }}</h2>
+            
+            {{ form(profileForm) }}
+        </div>
+
+        <div class="col-md-3"></div>
+    </div>
 {% endblock %}
