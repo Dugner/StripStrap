@@ -61,16 +61,21 @@ class UserController extends Controller{
                 $file->move($this->getParameter('upload_dir'));
                 $user->setPicture($document);
                 $manager->persist($document);
-            }//else{
-            //     $filename= 'default.jpg';
+            }else{
 
-            //     $document = new Document();
-            //     $document->setPath('public/assets/img')
-            //     ->setName($filename);
+                $fileneme = 'Default.png';
 
-            //     $user->setPicture($document);
-            //     $manager->persist($document);
-            // }
+                $document = new Document();
+                $document->setPath($this->getParameter('upload_dir'))
+                    ->setName($fileneme)
+                    ->setMimeType('image/png');
+                //$document->setPath($this->getParameter('upload_dir'))
+                //->setMimeType($file->getMimeType())
+                //->setName($file->getFilename());
+
+                $user->setPicture($document);
+                $manager->persist($user);
+            }
 
             $user->addRole($manager->getRepository(Role::class)->findOneBy(['label' => 'ROLE_USER']));
 

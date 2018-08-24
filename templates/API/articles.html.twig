@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} {{parent()}} Articles {% endblock %}
+{% block apiLimit %}100{% endblock %}
+{% block body %}
+
+<div class="row">
+<div class="col-md-3">
+<h2>Titles</h2>
+<ul><li><h4 id="articleTitle"><h4></li></ul>
+</div>
+<div id="articles" class="col-md-8">
+<h1 id="gameArticles" class="text-center">Game articles</h1>
+</div>
+<div class="col-md-1"></div>
+
+
+
+
+</div>
+
+
+{% endblock %}
