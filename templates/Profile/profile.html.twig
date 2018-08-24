@@ -59,7 +59,7 @@
                     You don't have any friend. Become mine <a href="https://giphy.com/gifs/fuck-you-middle-finger-mrs-doubtfire-w1XrYq5PsCbyE">here</a>.
                 {% else %}
                     <ul>
-                   {# <li>{{ app.user.getFriends() }}</li>#}
+                        {# <li>{{ app.user.getFriends() }}</li>#}
                     </ul>
                 {% endif %}
             </div>
@@ -106,6 +106,7 @@
 
                 <tbody>
                     {% for userCharacter in userCharacters %}
+                    {% if userCharacter.getReport() == false %}
                     <tr>
                         <td>{{ userCharacter.getName() }}</td>
                         <td>{{ userCharacter.getLevel() }}</td>
@@ -119,6 +120,9 @@
                             <td></td>
                         {% endif %}
                         <td class="text-center">
+                            <a href="{{ path('report_character', { 'character_id': userCharacter.getId() }) }}" class="text-primary">
+                                <i class="fab fa-font-awesome-flag"></i>
+                            </a>
                             <a href="{{ path('edit_character', { 'character_id': userCharacter.getId() }) }}">
                                 <i class="fas fa-edit"></i>
                             </a>
@@ -128,25 +132,26 @@
 
                             <!-- Modal -->
                             <div class="modal fade" id="deleteModal_{{ userCharacter.getName() }}" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
-                            <div class="modal-dialog" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="deleteModalLabel">Delete character</h5>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                        Do you want delete the character {{ userCharacter.getName() }} ? 
-                                    </div>
-                                    <div class="modal-footer">
-                                        <a href="{{ path('delete_character', { 'character_id': userCharacter.getId() }) }}" style="text-decoration: none;" class="btn btn-success">
-                                        Yes</a>
-                                        <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="deleteModalLabel">Delete character</h5>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            Do you want delete the character {{ userCharacter.getName() }} ? 
+                                        </div>
+                                        <div class="modal-footer">
+                                            <a href="{{ path('delete_character', { 'character_id': userCharacter.getId() }) }}" style="text-decoration: none;" class="btn btn-success">
+                                            Yes</a>
+                                            <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                            </div>
                         </td>
                     </tr>
+                    {% endif %}
                     {% endfor %}
                 </tbody>
             </table>

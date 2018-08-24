@@ -17,6 +17,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Security\Core\Encoder\EncoderFactoryInterface;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
+use App\Form\UpdatePasswordUserFormType;
 
 class UserController extends Controller{
 
@@ -61,16 +62,18 @@ class UserController extends Controller{
                 $file->move($this->getParameter('upload_dir'));
                 $user->setPicture($document);
                 $manager->persist($document);
-            }//else{
-            //     $filename= 'default.jpg';
+            } else {
 
-            //     $document = new Document();
-            //     $document->setPath('public/assets/img')
-            //     ->setName($filename);
+                $fileneme = 'Default.png';
 
-            //     $user->setPicture($document);
-            //     $manager->persist($document);
-            // }
+                $document = new Document();
+                $document->setPath($this->getParameter('upload_dir'))
+                    ->setName($fileneme)
+                    ->setMimeType('image/png');
+
+                $user->setPicture($document);
+                $manager->persist($user);
+            }
 
             $user->addRole($manager->getRepository(Role::class)->findOneBy(['label' => 'ROLE_USER']));
 
@@ -180,6 +183,10 @@ class UserController extends Controller{
 
             foreach($currentUser->getPosts() as $post)
                 $manager->remove($post);
+            foreach($currentUser->getFriends() as $friend)
+                $manager->remove($friend);
+            foreach($currentUser->getComments() as $comment)
+                $manager->remove($comment);
             $manager->remove($currentUser);
             $manager->flush();
         }

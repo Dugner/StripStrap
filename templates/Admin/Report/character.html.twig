@@ -6,20 +6,9 @@
         
         <section id="main-container">
 
-            {% set break = false %}
             {% if reportedCharacters is empty %}
                 <p>No reported characters found in the application</p>
             {% else %}
-
-            {% for character in reportedCharacters %}
-                {% if character.getReport() != 1 %}
-                    {% set break = true %}
-                    <p>No reported characters found in the application</p>
-                {% endif %}
-            {% endfor %}
-
-                {% if not break %}
-
                     <div class="table-container">
                         <table class="table">
                             <thead>
@@ -54,15 +43,11 @@
                                                 </a>
                                             </td>
                                         </tr>
-                                    {% else %}
-                                        <p>No reported characters found in the application</p>
                                     {% endif %}
                                 {% endfor %}
                             </tbody>
                         </table>
                     </div>
-
-                {% endif %}
             {% endif %}
 
         </section>

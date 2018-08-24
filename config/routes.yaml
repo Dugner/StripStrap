@@ -80,11 +80,25 @@ delete_profile:
 update_password:
     path: /update_password/{currentUser}
     controller: App\Controller\UserController::updateProfilePassword
-
 games:
     path: /games
     controller: App\Controller\GameController::gamesList
 
+get_gamespot_events:
+    path: /gamespot/events
+    controller: App\Controller\DefaultController::getGamespotEvents
+
+get_game_articles:
+    path: /game/articles
+    controller: App\Controller\ArticlesController::getGameArticles
+
+articles_page:
+    path: /articles
+    controller: App\Controller\ArticlesController:articlesPage
+
+report_character:
+    path: /report_character/{character_id}
+    controller: App\Controller\UserCharacterController::reportCharacter
 
 # ADMIN PANEL BELOW
 admin_home:

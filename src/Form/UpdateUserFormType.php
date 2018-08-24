@@ -36,7 +36,7 @@ class UpdateUserFormType extends AbstractType
 
         if ($options['standalone'])
         {
-            $builder->add('Update', SubmitType::class, ['attr' => ['class' => 'btn-success']]);
+            $builder->add('Update', SubmitType::class, ['attr' => ['class' => 'btn']]);
         }
     }
 
