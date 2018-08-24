@@ -21,11 +21,9 @@ $.ajax({
         $('#articles').append('<h2 id="'+article.title+'">'+article.title+'</h2>');
         $('#articles').append("<p>"+article.body+"</p>");
         $('#articles').append("<small>"+article.authors+","+article.publish_date+"</small><hr>");
-        // $('#articleTitle').append(article.title+"<br>");
+        $('#articleTitle').append(article.title+"<br>");
         $('#articleTitlePage').append('<a href="#'+article.title+'">'+article.title+'</a><br><br>');
-        // article title dans le right side bar /articleTitle
         $('#homepageArticles').append("<p>"+article.title+"</p>");
-        $('#articleTitle').append(article.title);
 
         console.log(articles);
     }
