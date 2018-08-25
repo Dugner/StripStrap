@@ -1,9 +1,9 @@
-{% extends 'base.html.twig' %}
+{#{% extends 'base.html.twig' %}
 
 {% block title %} {{parent()}} Games {% endblock %}
 
 {% block body %}
-{# 
+ 
     <div class="row">
         <div class="col-md-3" id="leftbar">
             {% block leftside %}
@@ -50,6 +50,25 @@
             <br> #}
 
 {# {% endblock %} #}
+{% extends 'base.html.twig' %}
 
+{% block title %} {{parent()}} Videos {% endblock %}
+{% block apiLimit %}30{% endblock %}
+{% block body %}
+
+<div class="row">
+    <div class="col-md-3">
+        <h2 id="gamesPage">Title</h2>
+        <ul>
+            <li><h4 id="gamesTitlePage"><h4></li>
+        </ul>
+    </div>
+    <div id="gamesDiv" class="col-md-8 {#events#}">
+        <h1 id="gameGames" class="text-center">Games</h1>
+        <img src="{{ asset("img/loader.svg") }}" alt="loading" class="games-loader" />
+    </div>
+    <div class="col-md-1">
+    </div>
+</div>
 
 {% endblock %}

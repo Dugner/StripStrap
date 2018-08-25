@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} {{parent()}} Videos {% endblock %}
+{% block apiLimit %}30{% endblock %}
+{% block body %}
+
+<div class="row">
+    <div class="col-md-3">
+        <h2 id="eventsPage">Name</h2>
+        <ul>
+            <li><h4 id="eventsTitlePage"><h4></li>
+        </ul>
+    </div>
+    <div id="events" class="col-md-8 events">
+        <h1 id="gameEvents" class="text-center">Games Events</h1>
+    </div>
+    <div class="col-md-1">
+    </div>
+</div>
+{% endblock %}
