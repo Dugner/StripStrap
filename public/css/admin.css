@@ -73,6 +73,7 @@ i {
   text-decoration: none;
   padding: 0 10px;
   color: #000000;
+  pointer-events: none;
 }
 
 a {
@@ -236,6 +237,7 @@ main #main-container {
   min-width: 300px;
   background: #c0c0c0;
   padding: 15px;
+  margin: 0 0 50px 0;
 }
 
 main #main-container .table-container {
