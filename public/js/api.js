@@ -4,6 +4,7 @@ $.ajax({
     dataType: "json"
 
 }).done(function(events){
+    $('.games-loader').remove();
     for(let event of events){
          $('#games').append("<ul><li><h4 style='color:rgb(7, 223, 43)'>"+ event.title + "</h4><p></li></ul>");
          $('#eventsTitlePage').append('<a href="#'+event.title+'">'+event.title+'</a><br><br>');
@@ -20,6 +21,7 @@ $.ajax({
     data: {page: appConfig.api_limit},
     dataType: "json"
 }).done(function(articles){
+    $('.games-loader').remove();
     for(let article of articles){
         $('#articles').append('<h2 id="'+article.title+'">'+article.title+'</h2>');
         $('#articles').append("<p>"+article.body+"</p>");
@@ -38,6 +40,7 @@ $.ajax({
     data: {page: appConfig.api_limit},
     dataType: "json"
 }).done(function(videos){
+    $('.games-loader').remove();
     for(let video of videos){
         $('#videosTitlePage').append('<a href="#'+video.title+'">'+video.title+'</a><br><br>');
         $('#videos').append('<h2 id="'+video.title+'">'+video.title+'</h2>');
