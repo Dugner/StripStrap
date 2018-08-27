@@ -1,6 +1,6 @@
 <header>
     <nav class="navbar navbar-expand-md">
-        <a class="navbar-brand" href="{{ path('homepage') }}">
+        <a class="navbar-brand" href="{{ path('homepage') }}#posts">
             <img src="{{ asset('img/LogoStripstrapTest.png') }}" width="150" height="70" alt="Logo of StripStrap">
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
@@ -14,7 +14,7 @@
             <ul class="navbar-nav my-2 my-lg-0">
                 {% if is_granted('IS_AUTHENTICATED_FULLY') %}
                 <form class="form-inline mr-auto" id="searchbar">
-                    <a class="nav-link" href="{{ path('search') }}">Search</a>
+                    <a class="nav-link" href="{{ path('search') }}#research">Search</a>
                 </form>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ path('wall_list') }}#wall">Wall</a>
