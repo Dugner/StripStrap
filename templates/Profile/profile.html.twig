@@ -66,7 +66,7 @@
                 {% else %}
                     <ul>
                         {% for friend in app.user.getFriends() %}
-                        <li>{{ friend.getToUser().getUsername() }}</li>
+                        <li><a href="{{ path('wall_users', { 'userwall': friend.getToUser().getId() }) }}">{{ friend.getToUser().getUsername() }}</a></li>
                         {% endfor %}
                     </ul>
                 {% endif %}
