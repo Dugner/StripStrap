@@ -25,17 +25,26 @@ class GameController extends Controller{
         );
     }
     public function getGames(Request $request){
-
-        $client = new \GuzzleHttp\Client(['base_uri' => 'http://www.gamespot.com']);
         
         $url= '/api/games/?api_key=501115dce72ea28ea903e0150924102c489f0810&format=json&page=1200';
-        $response = $client->request('GET', $url);
-
-
-        if ($response->getStatusCode() != 200) {
-            return $this->json(json_decode($response->getBody()->getContents()), 500);
+        $cache = $this->get('app.cache');
+        $gameResult = $cache->getItem(md5($url));
+        
+        if (!$gameResult->isHit()) {
+            $client = new \GuzzleHttp\Client(['base_uri' => 'http://www.gamespot.com']);
+            
+            $response = $client->request('GET', $url);
+    
+    
+            if ($response->getStatusCode() != 200) {
+                return $this->json(json_decode($response->getBody()->getContents()), 500);
+            }
+            
+            $gameResult->set(json_decode($response->getBody()->getContents())->results);
+            $gameResult->expiresAfter(3600);
+            $cache->save($gameResult);
         }
-
-        return new JsonResponse(json_decode($response->getBody()->getContents())->results);
+        
+        return new JsonResponse($gameResult->get());
     }
 }
